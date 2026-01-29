@@ -8,6 +8,59 @@ export default defineConfig({
       lang: 'en',
       title: 'g0v0!',
       description: 'Simple and Easy-to-Deploy osu!(lazer) Server Solution',
+      themeConfig: {
+        nav: [
+          { text: 'g0v0-server', link: '/en/lazer/' },
+          { text: 'osu! GU', link: 'https://github.com/GooGuTeam/osu' },
+          {
+            text: 'LazerAuthlibInjector',
+            link: 'https://github.com/MingxuanGame/LazerAuthlibInjection',
+          },
+        ],
+        sidebar: {
+          '/en/lazer/': [
+            { text: 'Overview', link: '/en/lazer/' },
+            {
+              text: 'Deployment',
+              items: [
+                {
+                  text: 'Deploy with Docker',
+                  link: '/en/lazer/deploy/deploy-with-docker',
+                },
+                {
+                  text: 'Customize Your Server',
+                  link: '/en/lazer/deploy/customize-server',
+                },
+                {
+                  text: 'Deploying the Frontend',
+                  link: '/en/lazer/deploy/frontend',
+                },
+              ],
+            },
+            {
+              text: 'Maintenance',
+              items: [
+                {
+                  text: 'Add Daily Challenge',
+                  link: '/en/lazer/maintenance/add-daily-challenge',
+                },
+                {
+                  text: 'Recalculate PP and Stats',
+                  link: '/en/lazer/maintenance/recalculate-pp-and-stats',
+                },
+              ],
+            },
+            {
+              text: 'Reference',
+              items: [{ text: 'Configurations', link: '/en/lazer/reference/configurations' }],
+            },
+          ],
+        },
+        editLink: {
+          pattern: 'https://github.com/GooGuTeam/g0v0-docs/edit/main/:path',
+          text: 'Edit this page on GitHub',
+        },
+      },
     },
     root: {
       label: '简体中文',
@@ -36,6 +89,10 @@ export default defineConfig({
                 {
                   text: '自定义你的服务器',
                   link: '/lazer/deploy/customize-server',
+                },
+                {
+                  text: '部署前端',
+                  link: '/lazer/deploy/frontend',
                 },
               ],
             },

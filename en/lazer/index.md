@@ -1,23 +1,28 @@
 ---
 ---
 
-# 概览
+# Overview
 
-g0v0-server （下称 g0v0）是一个使用 Python 编写的 osu!(lazer) 服务器，支持最新的 osu!(lazer) 客户端并提供了额外功能（例如 Relax/Autopilot
-Mod 统计信息、自定义 ruleset 支持）。
+g0v0-server (hereinafter referred to as g0v0) is an osu!(lazer) server written
+in Python, supporting the latest osu!(lazer) client and providing additional
+features (e.g., Relax/Autopilot Mod statistics, custom ruleset support).
 
-g0v0 根据 osu! API v2 实现，对 osu! API
-v1 和 v2 实现了绝大多数兼容。这意味着你可以轻易将现有的 osu! 应用程序接入 g0v0。
+g0v0 is implemented based on osu! API v2, achieving compatibility with the vast
+majority of osu! API v1 and v2. This means you can easily integrate existing
+osu! applications into g0v0.
 
-同时 g0v0 也提供了一系列 g0v0! API 以在 osu! API 之外实现对其他功能的操作。
+Meanwhile, g0v0 also provides a series of g0v0! APIs to implement operations for
+other functionalities outside of the osu! API.
 
-g0v0 不仅是一个成绩服务器。它实现了大部分的 osu! 网站的功能（例如聊天、用户设置等）。
+g0v0 is not just a score server. It implements most of the osu! website features
+(e.g., chat, user settings, etc.).
 
-需要注意，g0v0 只是后端服务器，若需要一个网页，你还需要部署单独的[前端页面](./deploy/frontend)。
+Note that g0v0 is just the backend server. If you need a web page, you also need
+to deploy a separate [Frontend Page](./deploy/frontend).
 
-## 支持的 ruleset
+## Supported Rulesets
 
-|                     **Ruleset**                      | **ID** | **ShortName** | **PP 算法 (rosu)** | **PP 算法 (performance-server)** |
+|                     **Ruleset**                      | **ID** | **ShortName** | **PP Algo (rosu)** | **PP Algo (performance-server)** |
 | :--------------------------------------------------: | :----: | :-----------: | :----------------: | :------------------------------: |
 |                         osu!                         |  `0`   |     `osu`     |         ✅         |                ✅                |
 |                      osu!taiko                       |  `1`   |    `taiko`    |         ✅         |                ✅                |
@@ -33,17 +38,18 @@ g0v0 不仅是一个成绩服务器。它实现了大部分的 osu! 网站的功
 | [hishigata](https://github.com/LumpBloom7/hishigata) |  `13`  |  `hishigata`  |         ❌         |                ❌                |
 | [soyokaze!](https://github.com/goodtrailer/soyokaze) |  `14`  |  `soyokaze`   |         ❌         |                ✅                |
 
-自定义 ruleset 由 GooGuTeam 修改，以匹配 g0v0。前往
-[GitHub](https://github.com/GooGuTeam/custom-rulesets/releases/latest)
-下载自定义 ruleset。
+Custom rulesets are modified by GooGuTeam to match g0v0. Visit
+[GitHub](https://github.com/GooGuTeam/custom-rulesets/releases/latest) to
+download custom rulesets.
 
-## 许可
+## License
 
-g0v0 采用 **GNU Affero General Public License v3.0 (AGPL-3.0-only)**
-授权。任何衍生作品、修改或部署 **必须在显著位置清晰署名** 原始作者：
-**GooGuTeam - <https://github.com/GooGuTeam/g0v0-server>**
+g0v0 is licensed under **GNU Affero General Public License v3.0
+(AGPL-3.0-only)**. Any derivative works, modifications, or deployments **MUST
+clearly attribute** the original author in a prominent place: **GooGuTeam -
+<https://github.com/GooGuTeam/g0v0-server>**
 
-## 参与讨论
+## Join Discussion
 
-- QQ 群：`1059561526`
 - Discord: <https://discord.gg/AhzJXXWYfF>
+- QQ Group: `1059561526`
