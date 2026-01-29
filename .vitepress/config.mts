@@ -72,7 +72,7 @@ export default defineConfig({
     },
 
     editLink: {
-      pattern: 'https://github.com/GooGuTeam/g0v0-docs/edit/main/docs/:path',
+      pattern: 'https://github.com/GooGuTeam/g0v0-docs/edit/main/:path',
       text: '在 GitHub 上编辑此页',
     },
   },
