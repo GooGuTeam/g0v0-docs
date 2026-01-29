@@ -45,7 +45,7 @@ GeoIP2 数据库来获取用户的地理位置信息。这用于记录用户的 
 创建一个账户并获取一个 License Key。你需要注册一个免费账户才能获取 License
 Key。记录下你的 License Key，稍后配置 GeoIP 时会用到。
 
-## 配置 GeoIP
+### 配置 GeoIP
 
 编辑 `.env`，添加以下配置：
 

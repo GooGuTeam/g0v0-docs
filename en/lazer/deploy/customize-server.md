@@ -51,7 +51,7 @@ to create an account and get a License Key. You need to register for a free
 account to get a License Key. Note down your License Key, which will be used
 later when configuring GeoIP.
 
-## Configure GeoIP
+### Configure GeoIP
 
 Edit `.env` and add the following configuration:
 
