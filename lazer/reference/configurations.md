@@ -3,7 +3,18 @@ editLink: false
 lastUpdated: false
 ---
 
+> 上次生成：2026-01-29 12:29:48 UTC 于提交
+> [`eb7dd2b74e8e77d0ed8c91a880dc17a3008e9079`](https://github.com/GooGuTeam/g0v0-server/commit/eb7dd2b74e8e77d0ed8c91a880dc17a3008e9079)
+
 # 配置
+
+本页面列出了所有在 `.env` 文件中可用的配置选项及其说明。
+
+::: warning 警告
+
+在生产环境中，请务必更改默认的密钥和密码！
+
+:::
 
 ## 数据库设置
 
@@ -134,7 +145,7 @@ Relic 监控。如果配置文件不存在或 newrelic 包未安装，将跳过 
 ```bash
 CALCULATOR="performance_server"
 CALCULATOR_CONFIG='{
-        "server_url": "http://localhost:5225"
+    "server_url": "http://localhost:5225"
 }'
 ```
 
@@ -200,14 +211,14 @@ CALCULATOR_CONFIG='{}'
 
 ## 反作弊设置
 
-| 变量名                   | 描述                                                                                              | 类型          | 默认值                                                                                        |
-| ------------------------ | ------------------------------------------------------------------------------------------------- | ------------- | --------------------------------------------------------------------------------------------- |
-| `SUSPICIOUS_SCORE_CHECK` | 启用可疑分数检查（pp>3000）                                                                       | boolean       | `true`                                                                                        |
-| `BANNED_NAME`            | 禁止使用的用户名列表                                                                              | array[string] | `["mrekk", "vaxei", "btmc", "cookiezi", "peppy", "saragi", "chocomint"]`                      |
-| `ALLOW_DELETE_SCORES`    | 允许用户删除自己的成绩                                                                            | boolean       | `false`                                                                                       |
-| `CHECK_RULESET_VERSION`  | 检查自定义 ruleset 版本                                                                           | boolean       | `true`                                                                                        |
-| `CHECK_CLIENT_VERSION`   | 检查客户端版本                                                                                    | boolean       | `true`                                                                                        |
-| `CLIENT_VERSION_URLS`    | 客户端版本列表 URL, 查看 <https://github.com/GooGuTeam/g0v0-client-versions> 来添加你自己的客户端 | array[string] | `["https://raw.githubusercontent.com/GooGuTeam/g0v0-client-versions/main/version_list.json"]` |
+| 变量名                   | 描述                                                                                            | 类型          | 默认值                                                                                        |
+| ------------------------ | ----------------------------------------------------------------------------------------------- | ------------- | --------------------------------------------------------------------------------------------- |
+| `SUSPICIOUS_SCORE_CHECK` | 启用可疑分数检查（pp>3000）                                                                     | boolean       | `true`                                                                                        |
+| `BANNED_NAME`            | 禁止使用的用户名列表                                                                            | array[string] | `["mrekk", "vaxei", "btmc", "cookiezi", "peppy", "saragi", "chocomint"]`                      |
+| `ALLOW_DELETE_SCORES`    | 允许用户删除自己的成绩                                                                          | boolean       | `false`                                                                                       |
+| `CHECK_RULESET_VERSION`  | 检查自定义 ruleset 版本                                                                         | boolean       | `true`                                                                                        |
+| `CHECK_CLIENT_VERSION`   | 检查客户端版本                                                                                  | boolean       | `true`                                                                                        |
+| `CLIENT_VERSION_URLS`    | 客户端版本列表 URL, 查看 https://github.com/GooGuTeam/g0v0-client-versions 来添加你自己的客户端 | array[string] | `["https://raw.githubusercontent.com/GooGuTeam/g0v0-client-versions/main/version_list.json"]` |
 
 ## 存储服务设置
 
@@ -227,11 +238,11 @@ STORAGE_SETTINGS='{"local_storage_path": "./storage"}'
 ```bash
 STORAGE_SERVICE="r2"
 STORAGE_SETTINGS='{
-      "r2_account_id": "your_cloudflare_account_id",
-        "r2_access_key_id": "your_r2_access_key_id",
-          "r2_secret_access_key": "your_r2_secret_access_key",
-            "r2_bucket_name": "your_bucket_name",
-              "r2_public_url_base": "https://your-custom-domain.com"
+  "r2_account_id": "your_cloudflare_account_id",
+  "r2_access_key_id": "your_r2_access_key_id",
+  "r2_secret_access_key": "your_r2_secret_access_key",
+  "r2_bucket_name": "your_bucket_name",
+  "r2_public_url_base": "https://your-custom-domain.com"
 }'
 ```
 
@@ -240,11 +251,11 @@ STORAGE_SETTINGS='{
 ```bash
 STORAGE_SERVICE="s3"
 STORAGE_SETTINGS='{
-      "s3_access_key_id": "your_aws_access_key_id",
-        "s3_secret_access_key": "your_aws_secret_access_key",
-          "s3_bucket_name": "your_s3_bucket_name",
-            "s3_region_name": "us-east-1",
-              "s3_public_url_base": "https://your-custom-domain.com"
+  "s3_access_key_id": "your_aws_access_key_id",
+  "s3_secret_access_key": "your_aws_secret_access_key",
+  "s3_bucket_name": "your_s3_bucket_name",
+  "s3_region_name": "us-east-1",
+  "s3_public_url_base": "https://your-custom-domain.com"
 }'
 ```
 
@@ -268,8 +279,3 @@ STORAGE_SETTINGS='{
 | `MATCHMAKING_QUEUE_UPDATE_RATE`  | 更新匹配队列的频率（以秒为单位）                       | integer      | 1                       |
 | `MATCHMAKING_QUEUE_BAN_DURATION` | 玩家拒绝邀请后暂时禁止进入匹配队列的时间（以秒为单位） | integer      | 60                      |
 | `MATCHMAKING_POOL_SIZE`          | 每个匹配房间的谱面数量                                 | integer      | 50                      |
-
-> 上次生成：2026-01-11 08:30:41 UTC 于提交
-> [`8923d714a7d40df07bb885f4084ff610c81b018b`](https://github.com/GooGuTeam/g0v0-server/commit/8923d714a7d40df07bb885f4084ff610c81b018b)
-
-> **注意: 在生产环境中，请务必更改默认的密钥和密码！**
