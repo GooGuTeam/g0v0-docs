@@ -1,0 +1,19 @@
+# Node modules
+node_modules
+
+# VitePress cache and build output
+.vitepress/cache
+.vitepress/dist
+
+# Logs and temporary files
+*.log
+*.tgz
+.temp
+temp
+.vite_opt_cache
+
+# OS and editor files (adjust as needed)
+.DS_Store
+.idea
+.vscode/*
+!.vscode/extensions.json 

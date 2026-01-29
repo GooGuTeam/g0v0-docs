@@ -1,0 +1,177 @@
+/* ==========================================
+   Gusou Lazer Theme → VitePress Integration
+   ========================================== */
+
+/* ---------- Base Theme Variables ---------- */
+
+:root {
+  /* Primary color system */
+  --hue: 340;
+  --profile-color: #D94B77;
+  --osu-pink: var(--profile-color);
+
+  /* Map to VitePress brand colors */
+  --vp-c-brand-1: var(--osu-pink);
+  --vp-c-brand-2: oklch(0.78 0.11 var(--hue));
+  --vp-c-brand-3: oklch(0.68 0.13 var(--hue));
+  --vp-c-brand-soft: rgba(237, 142, 166, 0.18);
+
+  /* Page background */
+  --page-bg: oklch(0.97 0.01 var(--hue));
+  --bg-secondary: oklch(0.95 0.02 var(--hue));
+
+  /* Card background */
+  --card-bg: #ffffff;
+  --card-bg-hover: oklch(0.98 0.005 var(--hue));
+
+  /* Text colors */
+  --text-primary: #1a202c;
+  --text-secondary: #718096;
+
+  /* Border colors */
+  --border-color: #e2e8f0;
+  --border-hover: rgba(237, 142, 166, 0.25);
+
+  /* Navbar background */
+  --navbar-bg: rgba(255, 255, 255, 0.9);
+}
+
+/* ---------- Dark Mode Theme ---------- */
+
+.dark {
+  --profile-color: #ED8EA6;
+
+  --page-bg: oklch(0.16 0.014 var(--hue));
+  --bg-secondary: oklch(0.20 0.015 var(--hue));
+
+  --card-bg: oklch(0.23 0.015 var(--hue));
+  --card-bg-hover: oklch(0.30 0.03 var(--hue));
+
+  --text-primary: rgba(255, 255, 255, 0.92);
+  --text-secondary: rgba(255, 255, 255, 0.7);
+
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(237, 142, 166, 0.35);
+
+  --navbar-bg: oklch(0.19 0.015 var(--hue) / 0.9);
+
+  /* Dark mode brand adjustment */
+  --vp-c-brand-soft: rgba(237, 142, 166, 0.25);
+}
+
+/* ---------- Global Page Style ---------- */
+
+html,
+body {
+  background: var(--page-bg);
+  color: var(--text-primary);
+}
+
+/* ---------- Navbar Glass Effect ---------- */
+
+.VPNavBar {
+  background: var(--navbar-bg) !important;
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* ---------- Hero Title Gradient ---------- */
+
+.VPHero .name {
+  background: linear-gradient(135deg, #ED8EA6, #7DD5D4);
+  background-size: 200% 200%;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-shift 4s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* ---------- Hero Button Style ---------- */
+
+.VPButton.brand {
+  background: var(--osu-pink) !important;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(237, 142, 166, 0.35);
+}
+
+.VPButton.brand:hover {
+  filter: brightness(0.95);
+  transform: translateY(-2px);
+}
+
+.VPButton.alt {
+  border-radius: 14px;
+  border: 2px solid var(--osu-pink);
+}
+
+/* ---------- Feature Card Style ---------- */
+
+.VPFeature {
+  background: var(--card-bg);
+  border-radius: 18px;
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(8px);
+  transition: all 0.25s ease;
+}
+
+.VPFeature:hover {
+  background: var(--card-bg-hover);
+  border-color: var(--border-hover);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
+}
+
+/* ---------- Documentation Content Card ---------- */
+
+.vp-doc .container {
+  background: transparent;
+}
+
+.vp-doc .content {
+  background: var(--card-bg);
+  border-radius: 18px;
+  padding: 2rem;
+  border: 1px solid var(--border-color);
+}
+
+/* ---------- Link Highlight ---------- */
+
+.vp-doc a {
+  color: var(--osu-pink);
+}
+
+.vp-doc a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Custom Scrollbar ---------- */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}

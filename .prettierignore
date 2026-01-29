@@ -1,0 +1,33 @@
+# build output
+dist
+docs/.vitepress/dist
+
+# cache
+node_modules
+docs/.vitepress/cache
+.vitepress/cache
+
+# lock
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# env
+.env
+.env.*
+
+# ide
+.idea
+.vscode
+
+# coverage
+coverage
+
+# logs
+*.log
+
+# system
+.DS_Store
+
+# generated
+docs/public
