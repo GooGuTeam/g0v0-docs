@@ -7,14 +7,18 @@
 
 ## 设置 Fetcher
 
-新建的 g0v0 不存在任何谱面数据，其使用 Fetcher 从 osu! Bancho 获取谱面。下面介绍如何配置 Fetcher。
+新建的 g0v0 不存在任何谱面数据，其使用 Fetcher 从 osu!
+Bancho 获取谱面。下面介绍如何配置 Fetcher。
 
 ### 获取 osu 开放授权
 
-Fetcher 基于 osu! API v2 工作，因此你需要一个 osu! API v2 开放授权。前往 [osu! 设置](https://osu.ppy.sh/home/account/edit#new-oauth-application) 创建一个新的 OAuth 应用，填写以下信息：
+Fetcher 基于 osu! API v2 工作，因此你需要一个 osu! API v2 开放授权。前往
+[osu! 设置](https://osu.ppy.sh/home/account/edit#new-oauth-application)
+创建一个新的 OAuth 应用，填写以下信息：
 
 - 应用名称：任意名称，例如 `g0v0 Fetcher`
-- 重定向 URI：`http://your-server-url.com/oauth/callback`，将 `your-server-url.com` 替换为你的服务器地址。
+- 重定向 URI：`http://your-server-url.com/oauth/callback`，将
+  `your-server-url.com` 替换为你的服务器地址。
 
 创建后记下客户端 ID 和客户端密钥，稍后配置 Fetcher 时会用到。
 
@@ -27,15 +31,19 @@ FETCHER_CLIENT_ID="你的客户端 ID"
 FETCHER_CLIENT_SECRET="你的客户端密钥"
 ```
 
-保存后重启 g0v0 服务器。这样 Fetcher 就配置完成了。当服务器接收到不存在的谱面时，Fetcher 会自动从 osu! Bancho 获取谱面数据。
+保存后重启 g0v0 服务器。这样 Fetcher 就配置完成了。当服务器接收到不存在的谱面时，Fetcher 会自动从 osu!
+Bancho 获取谱面数据。
 
 ## 设置 GeoIP
 
-g0v0 使用 MaxMind GeoIP2 数据库来获取用户的地理位置信息。这用于记录用户的 IP 地址和显示用户的国家/地区。
+g0v0 使用 MaxMind
+GeoIP2 数据库来获取用户的地理位置信息。这用于记录用户的 IP 地址和显示用户的国家/地区。
 
 ### 获取 MaxMind Licese Key
 
-前往 [MaxMind 网站](https://www.maxmind.com/en/accounts/current/license-key) 创建一个账户并获取一个 License Key。你需要注册一个免费账户才能获取 License Key。记录下你的 License Key，稍后配置 GeoIP 时会用到。
+前往 [MaxMind 网站](https://www.maxmind.com/en/accounts/current/license-key)
+创建一个账户并获取一个 License Key。你需要注册一个免费账户才能获取 License
+Key。记录下你的 License Key，稍后配置 GeoIP 时会用到。
 
 ## 配置 GeoIP
 
@@ -106,7 +114,8 @@ MAX_TOKENS_PER_USER_PER_CLIENT=5
 
 ## 启用 Relax/Autopilot 统计信息
 
-g0v0 支持 Relax/Autopilot Mod 统计信息。但是这个功能默认是关闭的。你需要在配置文件中启用它。
+g0v0 支持 Relax/Autopilot
+Mod 统计信息。但是这个功能默认是关闭的。你需要在配置文件中启用它。
 
 编辑 `.env`，添加以下配置：
 
@@ -115,7 +124,8 @@ ENABLE_RX=true
 ENABLE_AP=true
 ```
 
-此外，由于客户端的限制，你无法直接在游戏内查看 Relax/Autopilot 的成绩排行榜。g0v0 提供了一种替代方法：使用筛选当前 mod 组合来查看成绩排行榜。由于这个功能需要 osu supporter，因此建议启用所有新注册用户的支持者状态。
+此外，由于客户端的限制，你无法直接在游戏内查看 Relax/Autopilot 的成绩排行榜。g0v0 提供了一种替代方法：使用筛选当前 mod 组合来查看成绩排行榜。由于这个功能需要 osu
+supporter，因此建议启用所有新注册用户的支持者状态。
 
 编辑 `.env`，添加以下配置：
 
@@ -152,7 +162,8 @@ ENABLE_ALL_BEATMAP_PP=true
 docker exec -it g0v0-server uv run --no-sync tools/generate_ranked_mods.py
 ```
 
-对于更精细的控制，你可以编辑 `config/ranked_mods.json` 文件，添加或删除你想要的 mod。结构如下：
+对于更精细的控制，你可以编辑 `config/ranked_mods.json`
+文件，添加或删除你想要的 mod。结构如下：
 
 ```json
 {

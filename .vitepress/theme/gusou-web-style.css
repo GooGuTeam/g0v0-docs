@@ -7,7 +7,7 @@
 :root {
   /* Primary color system */
   --hue: 340;
-  --profile-color: #D94B77;
+  --profile-color: #d94b77;
   --osu-pink: var(--profile-color);
 
   /* Map to VitePress brand colors */
@@ -39,13 +39,13 @@
 /* ---------- Dark Mode Theme ---------- */
 
 .dark {
-  --profile-color: #ED8EA6;
+  --profile-color: #ed8ea6;
 
   --page-bg: oklch(0.16 0.014 var(--hue));
-  --bg-secondary: oklch(0.20 0.015 var(--hue));
+  --bg-secondary: oklch(0.2 0.015 var(--hue));
 
   --card-bg: oklch(0.23 0.015 var(--hue));
-  --card-bg-hover: oklch(0.30 0.03 var(--hue));
+  --card-bg-hover: oklch(0.3 0.03 var(--hue));
 
   --text-primary: rgba(255, 255, 255, 0.92);
   --text-secondary: rgba(255, 255, 255, 0.7);
@@ -78,7 +78,7 @@ body {
 /* ---------- Hero Title Gradient ---------- */
 
 .VPHero .name {
-  background: linear-gradient(135deg, #ED8EA6, #7DD5D4);
+  background: linear-gradient(135deg, #ed8ea6, #7dd5d4);
   background-size: 200% 200%;
   background-clip: text;
   -webkit-text-fill-color: transparent;

@@ -16,7 +16,8 @@ curl https://raw.githubusercontent.com/GooGuTeam/g0v0-server/refs/heads/main/.en
 
 - `JWT_SECRET_KEY` JWT 密钥。使用 `openssl rand -hex 32` 生成。
 - `SERVER_URL` 服务器对外开放地址。以 `http://` 或 `https://` 开头。
-- `SENTRY_DSN` 和 `SP_SENTRY_DSN` [Sentry](https://sentry.io) DSN 地址。前者用于 API，后者用于 spectator-server。
+- `SENTRY_DSN` 和 `SP_SENTRY_DSN` [Sentry](https://sentry.io)
+  DSN 地址。前者用于 API，后者用于 spectator-server。
 - [存储服务相关设置](../reference/configurations#存储服务设置)。
 
 修改配置后保存。
@@ -80,7 +81,7 @@ services:
       - g0v0-mysql_data:/var/lib/mysql
       - ./mysql-init:/docker-entrypoint-initdb.d
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost']
       timeout: 20s
       retries: 10
       interval: 10s
@@ -90,7 +91,7 @@ services:
       - osu-network
 
   spectator:
-    image:  ghcr.io/googuteam/osu-server-spectator:master
+    image: ghcr.io/googuteam/osu-server-spectator:master
     container_name: spectator-server
     pull_policy: always
     environment:
@@ -119,7 +120,7 @@ services:
     image: nginx:1.25-alpine
     container_name: g0v0-nginx
     ports:
-      - "8000:80"
+      - '8000:80'
     volumes:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
     restart: unless-stopped
@@ -132,7 +133,7 @@ services:
     volumes:
       - g0v0-redis_data:/data
     healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
+      test: ['CMD', 'redis-cli', 'ping']
       timeout: 5s
       retries: 5
       interval: 10s

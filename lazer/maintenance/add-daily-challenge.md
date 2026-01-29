@@ -13,8 +13,7 @@
 python tools/add_daily_challenge.py
 ```
 
-:::tip 提示
-如果你使用 Docker 部署 g0v0，请使用以下命令运行脚本：
+:::tip 提示如果你使用 Docker 部署 g0v0，请使用以下命令运行脚本：
 
 ```sh
 docker exec -it g0v0-server uv run --no-sync python tools/add_daily_challenge.py
@@ -26,7 +25,8 @@ docker exec -it g0v0-server uv run --no-sync python tools/add_daily_challenge.py
 
 ## 手动添加
 
-你可以使用 `redis-cli` 或其他 Redis 管理工具连接到 Redis 数据库，通过设置 Hash 来添加每日挑战。
+你可以使用 `redis-cli`
+或其他 Redis 管理工具连接到 Redis 数据库，通过设置 Hash 来添加每日挑战。
 
 你需要设置如下 HashMap 结构：
 
