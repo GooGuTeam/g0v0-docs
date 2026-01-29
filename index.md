@@ -6,6 +6,7 @@ hero:
   name: '咕哦！'
   text: '简单易部署的 osu!(lazer) 服务器方案'
   tagline: '由 GooGuTeam 驱动'
+  image: /g0v0.webp
   actions:
     - theme: brand
       text: 查看文档

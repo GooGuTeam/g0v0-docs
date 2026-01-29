@@ -6,6 +6,7 @@ hero:
   name: 'g0v0!'
   text: 'Simple and Easy-to-Deploy osu!(lazer) Server Solution'
   tagline: 'Powered by GooGuTeam'
+  image: /g0v0.webp
   actions:
     - theme: brand
       text: View Docs
