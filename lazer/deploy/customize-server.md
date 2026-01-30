@@ -26,7 +26,7 @@ Fetcher 基于 osu! API v2 工作，因此你需要一个 osu! API v2 开放授�
 
 编辑 `.env`，添加以下配置：
 
-```env
+```dotenv
 FETCHER_CLIENT_ID="你的客户端 ID"
 FETCHER_CLIENT_SECRET="你的客户端密钥"
 ```
@@ -49,7 +49,7 @@ Key。记录下你的 License Key，稍后配置 GeoIP 时会用到。
 
 编辑 `.env`，添加以下配置：
 
-```env
+```dotenv
 MAXMIND_LICENSE_KEY="你的 License Key"
 ```
 
@@ -67,7 +67,7 @@ g0v0 内置了一系列用户会话安全设置：
 
 编辑 `.env`，添加以下配置：
 
-```env
+```dotenv
 ENABLE_EMAIL_VERIFICATION=true
 EMAIL_PROVIDER=smtp
 SMTP_SERVER="smtp.your-email-provider.com"
@@ -84,13 +84,13 @@ FROM_NAME="Your Server Name"
 
 g0v0 默认启用 TOTP 双重验证。你可以通过编辑 `.env` 来禁用它：
 
-```env
+```dotenv
 ENABLE_TOTP_VERIFICATION=false
 ```
 
 或者修改 TOTP 的发行者名称、服务名称等：
 
-```env
+```dotenv
 TOTP_ISSUER="Your Server Name"
 TOTP_SERVICE_NAME="your-server-url.com"
 # 在TOTP标签中使用用户名而不是邮箱
@@ -101,7 +101,7 @@ TOTP_USE_USERNAME_IN_LABEL=true
 
 g0v0 支持多设备登录限制和设备指纹识别。你可以通过编辑 `.env` 来配置这些设置：
 
-```env
+```dotenv
 # 是否允许多设备同时登录
 ENABLE_MULTI_DEVICE_LOGIN=true
 # 设备信任持续天数
@@ -117,7 +117,7 @@ Mod 统计信息。但是这个功能默认是关闭的。你需要在配置文�
 
 编辑 `.env`，添加以下配置：
 
-```env
+```dotenv
 ENABLE_RX=true
 ENABLE_AP=true
 ```
@@ -126,7 +126,7 @@ ENABLE_AP=true
 
 编辑 `.env`，添加以下配置：
 
-```env
+```dotenv
 ENABLE_SUPPORTER_FOR_ALL_USERS=true
 ```
 
@@ -138,7 +138,7 @@ g0v0 支持为没有排行榜的谱面强制启用排行榜。这些图会在客
 
 编辑 `.env`，添加以下配置：
 
-```env
+```dotenv
 ENABLE_ALL_BEATMAP_LEADERBOARD=true
 ```
 
@@ -146,7 +146,7 @@ ENABLE_ALL_BEATMAP_LEADERBOARD=true
 
 g0v0 支持强制启用非上架谱面的 pp 计算。编辑 `.env`，添加以下配置：
 
-```env
+```dotenv
 ENABLE_ALL_BEATMAP_PP=true
 ```
 
@@ -205,7 +205,7 @@ g0v0 支持节日背景图功能。你可以自由设置在客户端显示的节
 
 编辑 `.env`，添加以下配置：
 
-```env
+```dotenv
 SEASONAL_BACKGROUNDS=["url1","url2","url3"]
 ```
 

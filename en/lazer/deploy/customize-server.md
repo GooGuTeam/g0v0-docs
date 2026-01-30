@@ -29,7 +29,7 @@ later when configuring Fetcher.
 
 Edit `.env` and add the following configuration:
 
-```env
+```dotenv
 FETCHER_CLIENT_ID="Your Client ID"
 FETCHER_CLIENT_SECRET="Your Client Secret"
 ```
@@ -54,7 +54,7 @@ later when configuring GeoIP.
 
 Edit `.env` and add the following configuration:
 
-```env
+```dotenv
 MAXMIND_LICENSE_KEY="Your License Key"
 ```
 
@@ -73,7 +73,7 @@ g0v0 has built-in user session security settings:
 
 Edit `.env` and add the following configuration:
 
-```env
+```dotenv
 ENABLE_EMAIL_VERIFICATION=true
 EMAIL_PROVIDER=smtp
 SMTP_SERVER="smtp.your-email-provider.com"
@@ -91,13 +91,13 @@ Save and restart the g0v0 server. Now the email service is configured.
 g0v0 enables TOTP Two-Factor Authentication by default. You can disable it by
 editing `.env`:
 
-```env
+```dotenv
 ENABLE_TOTP_VERIFICATION=false
 ```
 
 Or modify the TOTP issuer name, service name, etc.:
 
-```env
+```dotenv
 TOTP_ISSUER="Your Server Name"
 TOTP_SERVICE_NAME="your-server-url.com"
 # Use username instead of email in TOTP label
@@ -109,7 +109,7 @@ TOTP_USE_USERNAME_IN_LABEL=true
 g0v0 supports multi-device login restriction and device fingerprinting. You can
 configure these settings by editing `.env`:
 
-```env
+```dotenv
 # Whether to allow multiple devices to login simultaneously
 ENABLE_MULTI_DEVICE_LOGIN=true
 # Device trust duration in days
@@ -125,7 +125,7 @@ by default. You need to enable it in the configuration file.
 
 Edit `.env` and add the following configuration:
 
-```env
+```dotenv
 ENABLE_RX=true
 ENABLE_AP=true
 ```
@@ -138,7 +138,7 @@ newly registered users.
 
 Edit `.env` and add the following configuration:
 
-```env
+```dotenv
 ENABLE_SUPPORTER_FOR_ALL_USERS=true
 ```
 
@@ -152,7 +152,7 @@ will show as Approved status in the client.
 
 Edit `.env` and add the following configuration:
 
-```env
+```dotenv
 ENABLE_ALL_BEATMAP_LEADERBOARD=true
 ```
 
@@ -161,7 +161,7 @@ ENABLE_ALL_BEATMAP_LEADERBOARD=true
 g0v0 supports forcing pp calculation for unranked beatmaps. Edit `.env` and add
 the following configuration:
 
-```env
+```dotenv
 ENABLE_ALL_BEATMAP_PP=true
 ```
 
@@ -226,7 +226,7 @@ be displayed in the client.
 
 Edit `.env` and add the following configuration:
 
-```env
+```dotenv
 SEASONAL_BACKGROUNDS=["url1","url2","url3"]
 ```
 
