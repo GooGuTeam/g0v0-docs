@@ -16,7 +16,9 @@ usage: recalculate.py [-h] [--dry-run] [--concurrency CONCURRENCY] [--output-csv
                       {performance,leaderboard,rating,all} ...
 ```
 
-:::tip 提示如果你使用 Docker 部署 g0v0，请使用以下命令运行脚本：
+:::tip 提示
+
+如果你使用 Docker 部署 g0v0，请使用以下命令运行脚本：
 
 ```sh
 docker exec -it g0v0-server uv run --no-sync python tools/recalculate.py
@@ -31,7 +33,7 @@ docker exec -it g0v0-server uv run --no-sync python tools/recalculate.py
 - `--concurrency CONCURRENCY`: 最大并发任务数。
 - `--output-csv OUTPUT_CSV`: 将结果输出到指定的 CSV 文件。
 
-## 重新计算性能点数 (Performance Point)
+## 重新计算 pp
 
 你可以使用子命令 `performance` 来重新计算 pp，并支持使用一些过滤器。请使用 `-h`
 选项查看可用的过滤器。
@@ -51,7 +53,7 @@ uv run --no-sync python tools/recalculate.py performance -h
 uv run --no-sync python tools/recalculate.py leaderboard -h
 ```
 
-此命令用于重新计算排行榜（TotalScore 和 BestScore）。
+此命令用于重新计算排行榜和用户的统计信息（包括游玩时间、最大连击数等）。
 
 ## 重新计算难度星级 (Star Ratings)
 

@@ -19,7 +19,7 @@ to [osu! Settings](https://osu.ppy.sh/home/account/edit#new-oauth-application)
 to create a new OAuth application and fill in the following information:
 
 - Application Name: Any name, e.g., `g0v0 Fetcher`
-- Redirect URI: `http://your-server-url.com/oauth/callback`, replace
+- Redirect URI: `http://your-server-url.com/fetcher/callback`, replace
   `your-server-url.com` with your server address.
 
 After creation, note down the Client ID and Client Secret, which will be used
@@ -35,14 +35,13 @@ FETCHER_CLIENT_SECRET="Your Client Secret"
 ```
 
 Save and restart the g0v0 server. Now Fetcher is configured. When the server
-receives a request for a non-existent beatmap, Fetcher will automatically fetch
-beatmap data from osu! Bancho.
+receives a request for a non-existent beatmap request, Fetcher will
+automatically fetch beatmap data from osu! Bancho.
 
 ## Set up GeoIP
 
-g0v0 uses the MaxMind GeoIP2 database to get users' geographical location
-information. This is used to record users' IP addresses and display users'
-countries/regions.
+g0v0 uses the MaxMind GeoIP database to get users' geographical location
+information. This is used to record and display users' countries/regions.
 
 ### Get MaxMind License Key
 
@@ -118,9 +117,6 @@ DEVICE_TRUST_DURATION_DAYS=30
 # Max tokens per user per client
 MAX_TOKENS_PER_USER_PER_CLIENT=5
 ```
-
-Save and restart the g0v0 server. Now user session security settings are
-configured.
 
 ## Enable Relax/Autopilot Statistics
 

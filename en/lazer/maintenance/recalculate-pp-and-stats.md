@@ -16,8 +16,10 @@ usage: recalculate.py [-h] [--dry-run] [--concurrency CONCURRENCY] [--output-csv
                       {performance,leaderboard,rating,all} ...
 ```
 
-:::tip Tip If you deployed g0v0 using Docker, please use the following command
-to run the script:
+:::tip Tip
+
+If you deployed g0v0 using Docker, please use the following command to run the
+script:
 
 ```sh
 docker exec -it g0v0-server uv run --no-sync python tools/recalculate.py
@@ -53,7 +55,8 @@ view filters.
 uv run --no-sync python tools/recalculate.py leaderboard -h
 ```
 
-This command is used to recalculate leaderboards (TotalScore and BestScore).
+This command is used to recalculate leaderboards and users' statistics (such as
+total playtime, maximum combo, so on).
 
 ## Recalculate Star Ratings
 

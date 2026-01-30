@@ -17,7 +17,7 @@ Fetcher 基于 osu! API v2 工作，因此你需要一个 osu! API v2 开放授�
 创建一个新的 OAuth 应用，填写以下信息：
 
 - 应用名称：任意名称，例如 `g0v0 Fetcher`
-- 重定向 URI：`http://your-server-url.com/oauth/callback`，将
+- 重定向 URI：`http://your-server-url.com/fetcher/callback`，将
   `your-server-url.com` 替换为你的服务器地址。
 
 创建后记下客户端 ID 和客户端密钥，稍后配置 Fetcher 时会用到。
@@ -31,15 +31,15 @@ FETCHER_CLIENT_ID="你的客户端 ID"
 FETCHER_CLIENT_SECRET="你的客户端密钥"
 ```
 
-保存后重启 g0v0 服务器。这样 Fetcher 就配置完成了。当服务器接收到不存在的谱面时，Fetcher 会自动从 osu!
-Bancho 获取谱面数据。
+保存后重启 g0v0 服务器。这样 Fetcher 就配置完成了。当服务器接收到不存在的谱面的请求时，Fetcher 会自动从 osu!
+Bancho 获取谱面数据。,,
 
 ## 设置 GeoIP
 
 g0v0 使用 MaxMind
-GeoIP2 数据库来获取用户的地理位置信息。这用于记录用户的 IP 地址和显示用户的国家/地区。
+GeoIP 数据库来获取用户的地理位置信息。这用于记录并显示用户的国家/地区。
 
-### 获取 MaxMind Licese Key
+### 获取 MaxMind License Key
 
 前往 [MaxMind 网站](https://www.maxmind.com/en/accounts/current/license-key)
 创建一个账户并获取一个 License Key。你需要注册一个免费账户才能获取 License
@@ -110,8 +110,6 @@ DEVICE_TRUST_DURATION_DAYS=30
 MAX_TOKENS_PER_USER_PER_CLIENT=5
 ```
 
-保存后重启 g0v0 服务器。这样用户会话安全设置就配置完成了。
-
 ## 启用 Relax/Autopilot 统计信息
 
 g0v0 支持 Relax/Autopilot
@@ -124,8 +122,7 @@ ENABLE_RX=true
 ENABLE_AP=true
 ```
 
-此外，由于客户端的限制，你无法直接在游戏内查看 Relax/Autopilot 的成绩排行榜。g0v0 提供了一种替代方法：使用筛选当前 mod 组合来查看成绩排行榜。由于这个功能需要 osu
-supporter，因此建议启用所有新注册用户的支持者状态。
+此外，由于客户端的限制，你无法直接在游戏内查看 Relax/Autopilot 的成绩排行榜。g0v0 提供了一种替代方法：使用筛选当前 mod 组合来查看成绩排行榜。由于这个功能需要 osu! 支持者，因此建议启用所有新注册用户的支持者状态。
 
 编辑 `.env`，添加以下配置：
 

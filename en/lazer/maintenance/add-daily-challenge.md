@@ -15,8 +15,10 @@ the following python script:
 python tools/add_daily_challenge.py
 ```
 
-:::tip Tip If you deployed g0v0 using Docker, please use the following command
-to run the script:
+:::tip Tip
+
+If you deployed g0v0 using Docker, please use the following command to run the
+script:
 
 ```sh
 docker exec -it g0v0-server uv run --no-sync python tools/add_daily_challenge.py
