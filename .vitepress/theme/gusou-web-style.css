@@ -175,3 +175,35 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--text-secondary);
 }
+
+/* ---------- Tip/Info Box Color Override ----------  */
+:root {
+  /* Info / tip callout colors */
+  --vp-custom-block-tip-bg: rgba(56, 178, 172, 0.12);
+  --vp-custom-block-tip-border: #38b2ac;
+  --vp-custom-block-tip-text: #2c7a7b;
+
+  --vp-custom-block-info-bg: rgba(56, 178, 172, 0.12);
+  --vp-custom-block-info-border: #38b2ac;
+  --vp-custom-block-info-text: #2c7a7b;
+}
+
+.dark {
+  /* Dark mode callout colors */
+  --vp-custom-block-tip-bg: rgba(79, 209, 197, 0.18);
+  --vp-custom-block-tip-border: #4fd1c5;
+  --vp-custom-block-tip-text: #9decdf;
+
+  --vp-custom-block-info-bg: rgba(79, 209, 197, 0.18);
+  --vp-custom-block-info-border: #4fd1c5;
+  --vp-custom-block-info-text: #9decdf;
+}
+
+/* Remove callout border */
+.vp-doc .custom-block.tip,
+.vp-doc .custom-block.info,
+.vp-doc .custom-block.warning,
+.vp-doc .custom-block.danger {
+  border: none !important;
+  box-shadow: none !important; /* optional if there is shadow */
+}
