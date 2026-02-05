@@ -3,8 +3,8 @@ editLink: false
 lastUpdated: false
 ---
 
-> 上次生成：2026-01-29 12:29:48 UTC 于提交
-> [`eb7dd2b74e8e77d0ed8c91a880dc17a3008e9079`](https://github.com/GooGuTeam/g0v0-server/commit/eb7dd2b74e8e77d0ed8c91a880dc17a3008e9079)
+> 上次生成：2026-02-05 17:12:30 UTC 于提交
+> [`047b88e3273cba63942f67cd31a0d4847569cda0`](https://github.com/GooGuTeam/g0v0-server/commit/047b88e3273cba63942f67cd31a0d4847569cda0)
 
 # 配置
 
