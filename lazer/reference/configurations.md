@@ -3,8 +3,8 @@ editLink: false
 lastUpdated: false
 ---
 
-> 上次生成：2026-02-05 17:12:30 UTC 于提交
-> [`047b88e3273cba63942f67cd31a0d4847569cda0`](https://github.com/GooGuTeam/g0v0-server/commit/047b88e3273cba63942f67cd31a0d4847569cda0)
+> 上次生成：2026-02-06 14:24:04 UTC 于提交
+> [`b5a717c343787d3a12f42ab487db4fc2321c0134`](https://github.com/GooGuTeam/g0v0-server/commit/b5a717c343787d3a12f42ab487db4fc2321c0134)
 
 # 配置
 
@@ -263,19 +263,3 @@ STORAGE_SETTINGS='{
 | ------------------ | --------------------------- | ------------------------------------------------------------------ | ------------------------------------ |
 | `STORAGE_SERVICE`  | 存储服务类型：local、r2、s3 | enum(local, r2, s3)                                                | `local`                              |
 | `STORAGE_SETTINGS` | 存储服务配置 (JSON 格式)    | LocalStorageSettings / CloudflareR2Settings / AWSS3StorageSettings | `{"local_storage_path":"./storage"}` |
-
-## 旁观服务器设置
-
-| 变量名                           | 描述                                                   | 类型         | 默认值                  |
-| -------------------------------- | ------------------------------------------------------ | ------------ | ----------------------- |
-| `SAVE_REPLAYS`                   | 是否保存回放，设置为 `1` 为启用                        | boolean      | `0`                     |
-| `REDIS_HOST`                     | Redis 服务器地址                                       | string       | `localhost`             |
-| `SHARED_INTEROP_DOMAIN`          | API 服务器（即本服务）地址                             | string (url) | `http://localhost:8000` |
-| `SERVER_PORT`                    | 旁观服务器端口                                         | integer      | `8006`                  |
-| `SP_SENTRY_DSN`                  | 旁观服务器的 Sentry DSN                                | string       | `null`                  |
-| `MATCHMAKING_ROOM_ROUNDS`        | 匹配对战房间的回合数                                   | integer      | 5                       |
-| `MATCHMAKING_ALLOW_SKIP`         | 是否允许用户跳过匹配阶段                               | boolean      | false                   |
-| `MATCHMAKING_LOBBY_UPDATE_RATE`  | 更新匹配大厅的频率（以秒为单位）                       | integer      | 5                       |
-| `MATCHMAKING_QUEUE_UPDATE_RATE`  | 更新匹配队列的频率（以秒为单位）                       | integer      | 1                       |
-| `MATCHMAKING_QUEUE_BAN_DURATION` | 玩家拒绝邀请后暂时禁止进入匹配队列的时间（以秒为单位） | integer      | 60                      |
-| `MATCHMAKING_POOL_SIZE`          | 每个匹配房间的谱面数量                                 | integer      | 50                      |
