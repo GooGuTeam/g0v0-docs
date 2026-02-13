@@ -110,6 +110,28 @@ export default defineConfig({
               ],
             },
             {
+              text: '开发',
+              items: [
+                {
+                  text: '插件开发',
+                  items: [
+                    {
+                      text: '创建并加载插件',
+                      link: '/lazer/development/plugin/create-and-load-plugin',
+                    },
+                    { text: '注册 API', link: '/lazer/development/plugin/api-router.' },
+                    {
+                      text: '定义数据库模型',
+                      link: '/lazer/development/plugin/define-database-model',
+                    },
+                    { text: '事件监听', link: '/lazer/development/plugin/event-listener' },
+                    { text: '依赖注入', link: '/lazer/development/plugin/di' },
+                  ],
+                  link: '/lazer/development/plugin/',
+                },
+              ],
+            },
+            {
               text: '参考',
               items: [{ text: '配置', link: '/lazer/reference/configurations' }],
             },
