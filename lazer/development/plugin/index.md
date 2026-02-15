@@ -31,11 +31,9 @@ async def on_user_registered(event: UserRegisteredEvent, bot: BanchoBot):  # 这
 from app.plugins import register_api
 from app.dependencies.client_verification import ClientVerificationService
 
-
 router = register_api()
 
-
-@router.get("/verify-client")
+@router.get("/verify-client")  # /api/plugins/{plugin_id}/verify-client
 async def verify_client(version_hash: str, verification_service: ClientVerificationService):
     if not (
         client_version := await verification_service.validate_client_version(
@@ -54,7 +52,6 @@ async def verify_client(version_hash: str, verification_service: ClientVerificat
 # 假设插件的 id 为 `my_plugin`
 from app.database._base import DatabaseModel
 from sqlmodel import Field
-
 
 class MyPluginModel(DatabaseModel, table=True):
     __tablename__ = "mytable"  # -> plugin_my_plugin_mytable
@@ -79,11 +76,9 @@ from app.plugins import listen
 
 from fast_depends import Depends
 
-
 async def my_plugin_service():
     # 这里可以创建和返回插件需要的服务实例
     return MyPluginService()
-
 
 @listen
 async def on_event(my_service: MyPluginService = Depends(my_plugin_service)):
