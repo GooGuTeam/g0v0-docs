@@ -179,8 +179,8 @@ print(Data.transform(data, includes=["secret_info"]))
 @included
 @staticmethod
 async def name_length(
-    _session: AsyncSession, 
-    data: "Data", 
+    _session: AsyncSession,
+    data: "Data",
     multiplier: int = 1
 ) -> int:
     return len(data.name) * multiplier
@@ -191,8 +191,8 @@ async def name_length(
 ```python {5}
 data = await db.get(Data, 1)
 print(Data.transform(
-        data, 
-        includes=["name_length"], 
+        data,
+        includes=["name_length"],
         multiplier=2,
     )
 )
@@ -225,7 +225,7 @@ DataDictAdapter = TypeAdapter(Data.generate_typeddict(includes=["secret_info"]))
 
 ```python {3}
 @router.get(
-    "/data/{data_id}", 
+    "/data/{data_id}",
     response_model=Data.generate_typeddict(includes=["secret_info"])
 )
 async def get_data(data_id: int, db: Database):
@@ -240,7 +240,7 @@ async def get_data(data_id: int, db: Database):
 ```python {4-11}
 from app.utils import api_doc
 
-@router.get("/data/{data_id}", 
+@router.get("/data/{data_id}",
     responses={
         200: api_doc(
             desc="数据",
