@@ -133,7 +133,11 @@ export default defineConfig({
             },
             {
               text: '参考',
-              items: [{ text: '配置', link: '/lazer/reference/configurations' }],
+              items: [
+                { text: '配置', link: '/lazer/reference/configurations' },
+                { text: '内置事件', link: '/lazer/reference/builtin-event' },
+                { text: '内置依赖注入', link: '/lazer/reference/builtin-di' },
+              ],
             },
           ],
         },
