@@ -14,13 +14,15 @@ g0v0 提供了一个插件系统，允许开发者为 g0v0 添加新的功能和
 ```python
 from app.plugins import listen
 from app.dependencies.bot import BanchoBot
+from app.dependencies.database import Database
 from app.models.events import UserRegisteredEvent
 
 
 @listen
-async def on_user_registered(event: UserRegisteredEvent, bot: BanchoBot):  # 这里使用了依赖注入，将在下文详细介绍。
-    user = event.user
-    bot.send_message(user.id, f"欢迎 {user.username} 注册成功！")
+async def on_user_registered(event: UserRegisteredEvent, bot: BanchoBot, session: Database):  # 这里使用了依赖注入，将在下文详细介绍。
+    user = await session.get(User, event.user_id)
+    if user:
+        bot.send_reply(user, f"欢迎 {user.username} 注册成功！")
 ```
 
 ### API 扩展

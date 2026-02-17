@@ -9,11 +9,11 @@
 你可以使用 `listen` 装饰器来监听事件：
 
 ```python
-from app.plugins import event_hub
+from app.plugins import listen
 from app.models.events import MessageSentEvent
 
-@event_hub.listen
-async def on_my_custom_event(event: MessageSentEvent):
+@listen
+async def on_message_sent(event: MessageSentEvent):
     print(f"User {event.sender_id} sent a message: {event.message_content}")
 ```
 
@@ -75,8 +75,6 @@ class MyCustomEvent(PluginEvent):
 
 ```python
 from app.plugins import event_hub
-from app.models.events import MyCustomEvent
-
 
 event = MyCustomEvent(user_id=123, message="Hello, world!")
 event_hub.emit(event)

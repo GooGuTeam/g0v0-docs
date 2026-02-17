@@ -119,7 +119,7 @@ export default defineConfig({
                       text: '创建并加载插件',
                       link: '/lazer/development/plugin/create-and-load-plugin',
                     },
-                    { text: '注册 API', link: '/lazer/development/plugin/api-router.' },
+                    { text: '注册 API', link: '/lazer/development/plugin/api-router' },
                     {
                       text: '定义数据库模型',
                       link: '/lazer/development/plugin/define-database-model',

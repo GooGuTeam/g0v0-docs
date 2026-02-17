@@ -2,10 +2,11 @@
 
 ## 数据库与缓存
 
-| 依赖类型   | 导入路径                    | 描述                                                |
-| ---------- | --------------------------- | --------------------------------------------------- |
-| `Database` | `app.dependencies.database` | 数据库会话（`AsyncSession`），用于执行数据库操作    |
-| `Redis`    | `app.dependencies.database` | Redis 客户端（`redis.asyncio.Redis`），用于缓存操作 |
+| 依赖类型      | 导入路径                    | 描述                                                                                                                                        |
+| ------------- | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Database`    | `app.dependencies.database` | 数据库会话（`AsyncSession`），用于执行数据库操作                                                                                            |
+| `NoContextDB` | `app.dependencies.database` | 无上下文数据库会话（`AsyncSession`），用于在不在依赖注入共享 Session 的情况下执行数据库操作。如果你遇到了并发使用连接的问题，可以使用此依赖 |
+| `Redis`       | `app.dependencies.database` | Redis 客户端（`redis.asyncio.Redis`），用于缓存操作                                                                                         |
 
 ## 核心服务
 
@@ -30,6 +31,12 @@
 | `GeoIPService`  | `app.dependencies.geoip`       | GeoIP 服务，用于根据 IP 查询地理位置 |
 | `UserAgentInfo` | `app.dependencies.user_agent`  | 用户代理信息模型                     |
 | `APIVersion`    | `app.dependencies.api_version` | API 版本号（`int`）                  |
+
+## 聊天
+
+| 依赖类型    | 导入路径               | 描述                             |
+| ----------- | ---------------------- | -------------------------------- |
+| `BanchoBot` | `app.dependencies.bot` | BanchoBot 实例，用于发送聊天消息 |
 
 ## 其他服务
 

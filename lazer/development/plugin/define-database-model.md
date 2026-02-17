@@ -57,7 +57,7 @@ g0v0-migrate upgrade head
 定义好数据库模型并完成迁移后，你就可以在插件的其他部分使用这个模型了。例如，你可以在 API 端点中使用它来处理数据库操作：
 
 ```python
-from app.database._base import Database
+from app.dependencies.database import Database
 from app.plugins import register_api
 
 router = register_api()
