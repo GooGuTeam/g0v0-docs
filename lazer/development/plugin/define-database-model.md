@@ -37,7 +37,7 @@ class MyPluginModel(DatabaseModel, table=True):
 
 定义好数据库模型后，你需要创建一个数据库迁移文件来将模型应用到数据库中。我们提供了
 `g0v0-migrate`
-命令行工具来帮助你创建和管理数据库迁移。它的用法基本和 Alembic 一致。不同的是，你需要在插件目录下运行命令。它会自动将产生独立于核心数据库和其他插件迁移历史的迁移脚本并放在插件的
+命令行工具来帮助你创建和管理数据库迁移。它的用法基本和 Alembic 一致。不同的是，你需要在插件目录下运行命令。它会自动产生独立于核心数据库和其他插件迁移历史的迁移脚本并将其放在插件的
 `migrations/` 文件夹中。
 
 ```bash
@@ -100,6 +100,7 @@ from typing import TypedDict, NotRequired
 
 from app.database._base import DatabaseModel, OnDemand, included, ondemand
 
+from sqlmodel import Field
 from sqlmodel.ext.asyncio.session import AsyncSession
 
 class DataDict(TypedDict):

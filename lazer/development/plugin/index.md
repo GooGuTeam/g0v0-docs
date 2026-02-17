@@ -12,6 +12,7 @@ g0v0 提供了一个插件系统，允许开发者为 g0v0 添加新的功能和
 插件可以监听 g0v0 的事件，并在事件发生时执行特定的操作。例如，当用户注册成功时，插件可以发送欢迎信息。
 
 ```python
+from app.database import User
 from app.plugins import listen
 from app.dependencies.bot import BanchoBot
 from app.dependencies.database import Database
