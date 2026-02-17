@@ -28,13 +28,13 @@ async def on_message_sent(event: MessageSentEvent):
 你也可以直接使用 `subscribe_event` 方法来订阅事件：
 
 ```python
-from app.plugins import event_hub
+from app.plugins import hub
 from app.models.events import MessageSentEvent
 
 async def my_event_handler(event: MessageSentEvent):
     print(f"User {event.sender_id} sent a message: {event.message_content}")
 
-event_hub.subscribe_event(my_event_handler)
+hub.subscribe_event(my_event_handler)
 ```
 
 ## 内置事件
@@ -71,13 +71,13 @@ class MyCustomEvent(PluginEvent):
 
 ## 发送事件
 
-你可以使用 `event_hub.emit()` 方法来发送事件：
+你可以使用 `hub.emit()` 方法来发送事件：
 
 ```python
-from app.plugins import event_hub
+from app.plugins import hub
 
 event = MyCustomEvent(user_id=123, message="Hello, world!")
-event_hub.emit(event)
+hub.emit(event)
 ```
 
 事件会被异步发送到所有订阅了该事件类型的监听器。事件会在后台异步执行，不会阻塞发送方。
@@ -87,14 +87,14 @@ event_hub.emit(event)
 你也可以通过依赖注入在 API 端点中获取 `EventHub` 实例：
 
 ```python
-from app.dependencies.event_hub import EventHub
+from app.dependencies.hub import EventHub
 from app.plugins import register_api
 
 router = register_api()
 
 @router.post("/send-event")
-async def send_event(event_hub: EventHub):
+async def send_event(hub: EventHub):
     event = MyCustomEvent(user_id=1, message="Event from API")
-    event_hub.emit(event)
+    hub.emit(event)
     return {"status": "sent"}
 ```
