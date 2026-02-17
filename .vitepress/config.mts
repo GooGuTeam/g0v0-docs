@@ -31,6 +31,7 @@ export default defineConfig({
                   text: 'Customize Your Server',
                   link: '/en/lazer/deploy/customize-server',
                 },
+                { text: 'Manage Plugins', link: '/en/lazer/deploy/manage-plugins' },
                 {
                   text: 'Deploying the Frontend',
                   link: '/en/lazer/deploy/frontend',
@@ -51,8 +52,37 @@ export default defineConfig({
               ],
             },
             {
+              text: 'Development',
+              items: [
+                {
+                  text: 'Plugin Development',
+                  items: [
+                    {
+                      text: 'Create and Load Plugins',
+                      link: '/en/lazer/development/plugin/create-and-load-plugin',
+                    },
+                    { text: 'Register API', link: '/en/lazer/development/plugin/api-router' },
+                    {
+                      text: 'Define Database Models',
+                      link: '/en/lazer/development/plugin/define-database-model',
+                    },
+                    {
+                      text: 'Event Listening',
+                      link: '/en/lazer/development/plugin/event-listener',
+                    },
+                    { text: 'Dependency Injection', link: '/en/lazer/development/plugin/di' },
+                  ],
+                  link: '/en/lazer/development/plugin/',
+                },
+              ],
+            },
+            {
               text: 'Reference',
-              items: [{ text: 'Configurations', link: '/en/lazer/reference/configurations' }],
+              items: [
+                { text: 'Configurations', link: '/en/lazer/reference/configurations' },
+                { text: 'Built-in Events', link: '/en/lazer/reference/builtin-event' },
+                { text: 'Built-in Dependency Injection', link: '/en/lazer/reference/builtin-di' },
+              ],
             },
           ],
         },

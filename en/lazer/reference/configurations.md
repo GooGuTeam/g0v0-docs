@@ -3,8 +3,8 @@ editLink: false
 lastUpdated: false
 ---
 
-> Last Generated: 2026-01-29 12:29:48 UTC at commit
-> [`eb7dd2b74e8e77d0ed8c91a880dc17a3008e9079`](https://github.com/GooGuTeam/g0v0-server/commit/eb7dd2b74e8e77d0ed8c91a880dc17a3008e9079)
+> Last Generated: 2026-02-17 12:00:24 UTC at commit
+> [`774e8736bd24fcaaae9ed402de873c3950203916`](https://github.com/GooGuTeam/g0v0-server/commit/774e8736bd24fcaaae9ed402de873c3950203916)
 
 # Configurations
 
@@ -143,6 +143,13 @@ installed, New Relic initialization will be skipped.
 
 Configure performance calculator and its parameters.
 
+If `CALCULATOR` starts with `-`, the server will try to load the calculator
+implementation from the plugin corresponding to the id after it. If `CALCULATOR`
+does not contain `.`, it is considered a built-in calculator name. Currently,
+there are two built-in calculators: `performance_server` and `rosu`. Otherwise,
+the server will try to load the calculator implementation from the module path
+specified by `CALCULATOR`.
+
 ### [osu-performance-server](https://github.com/GooGuTeam/osu-performance-server) (Default)
 
 ```bash
@@ -159,11 +166,11 @@ CALCULATOR="rosu"
 CALCULATOR_CONFIG='{}'
 ```
 
-| Variable Name               | Description                                                                      | Type                           | Default Value                             |
-| --------------------------- | -------------------------------------------------------------------------------- | ------------------------------ | ----------------------------------------- |
-| `CALCULATOR`                | Performance Calculator                                                           | enum(rosu, performance_server) | `performance_server`                      |
-| `CALCULATOR_CONFIG`         | Performance Calculator Config (JSON format), see above for details               | object[string, any]            | `{"server_url": "http://localhost:5225"}` |
-| `FALLBACK_NO_CALCULATOR_PP` | Use simplified pp calculation as fallback when calculator doesn't support a mode | boolean                        | `false`                                   |
+| Variable Name               | Description                                                                      | Type                | Default Value                             |
+| --------------------------- | -------------------------------------------------------------------------------- | ------------------- | ----------------------------------------- |
+| `CALCULATOR`                | Performance Calculator                                                           | string              | `performance_server`                      |
+| `CALCULATOR_CONFIG`         | Performance Calculator Config (JSON format), see above for details               | object[string, any] | `{"server_url": "http://localhost:5225"}` |
+| `FALLBACK_NO_CALCULATOR_PP` | Use simplified pp calculation as fallback when calculator doesn't support a mode | boolean             | `false`                                   |
 
 ## Cache Settings
 
@@ -267,6 +274,13 @@ STORAGE_SETTINGS='{
 | ------------------ | ------------------------------------ | ------------------------------------------------------------------ | ------------------------------------ |
 | `STORAGE_SERVICE`  | Storage Service Type: local, r2, s3  | enum(local, r2, s3)                                                | `local`                              |
 | `STORAGE_SETTINGS` | Storage Service Configuration (JSON) | LocalStorageSettings / CloudflareR2Settings / AWSS3StorageSettings | `{"local_storage_path":"./storage"}` |
+
+## Plugin Settings
+
+| Variable Name      | Description           | Type          | Default Value   |
+| ------------------ | --------------------- | ------------- | --------------- |
+| `PLUGIN_DIRS`      | Plugin Directory List | array[string] | `["./plugins"]` |
+| `DISABLED_PLUGINS` | Disabled Plugin List  | array[string] | `[]`            |
 
 ## Spectator Server Settings
 
