@@ -34,14 +34,14 @@ mkdir migrations
 每个插件都需要一个 `plugin.json` 文件来描述插件的基本信息。以下是一个示例
 `plugin.json` 文件：
 
-```json
+```jsonc
 {
   "id": "my_plugin", // 插件的唯一标识符。这将用作数据库的前缀和 API 的前缀等。
   "name": "My Plugin", // 插件的名称。
   "version": "1.0.0", // 插件的版本号。
   "description": "A sample plugin named My Plugin.", // 插件的描述信息。
   "author": "Your Name", // 插件的作者信息。
-  "dependencies": [] // 插件的依赖项列表，可以留空。填入其他插件的 id 来声明依赖关系。
+  "dependencies": [], // 插件的依赖项列表，可以留空。填入其他插件的 id 来声明依赖关系。
 }
 ```
 
@@ -62,3 +62,45 @@ print("Hello from My Plugin!")
 ```txt
 Hello from My Plugin!
 ```
+
+## 添加依赖
+
+如果你的插件需要依赖其他插件，你可以在 `plugin.json` 中的
+`dependencies`字段中列出它们的 id。例如，如果你的插件依赖于一个名为
+`other_plugin` 的插件，你可以这样写：
+
+```json {7}
+{
+  "id": "my_plugin",
+  "name": "My Plugin",
+  "version": "1.0.0",
+  "description": "A sample plugin named My Plugin.",
+  "author": "Your Name",
+  "dependencies": ["other_plugin"]
+}
+```
+
+## 添加第三方库作为依赖
+
+如果你的插件需要使用第三方库，你可以在插件的 `requirements.txt`
+文件中列出这些库，或者使用 `pyproject.toml` 来管理依赖。
+
+例如，如果你的插件需要使用 `requests` 库，你可以在
+`plugins/my_plugin/requirements.txt` 中添加以下内容：
+
+```txt
+requests
+```
+
+然后使用 g0v0 根目录的 `install-all-deps.py` 脚本来安装所有插件的依赖：
+
+```bash
+python install-all-deps.py
+```
+
+:::tip 提示
+
+使用 Docker 部署时，`install-all-deps.py`
+脚本会在容器启动时自动运行，因此你不需要手动执行它。
+
+:::
