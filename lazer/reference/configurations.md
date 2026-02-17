@@ -3,8 +3,8 @@ editLink: false
 lastUpdated: false
 ---
 
-> 上次生成：2026-02-09 10:20:24 UTC 于提交
-> [`dcc5e7e7fa22b1661817476a40e264ca1ae0b599`](https://github.com/GooGuTeam/g0v0-server/commit/dcc5e7e7fa22b1661817476a40e264ca1ae0b599)
+> 上次生成：2026-02-17 12:00:24 UTC 于提交
+> [`774e8736bd24fcaaae9ed402de873c3950203916`](https://github.com/GooGuTeam/g0v0-server/commit/774e8736bd24fcaaae9ed402de873c3950203916)
 
 # 配置
 
@@ -140,6 +140,12 @@ Relic 监控。如果配置文件不存在或 newrelic 包未安装，将跳过 
 
 配置表现分计算器及其参数。
 
+如果 `CALCULATOR` 以 `-`
+开头，服务器将尝试从其后面的 id 对应的插件中加载计算器实现。如果 `CALCULATOR`
+不存在 `.`，则认为它是一个内置计算器的名称，目前内置了 `performance_server` 和
+`rosu` 两个计算器。否则，服务器将尝试从 `CALCULATOR`
+指定的模块路径加载计算器实现。
+
 ### [osu-performance-server](https://github.com/GooGuTeam/osu-performance-server) (默认)
 
 ```bash
@@ -156,11 +162,11 @@ CALCULATOR="rosu"
 CALCULATOR_CONFIG='{}'
 ```
 
-| 变量名                      | 描述                                                     | 类型                           | 默认值                                    |
-| --------------------------- | -------------------------------------------------------- | ------------------------------ | ----------------------------------------- |
-| `CALCULATOR`                | 表现分计算器                                             | enum(rosu, performance_server) | `performance_server`                      |
-| `CALCULATOR_CONFIG`         | 表现分计算器配置 (JSON 格式)，具体配置项请参考上方       | object[string, any]            | `{"server_url": "http://localhost:5225"}` |
-| `FALLBACK_NO_CALCULATOR_PP` | 当计算器不支持某个模式时，使用简化的 pp 计算方法作为后备 | boolean                        | `false`                                   |
+| 变量名                      | 描述                                                     | 类型                | 默认值                                    |
+| --------------------------- | -------------------------------------------------------- | ------------------- | ----------------------------------------- |
+| `CALCULATOR`                | 表现分计算器                                             | string              | `performance_server`                      |
+| `CALCULATOR_CONFIG`         | 表现分计算器配置 (JSON 格式)，具体配置项请参考上方       | object[string, any] | `{"server_url": "http://localhost:5225"}` |
+| `FALLBACK_NO_CALCULATOR_PP` | 当计算器不支持某个模式时，使用简化的 pp 计算方法作为后备 | boolean             | `false`                                   |
 
 ## 缓存设置
 
@@ -263,3 +269,10 @@ STORAGE_SETTINGS='{
 | ------------------ | --------------------------- | ------------------------------------------------------------------ | ------------------------------------ |
 | `STORAGE_SERVICE`  | 存储服务类型：local、r2、s3 | enum(local, r2, s3)                                                | `local`                              |
 | `STORAGE_SETTINGS` | 存储服务配置 (JSON 格式)    | LocalStorageSettings / CloudflareR2Settings / AWSS3StorageSettings | `{"local_storage_path":"./storage"}` |
+
+## 插件设置
+
+| 变量名             | 描述           | 类型          | 默认值          |
+| ------------------ | -------------- | ------------- | --------------- |
+| `PLUGIN_DIRS`      | 插件目录列表   | array[string] | `["./plugins"]` |
+| `DISABLED_PLUGINS` | 禁用的插件列表 | array[string] | `[]`            |
