@@ -90,6 +90,7 @@ export default defineConfig({
                   text: '自定义你的服务器',
                   link: '/lazer/deploy/customize-server',
                 },
+                { text: '管理插件', link: '/lazer/deploy/manage-plugins' },
                 {
                   text: '部署前端',
                   link: '/lazer/deploy/frontend',
