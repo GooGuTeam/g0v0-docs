@@ -85,11 +85,11 @@ Hello from My Plugin!
 如果你的插件需要使用第三方库，你可以在插件的 `requirements.txt`
 文件中列出这些库，或者使用 `pyproject.toml` 来管理依赖。
 
-例如，如果你的插件需要使用 `requests` 库，你可以在
+例如，如果你的插件需要使用 `websockets` 库，你可以在
 `plugins/my_plugin/requirements.txt` 中添加以下内容：
 
 ```txt
-requests
+websockets
 ```
 
 然后使用 g0v0 根目录的 `install-all-deps.py` 脚本来安装所有插件的依赖：
