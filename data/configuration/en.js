@@ -39,7 +39,7 @@ export default {
   fetcher: {
     $name: 'Fetcher Settings',
     $description:
-      'Fetcher is used to fetch data from osu! official API, using osu! official API OAuth 2.0 authentication.',
+      'Fetcher is used to fetch data from osu! official API, using osu! official API OAuth 2.0 authentication',
     FETCHER_CLIENT_ID: 'Fetcher Client ID',
     FETCHER_CLIENT_SECRET: 'Fetcher Client Secret',
   },
@@ -67,22 +67,19 @@ export default {
     $name: 'Email Service Settings',
     $description:
       'Configure the email provider and related parameters.\n\n' +
-      'If `EMAIL_PROVIDER` starts with `-`, the server will try to load the email provider implementation from the plugin corresponding to the id after it.\n\n' +
-      'If `EMAIL_PROVIDER` does not contain `.`, it is considered a built-in email provider name. Currently, there is one built-in provider: `smtp`.\n\n' +
+      'If `EMAIL_PROVIDER` starts with `-`, the server will try to load the email provider implementation from the plugin corresponding to the id after it. ' +
+      'If `EMAIL_PROVIDER` does not contain `.`, it is considered a built-in email provider name. Currently, there is one built-in provider: `smtp`. ' +
       'Otherwise, the server will try to load the email provider implementation from the module path specified by `EMAIL_PROVIDER`.\n\n' +
       '### smtp (Default)\n' +
       '\n' +
-      '```dotenv\n' +
-      'EMAIL_PROVIDER=smtp\n' +
-      'EMAIL_PROVIDER_CONFIG={\n' +
-      '  "host": "smtp.example.com",\n' +
-      '  "port": 587,\n' +
-      '  "secure": false,\n' +
-      '  "auth": {\n' +
-      '    "user": "your_username",\n' +
-      '    "pass": "your_password"\n' +
-      '  }\n' +
-      '}\n' +
+      '```bash\n' +
+      'EMAIL_PROVIDER="smtp"\n' +
+      "EMAIL_PROVIDER_CONFIG='{\n" +
+      '    "smtp_server": "smtp.example.com",\n' +
+      '    "smtp_port": 587,\n' +
+      '    "smtp_username": "your_smtp_username",\n' +
+      '    "smtp_password": "your_smtp_password",\n' +
+      "}'\n" +
       '```',
     EMAIL_PROVIDER: 'Email Provider',
     EMAIL_PROVIDER_CONFIG: 'Email Provider Config (JSON)',
@@ -93,7 +90,7 @@ export default {
     $name: 'Monitoring Settings',
     $description:
       'Configure application monitoring options, such as Sentry and New Relic.\n\n' +
-      'Place `newrelic.ini` config file in the project root to automatically enable New Relic monitoring. If config file does not exist or newrelic package is not installed, New Relic initialization will be skipped.',
+      'Place newrelic.ini config file in the project root to automatically enable New Relic monitoring. If config file does not exist or newrelic package is not installed, New Relic initialization will be skipped.',
     SENTRY_DSN: 'Sentry DSN, empty to disable Sentry',
     NEW_RELIC_ENVIRONMENT: 'New Relic Environment ID, set to "production" or "development"',
   },
@@ -123,19 +120,21 @@ export default {
     $name: 'Performance Calculation Settings',
     $description:
       'Configure performance calculator and its parameters.\n\n' +
-      'If `CALCULATOR` starts with `-`, the server will try to load the calculator implementation from the plugin corresponding to the id after it.\n\n' +
-      'If `CALCULATOR` does not contain `.`, it is considered a built-in calculator name. Currently, there are two built-in calculators: `performance_server` and `rosu`.\n\n' +
+      'If `CALCULATOR` starts with `-`, the server will try to load the calculator implementation from the plugin corresponding to the id after it. ' +
+      'If `CALCULATOR` does not contain `.`, it is considered a built-in calculator name. Currently, there are two built-in calculators: `performance_server` and `rosu`. ' +
       'Otherwise, the server will try to load the calculator implementation from the module path specified by `CALCULATOR`.\n\n' +
       '### [osu-performance-server](https://github.com/GooGuTeam/osu-performance-server) (Default)\n' +
       '\n' +
-      '```dotenv\n' +
-      'CALCULATOR=performance_server\n' +
-      'CALCULATOR_CONFIG=\'{"server_url": "http://localhost:5225"}\'\n' +
+      '```bash\n' +
+      'CALCULATOR="performance_server"\n' +
+      "CALCULATOR_CONFIG='{\n" +
+      '    "server_url": "http://localhost:5225"\n' +
+      "}'\n" +
       '```\n\n' +
       '### rosu-pp-py\n' +
       '\n' +
-      '```dotenv\n' +
-      'CALCULATOR=rosu\n' +
+      '```bash\n' +
+      'CALCULATOR="rosu"\n' +
       "CALCULATOR_CONFIG='{}'\n" +
       '```',
     CALCULATOR: 'Performance Calculator',
@@ -178,7 +177,8 @@ export default {
     ALLOW_DELETE_SCORES: 'Allow users to delete their own scores',
     CHECK_RULESET_VERSION: 'Check Custom Ruleset Version',
     CHECK_CLIENT_VERSION: 'Check Client Version',
-    CLIENT_VERSION_URLS: 'Client Version List URLs',
+    CLIENT_VERSION_URLS:
+      'Client Version List URLs, see https://github.com/GooGuTeam/g0v0-client-versions to add your own client',
   },
   storage: {
     $name: 'Storage Service Settings',
@@ -186,13 +186,13 @@ export default {
       'Used for storing replay files, avatars, etc.\n\n' +
       '### Local Storage (Recommended for Development)\n\n' +
       "Local storage saves files in the server's local file system, suitable for development and small-scale deployment.\n\n" +
-      '```dotenv\n' +
-      'STORAGE_SERVICE=local\n' +
+      '```bash\n' +
+      'STORAGE_SERVICE="local"\n' +
       'STORAGE_SETTINGS=\'{"local_storage_path": "./storage"}\'\n' +
       '```\n\n' +
       '### Cloudflare R2 Storage (Recommended for Production)\n\n' +
-      '```dotenv\n' +
-      'STORAGE_SERVICE=r2\n' +
+      '```bash\n' +
+      'STORAGE_SERVICE="r2"\n' +
       "STORAGE_SETTINGS='{\n" +
       '  "r2_account_id": "your_cloudflare_account_id",\n' +
       '  "r2_access_key_id": "your_r2_access_key_id",\n' +
@@ -202,8 +202,8 @@ export default {
       "}'\n" +
       '```\n\n' +
       '### AWS S3 Storage\n\n' +
-      '```dotenv\n' +
-      'STORAGE_SERVICE=s3\n' +
+      '```bash\n' +
+      'STORAGE_SERVICE="s3"\n' +
       "STORAGE_SETTINGS='{\n" +
       '  "s3_access_key_id": "your_aws_access_key_id",\n' +
       '  "s3_secret_access_key": "your_aws_secret_access_key",\n' +

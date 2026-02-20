@@ -47,10 +47,10 @@ export default {
   },
   verification: {
     $name: '验证服务设置',
-    ENABLE_TOTP_VERIFICATION: '是否启用 TOTP 双因素验证',
+    ENABLE_TOTP_VERIFICATION: '是否启用TOTP双因素验证',
     TOTP_ISSUER: 'TOTP 认证器中的发行者名称',
     TOTP_SERVICE_NAME: 'TOTP 认证器中显示的服务名称',
-    TOTP_USE_USERNAME_IN_LABEL: '在 TOTP 标签中使用用户名而不是邮箱',
+    TOTP_USE_USERNAME_IN_LABEL: '在TOTP标签中使用用户名而不是邮箱',
     ENABLE_TURNSTILE_VERIFICATION: '是否启用 Cloudflare Turnstile 验证（仅对非 osu! 客户端）',
     TURNSTILE_SECRET_KEY: 'Cloudflare Turnstile Secret Key',
     TURNSTILE_DEV_MODE: 'Turnstile 开发模式（跳过验证，用于本地开发）',
@@ -64,22 +64,19 @@ export default {
     $name: '邮件服务设置',
     $description:
       '配置邮件发送提供商和相关参数。\n\n' +
-      '如果 `EMAIL_PROVIDER` 以 `-` 开头，服务器将尝试从其后面的 id 对应的插件中加载邮件提供商实现。\n\n' +
-      '如果 `EMAIL_PROVIDER` 不存在 `.`，则认为它是一个内置邮件提供商的名称，目前内置了 `smtp` 一个提供商。\n\n' +
+      '如果 `EMAIL_PROVIDER` 以 `-` 开头，服务器将尝试从其后面的 id 对应的插件中加载邮件提供商实现。' +
+      '如果 `EMAIL_PROVIDER` 不存在 `.`，则认为它是一个内置邮件提供商的名称，目前内置了 `smtp` 一个提供商。' +
       '否则，服务器将尝试从 `EMAIL_PROVIDER` 指定的模块路径加载邮件提供商实现。\n\n' +
       '### smtp (默认)\n' +
       '\n' +
-      '```dotenv\n' +
-      'EMAIL_PROVIDER=smtp\n' +
-      'EMAIL_PROVIDER_CONFIG={\n' +
-      '  "host": "smtp.example.com",\n' +
-      '  "port": 587,\n' +
-      '  "secure": false,\n' +
-      '  "auth": {\n' +
-      '    "user": "your_username",\n' +
-      '    "pass": "your_password"\n' +
-      '  }\n' +
-      '}\n' +
+      '```bash\n' +
+      'EMAIL_PROVIDER="smtp"\n' +
+      "EMAIL_PROVIDER_CONFIG='{\n" +
+      '    "smtp_server": "smtp.example.com",\n' +
+      '    "smtp_port": 587,\n' +
+      '    "smtp_username": "your_smtp_username",\n' +
+      '    "smtp_password": "your_smtp_password",\n' +
+      "}'\n" +
       '```',
     EMAIL_PROVIDER: '邮件发送提供商',
     EMAIL_PROVIDER_CONFIG: '邮件提供商配置 (JSON)',
@@ -90,13 +87,13 @@ export default {
     $name: '监控设置',
     $description:
       '配置应用的监控选项，如 Sentry 和 New Relic。\n\n' +
-      '将 `newrelic.ini` 配置文件放入项目根目录即可自动启用 New Relic 监控。如果配置文件不存在或 newrelic 包未安装，将跳过 New Relic 初始化。',
+      '将 newrelic.ini 配置文件放入项目根目录即可自动启用 New Relic 监控。如果配置文件不存在或 newrelic 包未安装，将跳过 New Relic 初始化。',
     SENTRY_DSN: 'Sentry DSN，为空不启用 Sentry',
     NEW_RELIC_ENVIRONMENT: 'New Relic 环境标识，设置为 "production" 或 "development"',
   },
   geoip: {
     $name: 'GeoIP 配置',
-    MAXMIND_LICENSE_KEY: 'MaxMind License Key（用于下载离线 IP 库）',
+    MAXMIND_LICENSE_KEY: 'MaxMind License Key（用于下载离线IP库）',
     GEOIP_DEST_DIR: 'GeoIP 数据库存储目录',
     GEOIP_UPDATE_DAY: 'GeoIP 每周更新的星期几（0=周一，6=周日）',
     GEOIP_UPDATE_HOUR: 'GeoIP 每周更新时间（小时，0-23）',
@@ -112,31 +109,33 @@ export default {
     BEATMAP_TAG_TOP_COUNT: '显示在结算列表的标签所需的最低票数',
     OLD_SCORE_PROCESSING_MODE:
       '旧成绩处理模式\n' +
-      'strict：删除所有相关的成绩、pp、统计信息、回放\n' +
-      'normal：删除 pp 和排行榜成绩',
+      'strict: 删除所有相关的成绩、pp、统计信息、回放\n' +
+      'normal: 删除 pp 和排行榜成绩',
     SCORING_MODE: '分数计算模式：standardised（标准化）或 classic（经典）',
   },
   calculator: {
     $name: '表现计算设置',
     $description:
       '配置表现分计算器及其参数。\n\n' +
-      '如果 `CALCULATOR` 以 `-` 开头，服务器将尝试从其后面的 id 对应的插件中加载计算器实现。\n\n' +
-      '如果 `CALCULATOR` 不存在 `.`，则认为它是一个内置计算器的名称，目前内置了 `performance_server` 和 `rosu` 两个计算器。\n\n' +
+      '如果 `CALCULATOR` 以 `-` 开头，服务器将尝试从其后面的 id 对应的插件中加载计算器实现。' +
+      '如果 `CALCULATOR` 不存在 `.`，则认为它是一个内置计算器的名称，目前内置了 `performance_server` 和 `rosu` 两个计算器。' +
       '否则，服务器将尝试从 `CALCULATOR` 指定的模块路径加载计算器实现。\n\n' +
-      '### [osu-performance-server](https://github.com/GooGuTeam/osu-performance-server)（默认）\n' +
+      '### [osu-performance-server](https://github.com/GooGuTeam/osu-performance-server) (默认)\n' +
       '\n' +
-      '```dotenv\n' +
-      'CALCULATOR=performance_server\n' +
-      'CALCULATOR_CONFIG=\'{"server_url": "http://localhost:5225"}\'\n' +
+      '```bash\n' +
+      'CALCULATOR="performance_server"\n' +
+      "CALCULATOR_CONFIG='{\n" +
+      '    "server_url": "http://localhost:5225"\n' +
+      "}'\n" +
       '```\n\n' +
       '### rosu-pp-py\n' +
       '\n' +
-      '```dotenv\n' +
-      'CALCULATOR=rosu\n' +
+      '```bash\n' +
+      'CALCULATOR="rosu"\n' +
       "CALCULATOR_CONFIG='{}'\n" +
       '```',
     CALCULATOR: '表现分计算器',
-    CALCULATOR_CONFIG: '表现分计算器配置（JSON 格式），具体配置项请参考上方',
+    CALCULATOR_CONFIG: '表现分计算器配置 (JSON 格式)，具体配置项请参考上方',
     FALLBACK_NO_CALCULATOR_PP: '当计算器不支持某个模式时，使用简化的 pp 计算方法作为后备',
   },
   cache: {
@@ -148,38 +147,69 @@ export default {
     RANKING_CACHE_EXPIRE_MINUTES: '排行榜缓存过期时间（分钟）',
     RANKING_CACHE_REFRESH_INTERVAL_MINUTES: '排行榜缓存刷新间隔（分钟）',
     RANKING_CACHE_MAX_PAGES: '最多缓存的页数',
-    RANKING_CACHE_TOP_COUNTRIES: '缓存前 N 个国家的排行榜',
+    RANKING_CACHE_TOP_COUNTRIES: '缓存前N个国家的排行榜',
     ENABLE_USER_CACHE_PRELOAD: '启用用户缓存预加载',
     USER_CACHE_EXPIRE_SECONDS: '用户信息缓存过期时间（秒）',
     USER_SCORES_CACHE_EXPIRE_SECONDS: '用户成绩缓存过期时间（秒）',
     USER_BEATMAPSETS_CACHE_EXPIRE_SECONDS: '用户谱面集缓存过期时间（秒）',
-    USER_CACHE_MAX_PRELOAD_USERS: '缓存预加载的最大用户数量',
+    USER_CACHE_MAX_PRELOAD_USERS: '最多预加载的用户数量',
   },
   asset_proxy: {
     $name: '资源代理设置',
-    ENABLE_ASSET_PROXY: '是否启用资源代理',
+    ENABLE_ASSET_PROXY: '启用资源代理',
     CUSTOM_ASSET_DOMAIN: '自定义资源域名',
-    ASSET_PROXY_PREFIX: '资源代理前缀',
-    AVATAR_PROXY_PREFIX: '头像代理前缀',
-    BEATMAP_PROXY_PREFIX: '谱面代理前缀',
+    ASSET_PROXY_PREFIX: 'assets.ppy.sh 的自定义前缀',
+    AVATAR_PROXY_PREFIX: 'a.ppy.sh 的自定义前缀',
+    BEATMAP_PROXY_PREFIX: 'b.ppy.sh 的自定义前缀',
   },
   beatmap_sync: {
     $name: '谱面同步设置',
-    ENABLE_AUTO_BEATMAP_SYNC: '是否启用自动谱面同步',
-    BEATMAP_SYNC_INTERVAL_MINUTES: '谱面同步间隔（分钟）',
+    ENABLE_AUTO_BEATMAP_SYNC: '启用自动谱面同步',
+    BEATMAP_SYNC_INTERVAL_MINUTES: '自动谱面同步间隔（分钟）',
   },
   anticheat: {
     $name: '反作弊设置',
     BANNED_NAME: '禁止使用的用户名列表',
-    ALLOW_DELETE_SCORES: '是否允许删除成绩',
-    CHECK_RULESET_VERSION: '是否检查规则集版本',
-    CHECK_CLIENT_VERSION: '是否检查客户端版本',
-    CLIENT_VERSION_URLS: '客户端版本列表 URL',
+    ALLOW_DELETE_SCORES: '允许用户删除自己的成绩',
+    CHECK_RULESET_VERSION: '检查自定义 ruleset 版本',
+    CHECK_CLIENT_VERSION: '检查客户端版本',
+    CLIENT_VERSION_URLS:
+      '客户端版本列表 URL, 查看 https://github.com/GooGuTeam/g0v0-client-versions 来添加你自己的客户端',
   },
   storage: {
-    $name: '存储设置',
-    STORAGE_SERVICE: '存储服务类型（local / r2 / s3）',
-    STORAGE_SETTINGS: '存储服务配置（JSON 格式）',
+    $name: '存储服务设置',
+    $description:
+      '用于存储回放文件、头像等静态资源。\n\n' +
+      '### 本地存储 (推荐用于开发环境)\n\n' +
+      '本地存储将文件保存在服务器的本地文件系统中，适合开发和小规模部署。\n\n' +
+      '```bash\n' +
+      'STORAGE_SERVICE="local"\n' +
+      'STORAGE_SETTINGS=\'{"local_storage_path": "./storage"}\'\n' +
+      '```\n\n' +
+      '### Cloudflare R2 存储 (推荐用于生产环境)\n\n' +
+      '```bash\n' +
+      'STORAGE_SERVICE="r2"\n' +
+      "STORAGE_SETTINGS='{\n" +
+      '  "r2_account_id": "your_cloudflare_account_id",\n' +
+      '  "r2_access_key_id": "your_r2_access_key_id",\n' +
+      '  "r2_secret_access_key": "your_r2_secret_access_key",\n' +
+      '  "r2_bucket_name": "your_bucket_name",\n' +
+      '  "r2_public_url_base": "https://your-custom-domain.com"\n' +
+      "}'\n" +
+      '```\n\n' +
+      '### AWS S3 存储\n\n' +
+      '```bash\n' +
+      'STORAGE_SERVICE="s3"\n' +
+      "STORAGE_SETTINGS='{\n" +
+      '  "s3_access_key_id": "your_aws_access_key_id",\n' +
+      '  "s3_secret_access_key": "your_aws_secret_access_key",\n' +
+      '  "s3_bucket_name": "your_s3_bucket_name",\n' +
+      '  "s3_region_name": "us-east-1",\n' +
+      '  "s3_public_url_base": "https://your-custom-domain.com"\n' +
+      "}'\n" +
+      '```',
+    STORAGE_SERVICE: '存储服务类型：local、r2、s3',
+    STORAGE_SETTINGS: '存储服务配置 (JSON 格式)',
   },
   plugins: {
     $name: '插件设置',
