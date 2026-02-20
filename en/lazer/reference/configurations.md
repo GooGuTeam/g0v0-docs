@@ -3,8 +3,8 @@ editLink: false
 lastUpdated: false
 ---
 
-> Last Generated: 2026-02-17 12:00:24 UTC at commit
-> [`774e8736bd24fcaaae9ed402de873c3950203916`](https://github.com/GooGuTeam/g0v0-server/commit/774e8736bd24fcaaae9ed402de873c3950203916)
+> Last Generated: 2026-02-20 02:56:11 UTC at commit
+> [`8d5c080c4e84818c5e82999626d0e636d6d9af8d`](https://github.com/GooGuTeam/g0v0-server/commit/8d5c080c4e84818c5e82999626d0e636d6d9af8d)
 
 # Configurations
 
@@ -79,29 +79,50 @@ OAuth 2.0 authentication.
 
 ## Verification Service Settings
 
-| Variable Name                   | Description                                                                | Type                   | Default Value         |
-| ------------------------------- | -------------------------------------------------------------------------- | ---------------------- | --------------------- |
-| `ENABLE_TOTP_VERIFICATION`      | Whether to enable TOTP Two-Factor Authentication                           | boolean                | `true`                |
-| `TOTP_ISSUER`                   | Issuer Name in TOTP Authenticator                                          | string / null          | `null`                |
-| `TOTP_SERVICE_NAME`             | Service Name displayed in TOTP Authenticator                               | string                 | `g0v0! Lazer Server`  |
-| `TOTP_USE_USERNAME_IN_LABEL`    | Use username instead of email in TOTP label                                | boolean                | `true`                |
-| `ENABLE_TURNSTILE_VERIFICATION` | Whether to enable Cloudflare Turnstile Verification (Non-osu clients only) | boolean                | `false`               |
-| `TURNSTILE_SECRET_KEY`          | Cloudflare Turnstile Secret Key                                            | string                 | `""`                  |
-| `TURNSTILE_DEV_MODE`            | Turnstile Dev Mode (Skip verification, for local dev)                      | boolean                | `false`               |
-| `ENABLE_EMAIL_VERIFICATION`     | Whether to enable Email Verification                                       | boolean                | `false`               |
-| `ENABLE_SESSION_VERIFICATION`   | Whether to enable Session Verification Middleware                          | boolean                | `true`                |
-| `ENABLE_MULTI_DEVICE_LOGIN`     | Whether to allow multi-device login simultaneously                         | boolean                | `true`                |
-| `MAX_TOKENS_PER_CLIENT`         | Max tokens per client per user                                             | integer                | `10`                  |
-| `DEVICE_TRUST_DURATION_DAYS`    | Device Trust Duration Days                                                 | integer                | `30`                  |
-| `EMAIL_PROVIDER`                | Email Provider: smtp (SMTP) or mailersend (MailerSend)                     | enum(smtp, mailersend) | `smtp`                |
-| `SMTP_SERVER`                   | SMTP Server Address                                                        | string                 | `localhost`           |
-| `SMTP_PORT`                     | SMTP Server Port                                                           | integer                | `587`                 |
-| `SMTP_USERNAME`                 | SMTP Username                                                              | string                 | `""`                  |
-| `SMTP_PASSWORD`                 | SMTP Password                                                              | string                 | `""`                  |
-| `FROM_EMAIL`                    | Sender Email                                                               | string                 | `noreply@example.com` |
-| `FROM_NAME`                     | Sender Name                                                                | string                 | `osu! server`         |
-| `MAILERSEND_API_KEY`            | MailerSend API Key                                                         | string                 | `""`                  |
-| `MAILERSEND_FROM_EMAIL`         | MailerSend Sender Email (Need verification in MailerSend)                  | string                 | `""`                  |
+| Variable Name                   | Description                                                                | Type          | Default Value        |
+| ------------------------------- | -------------------------------------------------------------------------- | ------------- | -------------------- |
+| `ENABLE_TOTP_VERIFICATION`      | Whether to enable TOTP Two-Factor Authentication                           | boolean       | `true`               |
+| `TOTP_ISSUER`                   | Issuer Name in TOTP Authenticator                                          | string / null | `null`               |
+| `TOTP_SERVICE_NAME`             | Service Name displayed in TOTP Authenticator                               | string        | `g0v0! Lazer Server` |
+| `TOTP_USE_USERNAME_IN_LABEL`    | Use username instead of email in TOTP label                                | boolean       | `true`               |
+| `ENABLE_TURNSTILE_VERIFICATION` | Whether to enable Cloudflare Turnstile Verification (Non-osu clients only) | boolean       | `false`              |
+| `TURNSTILE_SECRET_KEY`          | Cloudflare Turnstile Secret Key                                            | string        | `""`                 |
+| `TURNSTILE_DEV_MODE`            | Turnstile Dev Mode (Skip verification, for local dev)                      | boolean       | `false`              |
+| `ENABLE_EMAIL_VERIFICATION`     | Whether to enable Email Verification                                       | boolean       | `false`              |
+| `ENABLE_SESSION_VERIFICATION`   | Whether to enable Session Verification Middleware                          | boolean       | `true`               |
+| `ENABLE_MULTI_DEVICE_LOGIN`     | Whether to allow multi-device login simultaneously                         | boolean       | `true`               |
+| `MAX_TOKENS_PER_CLIENT`         | Max tokens per client per user                                             | integer       | `10`                 |
+| `DEVICE_TRUST_DURATION_DAYS`    | Device Trust Duration Days                                                 | integer       | `30`                 |
+
+## Email Service Settings
+
+Configure the email provider and related parameters.
+
+If `EMAIL_PROVIDER` starts with `-`, the server will try to load the email
+provider implementation from the plugin corresponding to the id after it. If
+`EMAIL_PROVIDER` does not contain `.`, it is considered a built-in email
+provider name. Currently, there is one built-in provider: `smtp`. Otherwise, the
+server will try to load the email provider implementation from the module path
+specified by `EMAIL_PROVIDER`.
+
+### smtp (Default)
+
+```bash
+EMAIL_PROVIDER="smtp"
+EMAIL_PROVIDER_CONFIG='{
+    "smtp_server": "smtp.example.com",
+    "smtp_port": 587,
+    "smtp_username": "your_smtp_username",
+    "smtp_password": "your_smtp_password",
+}'
+```
+
+| Variable Name           | Description                  | Type   | Default Value         |
+| ----------------------- | ---------------------------- | ------ | --------------------- |
+| `EMAIL_PROVIDER`        | Email Provider               | string | `smtp`                |
+| `EMAIL_PROVIDER_CONFIG` | Email Provider Config (JSON) | object | `PydanticUndefined`   |
+| `FROM_EMAIL`            | Sender Email                 | string | `noreply@example.com` |
+| `FROM_NAME`             | Sender Name                  | string | `osu! server`         |
 
 ## Monitoring Settings
 
@@ -221,14 +242,13 @@ CALCULATOR_CONFIG='{}'
 
 ## Anti-Cheat Settings
 
-| Variable Name            | Description                                                                                       | Type          | Default Value                                                                                 |
-| ------------------------ | ------------------------------------------------------------------------------------------------- | ------------- | --------------------------------------------------------------------------------------------- |
-| `SUSPICIOUS_SCORE_CHECK` | Enable Suspicious Score Check (pp>3000)                                                           | boolean       | `true`                                                                                        |
-| `BANNED_NAME`            | Banned Username List                                                                              | array[string] | `["mrekk", "vaxei", "btmc", "cookiezi", "peppy", "saragi", "chocomint"]`                      |
-| `ALLOW_DELETE_SCORES`    | Allow users to delete their own scores                                                            | boolean       | `false`                                                                                       |
-| `CHECK_RULESET_VERSION`  | Check Custom Ruleset Version                                                                      | boolean       | `true`                                                                                        |
-| `CHECK_CLIENT_VERSION`   | Check Client Version                                                                              | boolean       | `true`                                                                                        |
-| `CLIENT_VERSION_URLS`    | Client Version List URLs. See <https://github.com/GooGuTeam/g0v0-client-versions> to add your own | array[string] | `["https://raw.githubusercontent.com/GooGuTeam/g0v0-client-versions/main/version_list.json"]` |
+| Variable Name           | Description                                                                                       | Type          | Default Value                                                                                 |
+| ----------------------- | ------------------------------------------------------------------------------------------------- | ------------- | --------------------------------------------------------------------------------------------- |
+| `BANNED_NAME`           | Banned Username List                                                                              | array[string] | `["mrekk", "vaxei", "btmc", "cookiezi", "peppy", "saragi", "chocomint"]`                      |
+| `ALLOW_DELETE_SCORES`   | Allow users to delete their own scores                                                            | boolean       | `false`                                                                                       |
+| `CHECK_RULESET_VERSION` | Check Custom Ruleset Version                                                                      | boolean       | `true`                                                                                        |
+| `CHECK_CLIENT_VERSION`  | Check Client Version                                                                              | boolean       | `true`                                                                                        |
+| `CLIENT_VERSION_URLS`   | Client Version List URLs. See <https://github.com/GooGuTeam/g0v0-client-versions> to add your own | array[string] | `["https://raw.githubusercontent.com/GooGuTeam/g0v0-client-versions/main/version_list.json"]` |
 
 ## Storage Service Settings
 
@@ -281,19 +301,3 @@ STORAGE_SETTINGS='{
 | ------------------ | --------------------- | ------------- | --------------- |
 | `PLUGIN_DIRS`      | Plugin Directory List | array[string] | `["./plugins"]` |
 | `DISABLED_PLUGINS` | Disabled Plugin List  | array[string] | `[]`            |
-
-## Spectator Server Settings
-
-| Variable Name                    | Description                                                             | Type         | Default Value           |
-| -------------------------------- | ----------------------------------------------------------------------- | ------------ | ----------------------- |
-| `SAVE_REPLAYS`                   | Whether to save replays, set to `1` to enable                           | boolean      | `0`                     |
-| `REDIS_HOST`                     | Redis Server Address                                                    | string       | `localhost`             |
-| `SHARED_INTEROP_DOMAIN`          | API Server (this service) Address                                       | string (url) | `http://localhost:8000` |
-| `SERVER_PORT`                    | Spectator Server Port                                                   | integer      | `8006`                  |
-| `SP_SENTRY_DSN`                  | Spectator Server Sentry DSN                                             | string       | `null`                  |
-| `MATCHMAKING_ROOM_ROUNDS`        | Matchmaking Room Rounds                                                 | integer      | 5                       |
-| `MATCHMAKING_ALLOW_SKIP`         | Whether to allow users to skip matchmaking phase                        | boolean      | false                   |
-| `MATCHMAKING_LOBBY_UPDATE_RATE`  | Matchmaking Lobby Update Rate (Seconds)                                 | integer      | 5                       |
-| `MATCHMAKING_QUEUE_UPDATE_RATE`  | Matchmaking Queue Update Rate (Seconds)                                 | integer      | 1                       |
-| `MATCHMAKING_QUEUE_BAN_DURATION` | Ban duration for players rejecting invitations in matchmaking (Seconds) | integer      | 60                      |
-| `MATCHMAKING_POOL_SIZE`          | Number of beatmaps in each matchmaking room                             | integer      | 50                      |
