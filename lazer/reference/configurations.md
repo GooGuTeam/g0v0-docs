@@ -3,8 +3,8 @@ editLink: false
 lastUpdated: false
 ---
 
-> 上次生成：2026-02-17 12:00:24 UTC 于提交
-> [`774e8736bd24fcaaae9ed402de873c3950203916`](https://github.com/GooGuTeam/g0v0-server/commit/774e8736bd24fcaaae9ed402de873c3950203916)
+> 上次生成：2026-02-20 02:56:11 UTC 于提交
+> [`8d5c080c4e84818c5e82999626d0e636d6d9af8d`](https://github.com/GooGuTeam/g0v0-server/commit/8d5c080c4e84818c5e82999626d0e636d6d9af8d)
 
 # 配置
 
@@ -77,29 +77,49 @@ Fetcher 用于从 osu! 官方 API 获取数据，使用 osu! 官方 API 的 OAut
 
 ## 验证服务设置
 
-| 变量名                          | 描述                                                     | 类型                   | 默认值                |
-| ------------------------------- | -------------------------------------------------------- | ---------------------- | --------------------- |
-| `ENABLE_TOTP_VERIFICATION`      | 是否启用TOTP双因素验证                                   | boolean                | `true`                |
-| `TOTP_ISSUER`                   | TOTP 认证器中的发行者名称                                | string / null          | `null`                |
-| `TOTP_SERVICE_NAME`             | TOTP 认证器中显示的服务名称                              | string                 | `g0v0! Lazer Server`  |
-| `TOTP_USE_USERNAME_IN_LABEL`    | 在TOTP标签中使用用户名而不是邮箱                         | boolean                | `true`                |
-| `ENABLE_TURNSTILE_VERIFICATION` | 是否启用 Cloudflare Turnstile 验证（仅对非 osu! 客户端） | boolean                | `false`               |
-| `TURNSTILE_SECRET_KEY`          | Cloudflare Turnstile Secret Key                          | string                 | `""`                  |
-| `TURNSTILE_DEV_MODE`            | Turnstile 开发模式（跳过验证，用于本地开发）             | boolean                | `false`               |
-| `ENABLE_EMAIL_VERIFICATION`     | 是否启用邮件验证功能                                     | boolean                | `false`               |
-| `ENABLE_SESSION_VERIFICATION`   | 是否启用会话验证中间件                                   | boolean                | `true`                |
-| `ENABLE_MULTI_DEVICE_LOGIN`     | 是否允许多设备同时登录                                   | boolean                | `true`                |
-| `MAX_TOKENS_PER_CLIENT`         | 每个用户每个客户端的最大令牌数量                         | integer                | `10`                  |
-| `DEVICE_TRUST_DURATION_DAYS`    | 设备信任持续天数                                         | integer                | `30`                  |
-| `EMAIL_PROVIDER`                | 邮件发送提供商：smtp（SMTP）或 mailersend（MailerSend）  | enum(smtp, mailersend) | `smtp`                |
-| `SMTP_SERVER`                   | SMTP 服务器地址                                          | string                 | `localhost`           |
-| `SMTP_PORT`                     | SMTP 服务器端口                                          | integer                | `587`                 |
-| `SMTP_USERNAME`                 | SMTP 用户名                                              | string                 | `""`                  |
-| `SMTP_PASSWORD`                 | SMTP 密码                                                | string                 | `""`                  |
-| `FROM_EMAIL`                    | 发件人邮箱                                               | string                 | `noreply@example.com` |
-| `FROM_NAME`                     | 发件人名称                                               | string                 | `osu! server`         |
-| `MAILERSEND_API_KEY`            | MailerSend API Key                                       | string                 | `""`                  |
-| `MAILERSEND_FROM_EMAIL`         | MailerSend 发件人邮箱（需要在 MailerSend 中验证）        | string                 | `""`                  |
+| 变量名                          | 描述                                                     | 类型          | 默认值               |
+| ------------------------------- | -------------------------------------------------------- | ------------- | -------------------- |
+| `ENABLE_TOTP_VERIFICATION`      | 是否启用TOTP双因素验证                                   | boolean       | `true`               |
+| `TOTP_ISSUER`                   | TOTP 认证器中的发行者名称                                | string / null | `null`               |
+| `TOTP_SERVICE_NAME`             | TOTP 认证器中显示的服务名称                              | string        | `g0v0! Lazer Server` |
+| `TOTP_USE_USERNAME_IN_LABEL`    | 在TOTP标签中使用用户名而不是邮箱                         | boolean       | `true`               |
+| `ENABLE_TURNSTILE_VERIFICATION` | 是否启用 Cloudflare Turnstile 验证（仅对非 osu! 客户端） | boolean       | `false`              |
+| `TURNSTILE_SECRET_KEY`          | Cloudflare Turnstile Secret Key                          | string        | `""`                 |
+| `TURNSTILE_DEV_MODE`            | Turnstile 开发模式（跳过验证，用于本地开发）             | boolean       | `false`              |
+| `ENABLE_EMAIL_VERIFICATION`     | 是否启用邮件验证功能                                     | boolean       | `false`              |
+| `ENABLE_SESSION_VERIFICATION`   | 是否启用会话验证中间件                                   | boolean       | `true`               |
+| `ENABLE_MULTI_DEVICE_LOGIN`     | 是否允许多设备同时登录                                   | boolean       | `true`               |
+| `MAX_TOKENS_PER_CLIENT`         | 每个用户每个客户端的最大令牌数量                         | integer       | `10`                 |
+| `DEVICE_TRUST_DURATION_DAYS`    | 设备信任持续天数                                         | integer       | `30`                 |
+
+## 邮件服务设置
+
+配置邮件发送提供商和相关参数。
+
+如果 `EMAIL_PROVIDER` 以 `-`
+开头，服务器将尝试从其后面的 id 对应的插件中加载邮件提供商实现。如果
+`EMAIL_PROVIDER` 不存在 `.`，则认为它是一个内置邮件提供商的名称，目前内置了
+`smtp` 一个提供商。否则，服务器将尝试从 `EMAIL_PROVIDER`
+指定的模块路径加载邮件提供商实现。
+
+### smtp (默认)
+
+```bash
+EMAIL_PROVIDER="smtp"
+EMAIL_PROVIDER_CONFIG='{
+    "smtp_server": "smtp.example.com",
+    "smtp_port": 587,
+    "smtp_username": "your_smtp_username",
+    "smtp_password": "your_smtp_password",
+}'
+```
+
+| 变量名                  | 描述                  | 类型   | 默认值                |
+| ----------------------- | --------------------- | ------ | --------------------- |
+| `EMAIL_PROVIDER`        | 邮件发送提供商        | string | `smtp`                |
+| `EMAIL_PROVIDER_CONFIG` | 邮件提供商配置 (JSON) | object | `PydanticUndefined`   |
+| `FROM_EMAIL`            | 发件人邮箱            | string | `noreply@example.com` |
+| `FROM_NAME`             | 发件人名称            | string | `osu! server`         |
 
 ## 监控设置
 
@@ -217,14 +237,13 @@ CALCULATOR_CONFIG='{}'
 
 ## 反作弊设置
 
-| 变量名                   | 描述                                                                                            | 类型          | 默认值                                                                                        |
-| ------------------------ | ----------------------------------------------------------------------------------------------- | ------------- | --------------------------------------------------------------------------------------------- |
-| `SUSPICIOUS_SCORE_CHECK` | 启用可疑分数检查（pp>3000）                                                                     | boolean       | `true`                                                                                        |
-| `BANNED_NAME`            | 禁止使用的用户名列表                                                                            | array[string] | `["mrekk", "vaxei", "btmc", "cookiezi", "peppy", "saragi", "chocomint"]`                      |
-| `ALLOW_DELETE_SCORES`    | 允许用户删除自己的成绩                                                                          | boolean       | `false`                                                                                       |
-| `CHECK_RULESET_VERSION`  | 检查自定义 ruleset 版本                                                                         | boolean       | `true`                                                                                        |
-| `CHECK_CLIENT_VERSION`   | 检查客户端版本                                                                                  | boolean       | `true`                                                                                        |
-| `CLIENT_VERSION_URLS`    | 客户端版本列表 URL, 查看 https://github.com/GooGuTeam/g0v0-client-versions 来添加你自己的客户端 | array[string] | `["https://raw.githubusercontent.com/GooGuTeam/g0v0-client-versions/main/version_list.json"]` |
+| 变量名                  | 描述                                                                                            | 类型          | 默认值                                                                                        |
+| ----------------------- | ----------------------------------------------------------------------------------------------- | ------------- | --------------------------------------------------------------------------------------------- |
+| `BANNED_NAME`           | 禁止使用的用户名列表                                                                            | array[string] | `["mrekk", "vaxei", "btmc", "cookiezi", "peppy", "saragi", "chocomint"]`                      |
+| `ALLOW_DELETE_SCORES`   | 允许用户删除自己的成绩                                                                          | boolean       | `false`                                                                                       |
+| `CHECK_RULESET_VERSION` | 检查自定义 ruleset 版本                                                                         | boolean       | `true`                                                                                        |
+| `CHECK_CLIENT_VERSION`  | 检查客户端版本                                                                                  | boolean       | `true`                                                                                        |
+| `CLIENT_VERSION_URLS`   | 客户端版本列表 URL, 查看 https://github.com/GooGuTeam/g0v0-client-versions 来添加你自己的客户端 | array[string] | `["https://raw.githubusercontent.com/GooGuTeam/g0v0-client-versions/main/version_list.json"]` |
 
 ## 存储服务设置
 
