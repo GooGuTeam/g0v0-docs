@@ -67,7 +67,7 @@ osu!(lazer) 客户端本身不支持像 osu!(stable) 那样通过命令行 (`-de
 
 3. **配置 LazerAuthlibInjection**
 
-   在设置面板中点击 `Rulesets`，然后配置：
+   在设置面板中点击“游戏模式”，然后配置：
    - `API Url`: 你的自定义服务器 API URL（例如：`https://lazer-api.g0v0.top`）
    - `Website Url`: 你的自定义服务器网站 URL（例如：`https://lazer.g0v0.top`）
 
