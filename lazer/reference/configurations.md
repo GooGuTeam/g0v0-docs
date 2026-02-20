@@ -29,7 +29,8 @@ const commitUrl = computed(() => {
 :::tip 文档贡献者提示
 
 此文件是自动生成的，任何更改都将被覆盖。如果你想要更改翻译，请在
-`data/configuration/zh-CN.js` 中修改。
+`data/configuration/zh-CN.js`
+中修改。点击左下角的 "在 GitHub 上编辑此页" 链接可以直接跳转到该文件的编辑页面。
 
 上次生成于 <code>{{ data.definition.$timestamp }}</code>
 (提交：<code><a :href="commitUrl">{{ data.definition.$commit }}</a></code>)。

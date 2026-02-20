@@ -91,7 +91,6 @@ export default defineConfig({
           ],
         },
         editLink: {
-          pattern: 'https://github.com/GooGuTeam/g0v0-docs/edit/main/:path',
           text: 'Edit this page on GitHub',
         },
       },
@@ -194,7 +193,18 @@ export default defineConfig({
     },
 
     editLink: {
-      pattern: 'https://github.com/GooGuTeam/g0v0-docs/edit/main/:path',
+      pattern: ({ filePath }) => {
+        if (filePath.endsWith('configurations.md')) {
+          let locale = 'zh-CN'
+          if (!filePath.startsWith('lazer/')) {
+            // other languages
+            locale = filePath.split('/')[0] // get the locale from the path
+          }
+          return `https://github.com/GooGuTeam/g0v0-docs/edit/main/data/configuration/${locale}.js`
+        } else {
+          return `https://github.com/GooGuTeam/g0v0-docs/edit/main/${filePath}`
+        }
+      },
       text: '在 GitHub 上编辑此页',
     },
   },
