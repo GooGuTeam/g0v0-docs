@@ -31,6 +31,10 @@ export default defineConfig({
                   text: 'Customize Your Server',
                   link: '/en/lazer/deploy/customize-server',
                 },
+                {
+                  text: 'Connect from the Client',
+                  link: '/en/lazer/deploy/login-from-client',
+                },
                 { text: 'Manage Plugins', link: '/en/lazer/deploy/manage-plugins' },
                 {
                   text: 'Deploying the Frontend',
@@ -119,6 +123,10 @@ export default defineConfig({
                 {
                   text: '自定义你的服务器',
                   link: '/lazer/deploy/customize-server',
+                },
+                {
+                  text: '通过客户端连接到服务器',
+                  link: '/lazer/deploy/login-from-client',
                 },
                 { text: '管理插件', link: '/lazer/deploy/manage-plugins' },
                 {
