@@ -1,0 +1,408 @@
+{
+  "$commit": "8d5c080c4e84818c5e82999626d0e636d6d9af8d",
+  "$timestamp": "2026-02-20T06:24:22Z",
+  "database": {
+    "MYSQL_HOST": {
+      "$type": "string",
+      "$default": "localhost"
+    },
+    "MYSQL_PORT": {
+      "$type": "integer",
+      "$default": 3306
+    },
+    "MYSQL_DATABASE": {
+      "$type": "string",
+      "$default": "osu_api"
+    },
+    "MYSQL_USER": {
+      "$type": "string",
+      "$default": "osu_api"
+    },
+    "MYSQL_PASSWORD": {
+      "$type": "string",
+      "$default": "password"
+    },
+    "MYSQL_ROOT_PASSWORD": {
+      "$type": "string",
+      "$default": "password"
+    },
+    "REDIS_URL": {
+      "$type": "string",
+      "$default": "redis://127.0.0.1:6379"
+    }
+  },
+  "jwt": {
+    "JWT_SECRET_KEY": {
+      "$type": "string",
+      "$default": "your_jwt_secret_here"
+    },
+    "JWT_ALGORITHM": {
+      "$type": "string",
+      "$default": "HS256"
+    },
+    "ACCESS_TOKEN_EXPIRE_MINUTES": {
+      "$type": "integer",
+      "$default": 1440
+    },
+    "REFRESH_TOKEN_EXPIRE_MINUTES": {
+      "$type": "integer",
+      "$default": 21600
+    },
+    "JWT_AUDIENCE": {
+      "$type": "string",
+      "$default": "5"
+    },
+    "JWT_ISSUER": {
+      "$type": "string",
+      "$default": null
+    }
+  },
+  "oauth": {
+    "OSU_CLIENT_ID": {
+      "$type": "integer",
+      "$default": 5
+    },
+    "OSU_CLIENT_SECRET": {
+      "$type": "string",
+      "$default": "FGc9GAtyHzeQDshWP5Ah7dega8hJACAJpQtw6OXk"
+    },
+    "OSU_WEB_CLIENT_ID": {
+      "$type": "integer",
+      "$default": 6
+    },
+    "OSU_WEB_CLIENT_SECRET": {
+      "$type": "string",
+      "$default": "your_osu_web_client_secret_here"
+    }
+  },
+  "server": {
+    "HOST": {
+      "$type": "string",
+      "$default": "0.0.0.0"
+    },
+    "PORT": {
+      "$type": "integer",
+      "$default": 8000
+    },
+    "DEBUG": {
+      "$type": "boolean",
+      "$default": false
+    },
+    "CORS_URLS": {
+      "$type": "array<string>",
+      "$default": []
+    },
+    "SERVER_URL": {
+      "$type": "string",
+      "$default": "http://localhost:8000/"
+    },
+    "FRONTEND_URL": {
+      "$type": "string",
+      "$default": null
+    },
+    "ENABLE_RATE_LIMIT": {
+      "$type": "boolean",
+      "$default": true
+    }
+  },
+  "fetcher": {
+    "FETCHER_CLIENT_ID": {
+      "$type": "string",
+      "$default": ""
+    },
+    "FETCHER_CLIENT_SECRET": {
+      "$type": "string",
+      "$default": ""
+    }
+  },
+  "logging": {
+    "LOG_LEVEL": {
+      "$type": "string",
+      "$default": "INFO"
+    }
+  },
+  "verification": {
+    "ENABLE_TOTP_VERIFICATION": {
+      "$type": "boolean",
+      "$default": true
+    },
+    "TOTP_ISSUER": {
+      "$type": "string",
+      "$default": null
+    },
+    "TOTP_SERVICE_NAME": {
+      "$type": "string",
+      "$default": "g0v0! Lazer Server"
+    },
+    "TOTP_USE_USERNAME_IN_LABEL": {
+      "$type": "boolean",
+      "$default": true
+    },
+    "ENABLE_TURNSTILE_VERIFICATION": {
+      "$type": "boolean",
+      "$default": false
+    },
+    "TURNSTILE_SECRET_KEY": {
+      "$type": "string",
+      "$default": ""
+    },
+    "TURNSTILE_DEV_MODE": {
+      "$type": "boolean",
+      "$default": false
+    },
+    "ENABLE_EMAIL_VERIFICATION": {
+      "$type": "boolean",
+      "$default": false
+    },
+    "ENABLE_SESSION_VERIFICATION": {
+      "$type": "boolean",
+      "$default": true
+    },
+    "ENABLE_MULTI_DEVICE_LOGIN": {
+      "$type": "boolean",
+      "$default": true
+    },
+    "MAX_TOKENS_PER_CLIENT": {
+      "$type": "integer",
+      "$default": 10
+    },
+    "DEVICE_TRUST_DURATION_DAYS": {
+      "$type": "integer",
+      "$default": 30
+    }
+  },
+  "email": {
+    "EMAIL_PROVIDER": {
+      "$type": "string",
+      "$default": "smtp"
+    },
+    "EMAIL_PROVIDER_CONFIG": {
+      "$type": "object",
+      "$default": null
+    },
+    "FROM_EMAIL": {
+      "$type": "string",
+      "$default": "noreply@example.com"
+    },
+    "FROM_NAME": {
+      "$type": "string",
+      "$default": "osu! server"
+    }
+  },
+  "monitoring": {
+    "SENTRY_DSN": {
+      "$type": "string",
+      "$default": null
+    },
+    "NEW_RELIC_ENVIRONMENT": {
+      "$type": "string",
+      "$default": null
+    }
+  },
+  "geoip": {
+    "MAXMIND_LICENSE_KEY": {
+      "$type": "string",
+      "$default": ""
+    },
+    "GEOIP_DEST_DIR": {
+      "$type": "string",
+      "$default": "./geoip"
+    },
+    "GEOIP_UPDATE_DAY": {
+      "$type": "integer",
+      "$default": 1
+    },
+    "GEOIP_UPDATE_HOUR": {
+      "$type": "integer",
+      "$default": 2
+    }
+  },
+  "game": {
+    "ENABLE_RX": {
+      "$type": "boolean",
+      "$default": false,
+      "$aliases": ["ENABLE_OSU_RX"]
+    },
+    "ENABLE_AP": {
+      "$type": "boolean",
+      "$default": false,
+      "$aliases": ["ENABLE_OSU_AP"]
+    },
+    "ENABLE_SUPPORTER_FOR_ALL_USERS": {
+      "$type": "boolean",
+      "$default": false
+    },
+    "ENABLE_ALL_BEATMAP_LEADERBOARD": {
+      "$type": "boolean",
+      "$default": false
+    },
+    "ENABLE_ALL_BEATMAP_PP": {
+      "$type": "boolean",
+      "$default": false
+    },
+    "SEASONAL_BACKGROUNDS": {
+      "$type": "array<string>",
+      "$default": []
+    },
+    "BEATMAP_TAG_TOP_COUNT": {
+      "$type": "integer",
+      "$default": 2
+    },
+    "OLD_SCORE_PROCESSING_MODE": {
+      "$type": "enum(strict, normal)",
+      "$default": "normal"
+    },
+    "SCORING_MODE": {
+      "$type": "enum(standardised, classic)",
+      "$default": "standardised"
+    }
+  },
+  "calculator": {
+    "CALCULATOR": {
+      "$type": "string",
+      "$default": "performance_server"
+    },
+    "CALCULATOR_CONFIG": {
+      "$type": "object<string, unknown>",
+      "$default": {
+        "server_url": "http://localhost:5225"
+      }
+    },
+    "FALLBACK_NO_CALCULATOR_PP": {
+      "$type": "boolean",
+      "$default": false
+    }
+  },
+  "cache": {
+    "ENABLE_BEATMAP_PRELOAD": {
+      "$type": "boolean",
+      "$default": true
+    },
+    "BEATMAP_CACHE_EXPIRE_HOURS": {
+      "$type": "integer",
+      "$default": 24
+    },
+    "BEATMAPSET_CACHE_EXPIRE_SECONDS": {
+      "$type": "integer",
+      "$default": 3600
+    },
+    "ENABLE_RANKING_CACHE": {
+      "$type": "boolean",
+      "$default": true
+    },
+    "RANKING_CACHE_EXPIRE_MINUTES": {
+      "$type": "integer",
+      "$default": 10
+    },
+    "RANKING_CACHE_REFRESH_INTERVAL_MINUTES": {
+      "$type": "integer",
+      "$default": 10
+    },
+    "RANKING_CACHE_MAX_PAGES": {
+      "$type": "integer",
+      "$default": 20
+    },
+    "RANKING_CACHE_TOP_COUNTRIES": {
+      "$type": "integer",
+      "$default": 20
+    },
+    "ENABLE_USER_CACHE_PRELOAD": {
+      "$type": "boolean",
+      "$default": true
+    },
+    "USER_CACHE_EXPIRE_SECONDS": {
+      "$type": "integer",
+      "$default": 300
+    },
+    "USER_SCORES_CACHE_EXPIRE_SECONDS": {
+      "$type": "integer",
+      "$default": 60
+    },
+    "USER_BEATMAPSETS_CACHE_EXPIRE_SECONDS": {
+      "$type": "integer",
+      "$default": 600
+    },
+    "USER_CACHE_MAX_PRELOAD_USERS": {
+      "$type": "integer",
+      "$default": 200
+    }
+  },
+  "asset_proxy": {
+    "ENABLE_ASSET_PROXY": {
+      "$type": "boolean",
+      "$default": false
+    },
+    "CUSTOM_ASSET_DOMAIN": {
+      "$type": "string",
+      "$default": "g0v0.top"
+    },
+    "ASSET_PROXY_PREFIX": {
+      "$type": "string",
+      "$default": "assets-ppy"
+    },
+    "AVATAR_PROXY_PREFIX": {
+      "$type": "string",
+      "$default": "a-ppy"
+    },
+    "BEATMAP_PROXY_PREFIX": {
+      "$type": "string",
+      "$default": "b-ppy"
+    }
+  },
+  "beatmap_sync": {
+    "ENABLE_AUTO_BEATMAP_SYNC": {
+      "$type": "boolean",
+      "$default": false
+    },
+    "BEATMAP_SYNC_INTERVAL_MINUTES": {
+      "$type": "integer",
+      "$default": 60
+    }
+  },
+  "anticheat": {
+    "BANNED_NAME": {
+      "$type": "array<string>",
+      "$default": ["mrekk", "vaxei", "btmc", "cookiezi", "peppy", "saragi", "chocomint"]
+    },
+    "ALLOW_DELETE_SCORES": {
+      "$type": "boolean",
+      "$default": false
+    },
+    "CHECK_RULESET_VERSION": {
+      "$type": "boolean",
+      "$default": true
+    },
+    "CHECK_CLIENT_VERSION": {
+      "$type": "boolean",
+      "$default": true
+    },
+    "CLIENT_VERSION_URLS": {
+      "$type": "array<string>",
+      "$default": [
+        "https://raw.githubusercontent.com/GooGuTeam/g0v0-client-versions/main/version_list.json"
+      ]
+    }
+  },
+  "storage": {
+    "STORAGE_SERVICE": {
+      "$type": "enum(local, r2, s3)",
+      "$default": "local"
+    },
+    "STORAGE_SETTINGS": {
+      "$type": "LocalStorageSettings | CloudflareR2Settings | AWSS3StorageSettings",
+      "$default": {
+        "local_storage_path": "./storage"
+      }
+    }
+  },
+  "plugins": {
+    "PLUGIN_DIRS": {
+      "$type": "array<string>",
+      "$default": ["./plugins"]
+    },
+    "DISABLED_PLUGINS": {
+      "$type": "array<string>",
+      "$default": []
+    }
+  }
+}
