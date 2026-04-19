@@ -1,6 +1,6 @@
 {
-  "$commit": "cda7372eda9493f1e7512dd91730429d2af3a3b2",
-  "$timestamp": "2026-04-19T09:59:39Z",
+  "$commit": "82d182d5094c6f8a38c6692c3d53c89eb072126d",
+  "$timestamp": "2026-04-19T10:57:28Z",
   "database": {
     "MYSQL_HOST": {
       "$type": "string",
@@ -403,6 +403,12 @@
     "DISABLED_PLUGINS": {
       "$type": "array<string>",
       "$default": []
+    }
+  },
+  "v2": {
+    "ENABLE_V2_IPC": {
+      "$type": "boolean",
+      "$default": false
     }
   }
 }
