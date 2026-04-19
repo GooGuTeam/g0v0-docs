@@ -1,6 +1,6 @@
 {
-  "$commit": "185288d3fb4bb14743f29c0d2b5c601a584304a9",
-  "$timestamp": "2026-04-04T10:57:49Z",
+  "$commit": "cda7372eda9493f1e7512dd91730429d2af3a3b2",
+  "$timestamp": "2026-04-19T09:59:39Z",
   "database": {
     "MYSQL_HOST": {
       "$type": "string",
@@ -297,6 +297,10 @@
     "RANKING_CACHE_MAX_PAGES": {
       "$type": "integer",
       "$default": 20
+    },
+    "TOP_SCORE_CACHE_MAX_PAGES": {
+      "$type": "integer",
+      "$default": 3
     },
     "RANKING_CACHE_TOP_COUNTRIES": {
       "$type": "integer",
