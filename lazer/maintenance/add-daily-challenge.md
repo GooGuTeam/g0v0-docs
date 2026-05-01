@@ -47,6 +47,13 @@ HSET daily_challenge:%Y-%m-%d allowed_mods [额外Freemod，可选，默认为�
 - `required_mods`：额外必需 mod。
 - `allowed_mods`：额外 Freemod。
 
-### 生效
+## 使用 Auto Daily Challenge 插件
+
+你可以安装官方插件
+[Auto Daily Challenge](https://github.com/GooGuTeam/g0v0-plugins/tree/main/auto_dailychallenge)
+插件来自动填充每日挑战。这个插件会根据
+[osu! Bancho 的难度规则](https://osu.ppy.sh/wiki/zh/Gameplay/Daily_challenge#beatmap-difficulty-range)自动从数据库选择上架谱面，并且每天更新一次。
+
+## 生效
 
 等待 UTC 0 点后或者重启服务器，服务器会自动应用每日挑战。
