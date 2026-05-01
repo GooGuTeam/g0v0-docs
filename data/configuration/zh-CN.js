@@ -93,7 +93,6 @@ export default {
   },
   geoip: {
     $name: 'GeoIP 配置',
-    MAXMIND_LICENSE_KEY: 'MaxMind License Key（用于下载离线IP库）',
     GEOIP_DEST_DIR: 'GeoIP 数据库存储目录',
     GEOIP_UPDATE_DAY: 'GeoIP 每周更新的星期几（0=周一，6=周日）',
     GEOIP_UPDATE_HOUR: 'GeoIP 每周更新时间（小时，0-23）',
@@ -147,6 +146,7 @@ export default {
     RANKING_CACHE_EXPIRE_MINUTES: '排行榜缓存过期时间（分钟）',
     RANKING_CACHE_REFRESH_INTERVAL_MINUTES: '排行榜缓存刷新间隔（分钟）',
     RANKING_CACHE_MAX_PAGES: '最多缓存的页数',
+    TOP_SCORE_CACHE_MAX_PAGES: '最多缓存的单图成绩页数',
     RANKING_CACHE_TOP_COUNTRIES: '缓存前N个国家的排行榜',
     ENABLE_USER_CACHE_PRELOAD: '启用用户缓存预加载',
     USER_CACHE_EXPIRE_SECONDS: '用户信息缓存过期时间（秒）',
@@ -215,5 +215,10 @@ export default {
     $name: '插件设置',
     PLUGIN_DIRS: '插件目录列表',
     DISABLED_PLUGINS: '禁用的插件列表',
+  },
+  v2: {
+    $name: '咕哦！v2 服务器设置',
+    ENABLE_V2_IPC:
+      '启用咕哦！v2 服务器的进程间通信（IPC）。这需要使用咕哦！v2 的 Realtime 实现而不是 spectator-server。',
   },
 }

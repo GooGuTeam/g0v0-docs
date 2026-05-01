@@ -96,7 +96,6 @@ export default {
   },
   geoip: {
     $name: 'GeoIP Settings',
-    MAXMIND_LICENSE_KEY: 'MaxMind License Key (For downloading offline IP DB)',
     GEOIP_DEST_DIR: 'GeoIP Database Storage Directory',
     GEOIP_UPDATE_DAY: 'GeoIP Weekly Update Day (0=Mon, 6=Sun)',
     GEOIP_UPDATE_HOUR: 'GeoIP Weekly Update Hour (0-23)',
@@ -151,6 +150,7 @@ export default {
     RANKING_CACHE_EXPIRE_MINUTES: 'Leaderboard Cache Expiration (Minutes)',
     RANKING_CACHE_REFRESH_INTERVAL_MINUTES: 'Leaderboard Cache Refresh Interval (Minutes)',
     RANKING_CACHE_MAX_PAGES: 'Max Cached Pages',
+    TOP_SCORE_CACHE_MAX_PAGES: 'Max Cached Pages for Top Scores',
     RANKING_CACHE_TOP_COUNTRIES: 'Cache Top N Country Leaderboards',
     ENABLE_USER_CACHE_PRELOAD: 'Enable User Cache Preload',
     USER_CACHE_EXPIRE_SECONDS: 'User Cache Expiration (Seconds)',
@@ -219,5 +219,10 @@ export default {
     $name: 'Plugin Settings',
     PLUGIN_DIRS: 'Plugin Directory List',
     DISABLED_PLUGINS: 'Disabled Plugin List',
+  },
+  v2: {
+    $name: 'g0v0! v2 Server Settings',
+    ENABLE_V2_IPC:
+      'Enable g0v0! v2 server Inter-Process Communication (IPC). This requires using g0v0! v2 Realtime implementation instead of spectator-server.',
   },
 }
