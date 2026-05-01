@@ -34,27 +34,6 @@ FETCHER_CLIENT_SECRET="你的客户端密钥"
 保存后重启 g0v0 服务器。这样 Fetcher 就配置完成了。当服务器接收到不存在的谱面的请求时，Fetcher 会自动从 osu!
 Bancho 获取谱面数据。,,
 
-## 设置 GeoIP
-
-g0v0 使用 MaxMind
-GeoIP 数据库来获取用户的地理位置信息。这用于记录并显示用户的国家/地区。
-
-### 获取 MaxMind License Key
-
-前往 [MaxMind 网站](https://www.maxmind.com/en/accounts/current/license-key)
-创建一个账户并获取一个 License Key。你需要注册一个免费账户才能获取 License
-Key。记录下你的 License Key，稍后配置 GeoIP 时会用到。
-
-### 配置 GeoIP
-
-编辑 `.env`，添加以下配置：
-
-```dotenv
-MAXMIND_LICENSE_KEY="你的 License Key"
-```
-
-保存后重启 g0v0 服务器。这样 GeoIP 就配置完成了。服务器会自动下载并更新 GeoIP 数据库。
-
 ## 用户会话安全
 
 g0v0 内置了一系列用户会话安全设置：

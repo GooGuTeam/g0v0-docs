@@ -38,29 +38,6 @@ Save and restart the g0v0 server. Now Fetcher is configured. When the server
 receives a request for a non-existent beatmap request, Fetcher will
 automatically fetch beatmap data from osu! Bancho.
 
-## Set up GeoIP
-
-g0v0 uses the MaxMind GeoIP database to get users' geographical location
-information. This is used to record and display users' countries/regions.
-
-### Get MaxMind License Key
-
-Go to [MaxMind Website](https://www.maxmind.com/en/accounts/current/license-key)
-to create an account and get a License Key. You need to register for a free
-account to get a License Key. Note down your License Key, which will be used
-later when configuring GeoIP.
-
-### Configure GeoIP
-
-Edit `.env` and add the following configuration:
-
-```dotenv
-MAXMIND_LICENSE_KEY="Your License Key"
-```
-
-Save and restart the g0v0 server. Now GeoIP is configured. The server will
-automatically download and update the GeoIP database.
-
 ## User Session Security
 
 g0v0 has built-in user session security settings:
