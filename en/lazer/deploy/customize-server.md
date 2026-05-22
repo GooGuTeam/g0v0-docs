@@ -7,6 +7,118 @@ The previous section introduced how to quickly deploy g0v0 using Docker.
 However, your server still needs some custom configurations to run properly.
 This section will introduce how to customize your g0v0.
 
+## Configure Reverse Proxy
+
+When the frontend loads avatars, beatmap covers, and other static images, the
+resources come from three official osu! domains:
+
+| Upstream Domain | Content        |
+| --------------- | -------------- |
+| `a.ppy.sh`      | User avatars   |
+| `b.ppy.sh`      | Beatmap covers |
+| `assets.ppy.sh` | Static assets  |
+
+Because of browser CORS restrictions, images may fail to load when the frontend
+domain differs from these resource domains. By setting up NGINX reverse proxies
+for these three upstreams under your own domain and returning the correct CORS
+response headers, the frontend can load these images without issues.
+
+Before configuring the reverse proxy, enable the asset proxy feature in `.env`
+and set the related options:
+
+```dotenv
+ENABLE_ASSET_PROXY=true
+CUSTOM_ASSET_DOMAIN=your-server-domain.com   # your server domain
+AVATAR_PROXY_PREFIX=a-ppy                    # subdomain prefix for a.ppy.sh, customizable
+BEATMAP_PROXY_PREFIX=b-ppy                   # subdomain prefix for b.ppy.sh, customizable
+ASSET_PROXY_PREFIX=assets-ppy               # subdomain prefix for assets.ppy.sh, customizable
+```
+
+For the full description of these settings, see
+[Configurations](../reference/configurations.md). If you change the prefix
+values, update the `server_name` directives in the NGINX configuration
+accordingly.
+
+Example NGINX configuration (key parts only; add certificates and HTTP-to-HTTPS
+redirects for your own environment):
+
+```nginx
+# Put this inside http {} to enable proxy caching for static assets.
+proxy_cache_path /var/cache/nginx/ppy-assets
+    levels=1:2
+    keys_zone=ppy_assets:50m
+    inactive=7d
+    max_size=10g;
+
+server {
+    listen 443 ssl;
+    server_name a-ppy.your-server-domain.com;  # avatars
+
+    location / {
+        proxy_pass https://a.ppy.sh;
+        proxy_ssl_server_name on;
+        proxy_ssl_name a.ppy.sh;
+        proxy_set_header Host a.ppy.sh;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        add_header Access-Control-Allow-Origin $http_origin always;
+        add_header Access-Control-Allow-Methods "GET, OPTIONS" always;
+        add_header Access-Control-Allow-Headers "Origin, Accept, Content-Type" always;
+    }
+}
+
+server {
+    listen 443 ssl;
+    server_name b-ppy.your-server-domain.com;  # beatmap covers
+
+    location / {
+        proxy_pass https://b.ppy.sh;
+        proxy_ssl_server_name on;
+        proxy_ssl_name b.ppy.sh;
+        proxy_set_header Host b.ppy.sh;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        add_header Access-Control-Allow-Origin $http_origin always;
+        add_header Access-Control-Allow-Methods "GET, OPTIONS" always;
+        add_header Access-Control-Allow-Headers "Origin, Accept, Content-Type" always;
+    }
+}
+
+server {
+    listen 443 ssl;
+    server_name assets-ppy.your-server-domain.com;  # static assets
+
+    location / {
+        proxy_pass https://assets.ppy.sh;
+        proxy_ssl_server_name on;
+        proxy_ssl_name assets.ppy.sh;
+        proxy_set_header Host assets.ppy.sh;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        add_header Access-Control-Allow-Origin $http_origin always;
+        add_header Access-Control-Allow-Methods "GET, OPTIONS" always;
+        add_header Access-Control-Allow-Headers "Origin, Accept, Content-Type" always;
+
+        proxy_cache ppy_assets;
+        proxy_cache_valid 200 301 302 1d;
+        proxy_cache_use_stale error timeout updating http_500 http_502 http_503 http_504;
+        add_header X-Cache-Status $upstream_cache_status always;
+    }
+}
+```
+
+`assets-ppy` mainly serves static resources and is a good candidate for
+`proxy_cache`. For `a-ppy` and `b-ppy`, enable caching as needed. Even if you do
+not use `proxy_cache`, it is recommended to set appropriate `Cache-Control`
+headers or `expires` rules so clients and edge nodes do not keep serving
+outdated files.
+
 ## Set up Fetcher
 
 A newly created g0v0 does not contain any beatmap data. It uses Fetcher to fetch
