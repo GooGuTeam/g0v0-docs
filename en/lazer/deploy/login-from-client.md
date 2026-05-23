@@ -37,11 +37,16 @@ platform.
 [LazerAuthlibInjection](https://github.com/MingxuanGame/LazerAuthlibInjection)
 is a ruleset that adds custom server support to the official osu!(lazer) client.
 
-:::warning Warning
+:::danger Danger
 
-Although we have not found any bans caused by using this ruleset, we recommend
-that you **do not connect the osu!(lazer) client with LazerAuthlibInjection
-installed to the official servers!**
+**This will result in your osu! account being banned!**
+
+The official osu! team has explicitly stated that using LazerAuthlibInjection and
+similar injection rulesets to connect to official servers will result in account
+bans ([see this issue](https://github.com/Cai1Hsu/osu-plugins/issues/93)).
+
+Only use this tool on **private development servers**, and ensure you have
+logged out of or disconnected from the official servers before using it.
 
 This project is not affiliated with or endorsed by the official osu! team. **Use
 at your own risk.** **Do not report any issues regarding this ruleset to the

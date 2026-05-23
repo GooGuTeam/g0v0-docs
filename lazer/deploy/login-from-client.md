@@ -32,9 +32,13 @@ osu!(lazer) 客户端本身不支持像 osu!(stable) 那样通过命令行 (`-de
 [LazerAuthlibInjection](https://github.com/MingxuanGame/LazerAuthlibInjection)
 是一个为官方 osu!(lazer) 客户端添加自定义服务器支持的 ruleset。
 
-:::warning 警告
+:::danger 危险
 
-虽然我们仍未发现使用此 ruleset 导致的封禁案例，但我们建议你尽量**不要将安装 LazerAuthlibInjection 后的 osu!(lazer) 客户端连接到官方服务器！**
+**此操作可能导致你的 osu! 账号被封禁！**
+
+osu! 官方团队已明确声明使用 LazerAuthlibInjection 等注入类 ruleset 连接到官方服务器会导致账号被封禁 ([详见此 Issue](https://github.com/Cai1Hsu/osu-plugins/issues/93))。
+
+请务必**仅在私有开发服务器上使用此工具**，并确保在使用前已退出官方客户端或断开与官方服务器的连接。
 
 此项目与 osu! 官方团队无任何关联，也未获得其认可。**使用风险自负。**
 **请勿向 osu! 官方团队报告任何关于此 ruleset 的问题。**
