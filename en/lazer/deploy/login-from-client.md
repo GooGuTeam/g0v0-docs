@@ -72,12 +72,17 @@ official osu! team.**
    - Linux: `~/.local/share/osu`
    - macOS: `~/Library/Application Support/osu`
 
-2. **Install LazerAuthlibInjection**
+2. **Install EnhancedAuth**
 
    Download the latest version from the
    [Releases page](https://github.com/MingxuanGame/LazerAuthlibInjection/releases/latest),
-   and copy `osu.Game.Rulesets.AuthlibInjection.dll` to the `rulesets`
+   and copy `osu.Game.Rulesets.EnhancedAuth.dll` to the `rulesets`
    directory.
+
+::: tip Migrating from the old version
+If you previously used `osu.Game.Rulesets.AuthlibInjection.dll`, please delete
+that file first.
+:::
 
 3. **Configure LazerAuthlibInjection**
 

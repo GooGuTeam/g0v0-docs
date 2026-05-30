@@ -62,12 +62,16 @@ osu! 官方团队已明确声明使用 LazerAuthlibInjection 等注入类 rulese
    - Linux: `~/.local/share/osu`
    - macOS: `~/Library/Application Support/osu`
 
-2. **安装 LazerAuthlibInjection**
+2. **安装 EnhancedAuth**
 
    从
    [Releases 页面](https://github.com/MingxuanGame/LazerAuthlibInjection/releases/latest)
-   下载最新版本，并将 `osu.Game.Rulesets.AuthlibInjection.dll` 复制到 `rulesets`
+   下载最新版本，并将 `osu.Game.Rulesets.EnhancedAuth.dll` 复制到 `rulesets`
    目录中。
+
+::: tip 从旧版本迁移
+如果你之前使用的是 `osu.Game.Rulesets.AuthlibInjection.dll`，请先删除该文件。
+:::
 
 3. **配置 LazerAuthlibInjection**
 
