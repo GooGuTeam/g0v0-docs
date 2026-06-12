@@ -304,9 +304,7 @@ remove mods you want. The structure is as follows:
 
 Save and restart the g0v0 server. The server will update ranked beatmaps and
 mods according to the configuration. If you need to recalculate pp, please refer
-to the
-[Recalculate Performance Points and Statistics](../maintenance/recalculate-pp-and-stats.md)
-section.
+to the [Recalculate](../maintenance/recalculate.md) section.
 
 ## Set Seasonal Backgrounds
 

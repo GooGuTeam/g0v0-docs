@@ -1,10 +1,10 @@
 ---
 ---
 
-# Recalculate Performance Points and Statistics
+# Recalculate
 
 This section introduces how to use the `tools/recalculate.py` tool to
-recalculate pp, leaderboards, star ratings, and other data.
+recalculate pp, leaderboards, star ratings, score totals, and other data.
 
 ## Usage
 
@@ -13,7 +13,7 @@ The script is located at `tools/recalculate.py`. Basic usage is as follows:
 ```sh
 usage: recalculate.py [-h] [--dry-run] [--concurrency CONCURRENCY] [--output-csv OUTPUT_CSV] [--max-cached-beatmaps-count MAX_CACHED_BEATMAPS_COUNT]
                       [--additional-count ADDITIONAL_COUNT]
-                      {performance,leaderboard,rating,all} ...
+                      {performance,leaderboard,score,rating,all} ...
 ```
 
 :::tip Tip
@@ -33,6 +33,10 @@ docker exec -it g0v0-server uv run --no-sync python tools/recalculate.py
 - `--dry-run`: Run command without committing changes.
 - `--concurrency CONCURRENCY`: Maximum number of concurrent tasks.
 - `--output-csv OUTPUT_CSV`: Output results to the specified CSV file.
+- `--max-cached-beatmaps-count MAX_CACHED_BEATMAPS_COUNT`: Maximum number of
+  beatmaps to cache (<=0 means no limit).
+- `--additional-count ADDITIONAL_COUNT`: Additional beatmaps before cleanup (<=0
+  means cleanup immediately).
 
 ## Recalculate Performance Point
 
@@ -57,6 +61,18 @@ uv run --no-sync python tools/recalculate.py leaderboard -h
 
 This command is used to recalculate leaderboards and users' statistics (such as
 total playtime, maximum combo, so on).
+
+## Recalculate Score Totals
+
+If you changed the mod multiplier settings, you can use the subcommand `score`
+to recalculate the total_score of all scores and rebuild the leaderboard.
+
+```sh
+uv run --no-sync python tools/recalculate.py score -h
+```
+
+This command recalculates `total_score` using the mod multiplier and rebuilds
+the leaderboard.
 
 ## Recalculate Star Ratings
 

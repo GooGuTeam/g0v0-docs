@@ -114,7 +114,8 @@ export default {
       'strict: delete all related scores, pp, stats, replays\n' +
       'normal: delete pp and leaderboard scores',
     SCORING_MODE: 'Scoring Mode: standardised or classic',
-    USE_OLD_SCORE_MULTIPLIER: 'Use old mod multipliers (before [Mod Multipliers Rework](https://osu.ppy.sh/home/news/2026-06-03-mod-multipliers-survey-results))',
+    USE_OLD_SCORE_MULTIPLIER:
+      'Use old mod multipliers (before [Mod Multipliers Rework](https://osu.ppy.sh/home/news/2026-06-03-mod-multipliers-survey-results))',
   },
   calculator: {
     $name: 'Performance Calculation Settings',

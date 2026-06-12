@@ -50,8 +50,8 @@ export default defineConfig({
                   link: '/en/lazer/maintenance/add-daily-challenge',
                 },
                 {
-                  text: 'Recalculate PP and Stats',
-                  link: '/en/lazer/maintenance/recalculate-pp-and-stats',
+                  text: 'Recalculate',
+                  link: '/en/lazer/maintenance/recalculate',
                 },
               ],
             },
@@ -142,8 +142,8 @@ export default defineConfig({
                   link: '/lazer/maintenance/add-daily-challenge',
                 },
                 {
-                  text: '重新计算表现分和统计信息',
-                  link: '/lazer/maintenance/recalculate-pp-and-stats',
+                  text: '重新计算',
+                  link: '/lazer/maintenance/recalculate',
                 },
               ],
             },

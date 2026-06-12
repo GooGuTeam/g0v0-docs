@@ -1,10 +1,10 @@
 ---
 ---
 
-# 重新计算表现分和统计信息
+# 重新计算
 
 本节介绍了如何使用 `tools/recalculate.py`
-工具来重新计算 pp、排行榜、难度星级等数据。
+工具来重新计算 pp、排行榜、难度星级、分数总分等数据。
 
 ## 使用方法
 
@@ -13,7 +13,7 @@
 ```sh
 usage: recalculate.py [-h] [--dry-run] [--concurrency CONCURRENCY] [--output-csv OUTPUT_CSV] [--max-cached-beatmaps-count MAX_CACHED_BEATMAPS_COUNT]
                       [--additional-count ADDITIONAL_COUNT]
-                      {performance,leaderboard,rating,all} ...
+                      {performance,leaderboard,score,rating,all} ...
 ```
 
 :::tip 提示
@@ -32,6 +32,8 @@ docker exec -it g0v0-server uv run --no-sync python tools/recalculate.py
 - `--dry-run`: 执行命令但不提交更改。
 - `--concurrency CONCURRENCY`: 最大并发任务数。
 - `--output-csv OUTPUT_CSV`: 将结果输出到指定的 CSV 文件。
+- `--max-cached-beatmaps-count MAX_CACHED_BEATMAPS_COUNT`: 最大缓存的谱面数量（<=0 表示不限制）。
+- `--additional-count ADDITIONAL_COUNT`: 达到缓存限制后额外积累的数量（<=0 表示立即清理）。
 
 ## 重新计算 pp
 
@@ -54,6 +56,17 @@ uv run --no-sync python tools/recalculate.py leaderboard -h
 ```
 
 此命令用于重新计算排行榜和用户的统计信息（包括游玩时间、最大连击数等）。
+
+## 重新计算分数总分
+
+如果你更改了 mod 倍率设置，可以使用子命令 `score`
+重新计算所有分数的总分并重建排行榜。
+
+```sh
+uv run --no-sync python tools/recalculate.py score -h
+```
+
+此命令使用 mod 倍率重新计算分数的 `total_score` 并重建排行榜。
 
 ## 重新计算难度星级 (Star Ratings)
 

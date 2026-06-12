@@ -41,9 +41,10 @@ is a ruleset that adds custom server support to the official osu!(lazer) client.
 
 **This will result in your osu! account being banned!**
 
-The official osu! team has explicitly stated that using LazerAuthlibInjection and
-similar injection rulesets to connect to official servers will result in account
-bans ([see this issue](https://github.com/Cai1Hsu/osu-plugins/issues/93)).
+The official osu! team has explicitly stated that using LazerAuthlibInjection
+and similar injection rulesets to connect to official servers will result in
+account bans
+([see this issue](https://github.com/Cai1Hsu/osu-plugins/issues/93)).
 
 Only use this tool on **private development servers**, and ensure you have
 logged out of or disconnected from the official servers before using it.
@@ -76,13 +77,10 @@ official osu! team.**
 
    Download the latest version from the
    [Releases page](https://github.com/MingxuanGame/LazerAuthlibInjection/releases/latest),
-   and copy `osu.Game.Rulesets.EnhancedAuth.dll` to the `rulesets`
-   directory.
+   and copy `osu.Game.Rulesets.EnhancedAuth.dll` to the `rulesets` directory.
 
-::: tip Migrating from the old version
-If you previously used `osu.Game.Rulesets.AuthlibInjection.dll`, please delete
-that file first.
-:::
+::: tip Migrating from the old version If you previously used
+`osu.Game.Rulesets.AuthlibInjection.dll`, please delete that file first. :::
 
 3. **Configure LazerAuthlibInjection**
 

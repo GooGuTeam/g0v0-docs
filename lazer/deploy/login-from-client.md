@@ -69,9 +69,8 @@ osu! 官方团队已明确声明使用 LazerAuthlibInjection 等注入类 rulese
    下载最新版本，并将 `osu.Game.Rulesets.EnhancedAuth.dll` 复制到 `rulesets`
    目录中。
 
-::: tip 从旧版本迁移
-如果你之前使用的是 `osu.Game.Rulesets.AuthlibInjection.dll`，请先删除该文件。
-:::
+::: tip 从旧版本迁移如果你之前使用的是
+`osu.Game.Rulesets.AuthlibInjection.dll`，请先删除该文件。:::
 
 3. **配置 LazerAuthlibInjection**
 

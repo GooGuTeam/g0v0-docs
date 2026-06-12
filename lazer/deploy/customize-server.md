@@ -279,7 +279,7 @@ docker exec -it g0v0-server uv run --no-sync tools/generate_ranked_mods.py
 }
 ```
 
-保存后重启 g0v0 服务器。服务器会根据配置更新可获得 pp 的谱面和 mod。如果需要重新计算 pp，请参考[重新计算表现分和统计信息](../maintenance/recalculate-pp-and-stats.md)一节。
+保存后重启 g0v0 服务器。服务器会根据配置更新可获得 pp 的谱面和 mod。如果需要重新计算 pp，请参考[重新计算](../maintenance/recalculate.md)一节。
 
 ## 设置节日背景图
 
