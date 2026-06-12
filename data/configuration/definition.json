@@ -1,6 +1,6 @@
 {
-  "$commit": "82d182d5094c6f8a38c6692c3d53c89eb072126d",
-  "$timestamp": "2026-04-19T10:57:28Z",
+  "$commit": "43f190ee724d81e1de7791cca34f561a8ba759fc",
+  "$timestamp": "2026-06-12T04:04:22Z",
   "database": {
     "MYSQL_HOST": {
       "$type": "string",
@@ -251,6 +251,10 @@
     "SCORING_MODE": {
       "$type": "enum(standardised, classic)",
       "$default": "standardised"
+    },
+    "USE_OLD_SCORE_MULTIPLIER": {
+      "$type": "boolean",
+      "$default": false
     }
   },
   "calculator": {
