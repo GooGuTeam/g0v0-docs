@@ -59,6 +59,37 @@ export default defineConfig({
               text: 'Development',
               items: [
                 {
+                  text: 'Core Development',
+                  items: [
+                    { text: 'Overview', link: '/en/lazer/development/core/' },
+                    {
+                      text: 'Development Environment and Commands',
+                      link: '/en/lazer/development/core/setup',
+                    },
+                    {
+                      text: 'Project Structure and Lifecycle',
+                      link: '/en/lazer/development/core/architecture',
+                    },
+                    {
+                      text: 'Routers, APIs, and Authentication',
+                      link: '/en/lazer/development/core/routers',
+                    },
+                    {
+                      text: 'Database, Models, and Migrations',
+                      link: '/en/lazer/development/core/database',
+                    },
+                    {
+                      text: 'Services, Tasks, Logging, and Error Handling',
+                      link: '/en/lazer/development/core/services-tasks',
+                    },
+                    {
+                      text: 'Code Quality, PRs, and Performance',
+                      link: '/en/lazer/development/core/quality',
+                    },
+                  ],
+                  link: '/en/lazer/development/core/',
+                },
+                {
                   text: 'Plugin Development',
                   items: [
                     {
@@ -150,6 +181,22 @@ export default defineConfig({
             {
               text: '开发',
               items: [
+                {
+                  text: '核心开发',
+                  items: [
+                    { text: '概览', link: '/lazer/development/core/' },
+                    { text: '开发环境与命令', link: '/lazer/development/core/setup' },
+                    { text: '项目结构与生命周期', link: '/lazer/development/core/architecture' },
+                    { text: '路由、API 与鉴权', link: '/lazer/development/core/routers' },
+                    { text: '数据库、模型与迁移', link: '/lazer/development/core/database' },
+                    {
+                      text: '服务、任务、日志与错误处理',
+                      link: '/lazer/development/core/services-tasks',
+                    },
+                    { text: '代码质量、PR 与性能', link: '/lazer/development/core/quality' },
+                  ],
+                  link: '/lazer/development/core/',
+                },
                 {
                   text: '插件开发',
                   items: [
