@@ -3,33 +3,33 @@
 The osu!(lazer) client does not natively support connecting to a server via
 command line (`-devserver`) like osu!(stable). Therefore, to connect to your
 server, you need to use a custom osu!(lazer) client modified by
-us—[osu! GU](https://github.com/GooGuTeam/osu), or use
+us—[g0v0!](https://github.com/GooGuTeam/g0v0), or use
 [LazerAuthlibInjection](https://github.com/MingxuanGame/LazerAuthlibInjection)
 to inject the connection configuration into the client.
 
-## Using osu! GU
+## Using g0v0
 
-This method is recommended for all users who can run osu!(lazer) on their
-platform.
+This method is recommended for all users who can run the original osu!(lazer)
+on their platform.
 
 ### Steps
 
-1. **Download osu! GU**
+1. **Download g0v0!**
 
-   Download the latest version from
-   [GitHub Releases](https://github.com/GooGuTeam/osu/releases/latest).
+   Download the latest version of the g0v0! client from
+   [GitHub Releases](https://github.com/GooGuTeam/g0v0/releases/latest).
 
 2. **Configure the Server URL**
 
-   In the osu!(lazer) settings, find the "Online" section, locate the "Custom
-   API Server URL" setting, and enter your server address in the input field
-   (e.g., `lazer-api.g0v0.top`).
+   In the settings, find the "Online" section, locate the "Custom API Server
+   URL" setting, and enter your server address in the input field (e.g.,
+   `lazer-api.g0v0.top`).
 
-   ![osu-gu-connect-to-server](/public/images/osu-gu-connect-to-server-en.jpg)
+   ![g0v0-connect-to-server](/public/images/osu-gu-connect-to-server-en.jpg)
 
 3. **Restart the Client**
 
-   After entering the URL, exit osu!(lazer) and restart it for the changes to
+   After entering the URL, exit and restart the client for the changes to
    take effect.
 
 ## Using LazerAuthlibInjection
@@ -82,7 +82,7 @@ official osu! team.**
 ::: tip Migrating from the old version If you previously used
 `osu.Game.Rulesets.AuthlibInjection.dll`, please delete that file first. :::
 
-3. **Configure LazerAuthlibInjection**
+1. **Configure LazerAuthlibInjection**
 
    In the settings panel, click `Rulesets`, then configure:
    - `API Url`: Your custom server API URL (e.g., `https://lazer-api.g0v0.top`)
@@ -93,7 +93,7 @@ official osu! team.**
 
    ![authlib-injection-settings](/public/images/lazer-authlib-injection-connect-to-server-en.jpg)
 
-4. **Restart the Client**
+2. **Restart the Client**
 
    Restart osu!(lazer) for the configuration to take effect.
 

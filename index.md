@@ -21,9 +21,9 @@ features:
       支持 Relax/Autopilot，自定义 ruleset 的全功能高可操作性 osu!(lazer) 服务器
     linkText: 查看文档
     link: /lazer
-  - title: osu GU!
-    details: 支持自定义服务器和 g0v0-server 特性的 osu!(lazer) 客户端
-    link: https://github.com/GooGuTeam/osu/releases/latest
+  - title: g0v0!
+    details: 基于 osu!(lazer) 的 支持 g0v0-server 特性的客户端
+    link: https://github.com/GooGuTeam/g0v0/releases/latest
     linkText: 点击下载
   - title: AuthlibInjector
     details: 自定义服务器修改器

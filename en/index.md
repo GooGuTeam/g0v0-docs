@@ -22,10 +22,10 @@ features:
       Relax/Autopilot and custom rulesets
     linkText: View Docs
     link: /en/lazer/
-  - title: osu GU!
+  - title: g0v0!
     details:
-      osu!(lazer) client supporting custom server and g0v0-server features
-    link: https://github.com/GooGuTeam/osu/releases/latest
+      osu!(lazer)-based client supporting g0v0-server features
+    link: https://github.com/GooGuTeam/g0v0/releases/latest
     linkText: Click to Download
   - title: AuthlibInjector
     details: Custom Server Modifier

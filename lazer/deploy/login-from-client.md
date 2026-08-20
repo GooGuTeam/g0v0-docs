@@ -1,31 +1,31 @@
 # 通过 osu!(lazer) 客户端连接到服务器
 
-osu!(lazer) 客户端本身不支持像 osu!(stable) 那样通过命令行 (`-devserver`) 连接到服务器。因此，若想连接到你的服务器，你需要使用经由我们修改的自定义的 osu!(lazer) 客户端——[osu! GU](https://github.com/GooGuTeam/osu)
+osu!(lazer) 客户端本身不支持像 osu!(stable) 那样通过命令行 (`-devserver`) 连接到服务器。因此，若想连接到你的服务器，你需要使用经由我们修改的自定义的 osu!(lazer) 客户端——[g0v0!](https://github.com/GooGuTeam/g0v0)
 或者使用
 [LazerAuthlibInjection](https://github.com/MingxuanGame/LazerAuthlibInjection)
 来注入客户端的连接配置。
 
-## 使用 osu! GU
+## 使用 g0v0
 
-此方法推荐给所有能在其平台上运行 osu!(lazer) 的用户。
+此方法推荐给所有能在其平台上运行原版 osu!(lazer) 的用户。
 
 ### 步骤
 
-1. **下载 osu! GU**
+1. **下载 g0v0!**
 
-   从 [GitHub Releases](https://github.com/GooGuTeam/osu/releases/latest)
-   下载最新版本。
+   从 [GitHub Releases](https://github.com/GooGuTeam/g0v0/releases/latest)
+   下载最新版本的 g0v0! 客户端。
 
 2. **配置服务器 URL**
 
-   在 osu!(lazer) 的设置中找到“在线”部分，找到“Custom API Server
-   URL”设置项，并在其输入框中输入你的服务器地址（例如：`lazer-api.g0v0.top`）。
+   在设置中找到“在线”部分，找到“自定义 API 服务器链接”
+   设置项，并在其输入框中输入你的服务器地址（例如：`lazer-api.g0v0.top`）。
 
-   ![osu-gu-connect-to-server](/public/images/osu-gu-connect-to-server.jpg)
+   ![g0v0-connect-to-server](/public/images/osu-gu-connect-to-server.jpg)
 
 3. **重启客户端**
 
-   输入 URL 后退出 osu!(lazer) 并重新启动即可生效。
+   输入 URL 后退出并重新启动即可生效。
 
 ## 使用 LazerAuthlibInjection
 
@@ -72,7 +72,7 @@ osu! 官方团队已明确声明使用 LazerAuthlibInjection 等注入类 rulese
 ::: tip 从旧版本迁移如果你之前使用的是
 `osu.Game.Rulesets.AuthlibInjection.dll`，请先删除该文件。:::
 
-3. **配置 LazerAuthlibInjection**
+1. **配置 LazerAuthlibInjection**
 
    在设置面板中点击“游戏模式”，然后配置：
    - `API Url`: 你的自定义服务器 API URL（例如：`https://lazer-api.g0v0.top`）
@@ -82,7 +82,7 @@ osu! 官方团队已明确声明使用 LazerAuthlibInjection 等注入类 rulese
 
    ![authlib-injection-settings](/public/images/lazer-authlib-injection-connect-to-server.jpg)
 
-4. **重启客户端**
+2. **重启客户端**
 
    重启 osu!(lazer) 使配置生效。
 
