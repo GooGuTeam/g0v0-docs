@@ -23,10 +23,9 @@ features:
     linkText: View Docs
     link: /en/lazer/
   - title: g0v0!
-    details:
-      osu!(lazer)-based client supporting g0v0-server features
-    link: https://github.com/GooGuTeam/g0v0/releases/latest
-    linkText: Click to Download
+    details: osu!(lazer)-based client supporting g0v0-server features
+    link: /en/g0v0/
+    linkText: View Docs
   - title: AuthlibInjector
     details: Custom Server Modifier
     link: https://github.com/MingxuanGame/LazerAuthlibInjection

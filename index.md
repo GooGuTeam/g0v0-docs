@@ -23,8 +23,8 @@ features:
     link: /lazer
   - title: g0v0!
     details: 基于 osu!(lazer) 的 支持 g0v0-server 特性的客户端
-    link: https://github.com/GooGuTeam/g0v0/releases/latest
-    linkText: 点击下载
+    link: /g0v0/
+    linkText: 查看文档
   - title: AuthlibInjector
     details: 自定义服务器修改器
     link: https://github.com/MingxuanGame/LazerAuthlibInjection

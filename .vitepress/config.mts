@@ -11,8 +11,8 @@ export default defineConfig({
       themeConfig: {
         nav: [
           { text: 'g0v0-server', link: '/en/lazer/' },
+          { text: 'g0v0!', link: '/en/g0v0/' },
           { text: 'Config Converter', link: '/en/lazer/deploy/config-converter' },
-          { text: 'osu! GU', link: 'https://github.com/GooGuTeam/osu' },
           {
             text: 'LazerAuthlibInjector',
             link: 'https://github.com/MingxuanGame/LazerAuthlibInjection',
@@ -121,6 +121,13 @@ export default defineConfig({
               ],
             },
           ],
+          '/en/g0v0/': [
+            { text: 'Overview', link: '/en/g0v0/' },
+            {
+              text: 'Differences from osu!(lazer)',
+              link: '/en/g0v0/difference',
+            },
+          ],
         },
         editLink: {
           text: 'Edit this page on GitHub',
@@ -135,8 +142,8 @@ export default defineConfig({
       themeConfig: {
         nav: [
           { text: 'g0v0-server', link: '/lazer/' },
+          { text: 'g0v0!', link: '/g0v0/' },
           { text: '配置转换', link: '/lazer/deploy/config-converter' },
-          { text: 'osu! GU', link: 'https://github.com/GooGuTeam/osu' },
           {
             text: 'LazerAuthlibInjector',
             link: 'https://github.com/MingxuanGame/LazerAuthlibInjection',
@@ -226,6 +233,10 @@ export default defineConfig({
                 { text: '内置依赖注入', link: '/lazer/reference/builtin-di' },
               ],
             },
+          ],
+          '/g0v0/': [
+            { text: '概览', link: '/g0v0/' },
+            { text: '与 osu!(lazer) 的差异', link: '/g0v0/difference' },
           ],
         },
       },
