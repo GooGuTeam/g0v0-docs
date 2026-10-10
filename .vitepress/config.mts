@@ -11,6 +11,7 @@ export default defineConfig({
       themeConfig: {
         nav: [
           { text: 'g0v0-server', link: '/en/lazer/' },
+          { text: 'Config Converter', link: '/en/lazer/deploy/config-converter' },
           { text: 'osu! GU', link: 'https://github.com/GooGuTeam/osu' },
           {
             text: 'LazerAuthlibInjector',
@@ -134,6 +135,7 @@ export default defineConfig({
       themeConfig: {
         nav: [
           { text: 'g0v0-server', link: '/lazer/' },
+          { text: '配置转换', link: '/lazer/deploy/config-converter' },
           { text: 'osu! GU', link: 'https://github.com/GooGuTeam/osu' },
           {
             text: 'LazerAuthlibInjector',
