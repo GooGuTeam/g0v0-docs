@@ -6,15 +6,15 @@
 
 :root {
   /* Primary color system */
-  --hue: 340;
-  --profile-color: #d94b77;
+  --hue: 244;
+  --profile-color: #008ce9;
   --osu-pink: var(--profile-color);
 
   /* Map to VitePress brand colors */
   --vp-c-brand-1: var(--osu-pink);
   --vp-c-brand-2: oklch(0.78 0.11 var(--hue));
   --vp-c-brand-3: oklch(0.68 0.13 var(--hue));
-  --vp-c-brand-soft: rgba(237, 142, 166, 0.18);
+  --vp-c-brand-soft: rgba(92, 169, 229, 0.18);
 
   /* Page background */
   --page-bg: oklch(0.97 0.01 var(--hue));
@@ -30,7 +30,7 @@
 
   /* Border colors */
   --border-color: #e2e8f0;
-  --border-hover: rgba(237, 142, 166, 0.25);
+  --border-hover: rgba(92, 169, 229, 0.25);
 
   /* Navbar background */
   --navbar-bg: rgba(255, 255, 255, 0.9);
@@ -39,7 +39,7 @@
 /* ---------- Dark Mode Theme ---------- */
 
 .dark {
-  --profile-color: #ed8ea6;
+  --profile-color: #5ca9e5;
 
   --page-bg: oklch(0.16 0.014 var(--hue));
   --bg-secondary: oklch(0.2 0.015 var(--hue));
@@ -51,12 +51,12 @@
   --text-secondary: rgba(255, 255, 255, 0.7);
 
   --border-color: rgba(255, 255, 255, 0.08);
-  --border-hover: rgba(237, 142, 166, 0.35);
+  --border-hover: rgba(92, 169, 229, 0.35);
 
   --navbar-bg: oklch(0.19 0.015 var(--hue) / 0.9);
 
   /* Dark mode brand adjustment */
-  --vp-c-brand-soft: rgba(237, 142, 166, 0.25);
+  --vp-c-brand-soft: rgba(92, 169, 229, 0.25);
 }
 
 /* ---------- Global Page Style ---------- */
@@ -78,7 +78,7 @@ body {
 /* ---------- Hero Title Gradient ---------- */
 
 .VPHero .name {
-  background: linear-gradient(135deg, #ed8ea6, #7dd5d4);
+  background: linear-gradient(135deg, #5ca9e5, #7dd5d4);
   background-size: 200% 200%;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -104,7 +104,7 @@ body {
 .VPButton.brand {
   background: var(--osu-pink) !important;
   border-radius: 14px;
-  box-shadow: 0 6px 18px rgba(237, 142, 166, 0.35);
+  box-shadow: 0 6px 18px rgba(92, 169, 229, 0.35);
 }
 
 .VPButton.brand:hover {
