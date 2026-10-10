@@ -33,8 +33,8 @@
 | `app/plugins/`       | 插件加载、事件中心、插件 API 路由与插件迁移集成。                                  |
 | `app/storage/`       | 本地或对象存储相关逻辑。                                                           |
 | `migrations/`        | 核心数据库迁移。                                                                   |
-| `packages/`          | uv workspace 包，例如迁移工具。                                      |
-| `static/` | 默认配置定义、静态数据和生成出的 ruleset/mods 资源。                               |
+| `packages/`          | uv workspace 包，例如迁移工具。                                                    |
+| `static/`            | 默认配置定义、静态数据和生成出的 ruleset/mods 资源。                               |
 | `scripts/`、`tools/` | 运维脚本、生成脚本和一次性维护工具。                                               |
 
 ## 应用启动顺序

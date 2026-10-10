@@ -14,8 +14,10 @@ cd g0v0-server
 
 如果需要联调完整客户端链路，还需要按实际功能准备相关服务：
 
-- [`spectator-server`](https://github.com/GooGuTeam/osu-server-spectator)：旁观服务器，放在仓库根目录下的 `spectator-server/`。
-- [`performance-server`](https://github.com/GooGuTeam/osu-performance-server) 或 `rosu-pp-py`：表现分计算后端。`rosu-pp-py`
+- [`spectator-server`](https://github.com/GooGuTeam/osu-server-spectator)：旁观服务器，放在仓库根目录下的
+  `spectator-server/`。
+- [`performance-server`](https://github.com/GooGuTeam/osu-performance-server) 或
+  `rosu-pp-py`：表现分计算后端。`rosu-pp-py`
   是可选依赖组；如果实例使用独立性能服务，请按部署配置启动服务。
 - 自定义规则集 DLL：需要自定义 ruleset 时放入对应的 ruleset 目录，并保持版本 hash 与客户端一致。
 
@@ -50,7 +52,8 @@ cp .env.example .env
 - 不要提交真实 `.env`、密钥、密码、token、数据库地址或对象存储凭据。
 - `SECRET_KEY` 不应保留默认值；可用 `openssl rand -hex 32` 生成。
 - `OSU_WEB_CLIENT_SECRET` 不应保留默认值；可用 `openssl rand -hex 40` 生成。
-- 本地无 HTTPS 且需要 osu!(lazer) 直接连接时，可按 [osu!(lazer) 测试服务器文档](https://github.com/ppy/osu/wiki/Testing-web-server-full-stack-with-osu!#basics)处理客户端 SSL 限制。
+- 本地无 HTTPS 且需要 osu!(lazer) 直接连接时，可按
+  [osu!(lazer) 测试服务器文档](https://github.com/ppy/osu/wiki/Testing-web-server-full-stack-with-osu!#basics)处理客户端 SSL 限制。
 
 ## 安装依赖
 
@@ -85,7 +88,8 @@ uv run uvicorn main:app --reload --host 0.0.0.0 --port 8000
 uv run python main.py
 ```
 
-或者使用 Dev Container 中的启动脚本（同时启动 `spectator-server` 和 `performance-server`，需要这两者存在）：
+或者使用 Dev Container 中的启动脚本（同时启动 `spectator-server` 和
+`performance-server`，需要这两者存在）：
 
 ```bash
 ./.devcontainer/start-dev.sh

@@ -18,8 +18,7 @@ osu!(lazer) 客户端本身不支持像 osu!(stable) 那样通过命令行 (`-de
 
 2. **配置服务器 URL**
 
-   在设置中找到“在线”部分，找到“自定义 API 服务器链接”
-   设置项，并在其输入框中输入你的服务器地址（例如：`lazer-api.g0v0.top`）。
+   在设置中找到“在线”部分，找到“自定义 API 服务器链接”设置项，并在其输入框中输入你的服务器地址（例如：`lazer-api.g0v0.top`）。
 
    ![g0v0-connect-to-server](/public/images/osu-gu-connect-to-server.jpg)
 

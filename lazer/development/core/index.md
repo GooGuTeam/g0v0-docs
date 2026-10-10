@@ -5,7 +5,8 @@
 
 本节面向直接修改 g0v0-server 核心代码的开发者，覆盖开发环境、项目结构、路由、鉴权、数据库、迁移、服务、任务、日志、错误处理、质量检查和 PR 规范。
 
-本文档以 GooGuTeam/g0v0-server 最新 `main` 分支为准。若本节内容与插件开发文档冲突：核心代码以本节为准，插件代码以[插件开发](/lazer/development/plugin/)为准。
+本文档以 GooGuTeam/g0v0-server 最新 `main`
+分支为准。若本节内容与插件开发文档冲突：核心代码以本节为准，插件代码以[插件开发](/lazer/development/plugin/)为准。
 
 ## 快速入口
 
@@ -35,6 +36,5 @@
 
 ## 与仓库文档的关系
 
-最新仓库中的 `CONTRIBUTING.md`
-已指向本页。`AGENTS.md`
+最新仓库中的 `CONTRIBUTING.md` 已指向本页。`AGENTS.md`
 仍保留面向 Copilot、LLM、Dependabot、pre-commit.ci 和后台 worker 的短规则；本节会展开这些规则，并给出适合人工开发者阅读的背景说明。

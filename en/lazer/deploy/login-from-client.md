@@ -9,8 +9,8 @@ to inject the connection configuration into the client.
 
 ## Using g0v0
 
-This method is recommended for all users who can run the original osu!(lazer)
-on their platform.
+This method is recommended for all users who can run the original osu!(lazer) on
+their platform.
 
 ### Steps
 
@@ -29,8 +29,8 @@ on their platform.
 
 3. **Restart the Client**
 
-   After entering the URL, exit and restart the client for the changes to
-   take effect.
+   After entering the URL, exit and restart the client for the changes to take
+   effect.
 
 ## Using LazerAuthlibInjection
 
