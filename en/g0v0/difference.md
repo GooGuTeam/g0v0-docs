@@ -8,11 +8,11 @@ g0v0! is built on the open-source codebase of
 below, all gameplay, UI, and framework behaviour remains identical to upstream;
 every change exists to work with [g0v0-server](/en/lazer/). The following is
 based on
-[v2026.923.0-g0v0](https://github.com/GooGuTeam/g0v0/releases/tag/v2026.923.0-g0v0).
+[v2026.1012.1-robin](https://github.com/GooGuTeam/g0v0/releases/tag/v2026.1012.1-robin).
 
 ## The g0v0! Standard
 
-The sections carrying the <Badge type="tip" text="g0v0! Standard" /> marker
+The sections carrying the <Badge type="standard" text="g0v0! Standard" /> marker
 below together form a set of server extension conventions defined by
 g0v0-server. **Any client that implements the g0v0! Standard is fully compatible
 with every g0v0!-based server.** g0v0! is the reference implementation of the
@@ -21,20 +21,20 @@ g0v0! Standard.
 The g0v0! Standard only covers **the parts that talk to the server**. Compared
 with vanilla osu!(lazer) communication, g0v0! adds:
 
-| Area                | Vanilla osu!(lazer)                         | g0v0!                                                                                       |
-| :------------------ | :------------------------------------------ | :------------------------------------------------------------------------------------------ |
-| API / Web endpoints | Hard-coded to ppy servers, not configurable | Customisable in the settings; a single URL derives every endpoint                           |
-| SignalR connections | Client version hash header                  | Additionally carries the `X-Osu-Ruleset-Hashes` header                                      |
-| Score submission    | Client version hash                         | Additionally carries the `ruleset_hash` parameter                                           |
-| Ruleset set         | Official 4 rulesets (OnlineID 0–3)          | Plus `osurx` / `osuap` / `taikorx` / `fruitsrx` (4–7) with separate statistics and rankings |
-| Multiplayer rooms   | No win condition on playlist items          | New `win_condition` field                                                                   |
-| Private API         | None                                        | `/private` route (g0v0! API) and extended endpoints                                         |
+| Area                | Vanilla osu!(lazer)                         | g0v0!                                                                                                                                                                    |
+| :------------------ | :------------------------------------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| API / Web endpoints | Hard-coded to ppy servers, not configurable | Customisable in the settings; a single URL derives every endpoint                                                                                                        |
+| SignalR connections | Client version hash header                  | Additionally carries the `X-Osu-Ruleset-Hashes` header                                                                                                                   |
+| Score submission    | Client version hash                         | Additionally carries the `ruleset_hash` parameter                                                                                                                        |
+| Ruleset set         | Official 4 rulesets (OnlineID 0–3)          | Plus `osurx` / `osuap` / `taikorx` / `fruitsrx` (4–7) with separate statistics and rankings; custom rulesets can be registered, validated, and distributed by the server |
+| Multiplayer rooms   | No win condition on playlist items          | New `win_condition` field                                                                                                                                                |
+| Private API         | None                                        | `/private` route (g0v0! API) and extended endpoints                                                                                                                      |
 
 The "Developer reference" collapsible in each section below is written for
 client developers who want to implement the g0v0! Standard: it explains what
 needs to change for server communication and how.
 
-## Custom API server <Badge type="tip" text="g0v0! Standard" />
+## Custom API server <Badge type="standard" text="g0v0! Standard" />
 
 - Players can specify a "Custom API server URL" in **Settings > Online > Content
   downloads** to connect to third-party servers.
@@ -84,7 +84,7 @@ building the endpoint configuration; changes apply after a restart.
 
 :::
 
-## Special rulesets (Relax / Autopilot) <Badge type="tip" text="g0v0! Standard" />
+## Special rulesets (Relax / Autopilot) <Badge type="standard" text="g0v0! Standard" />
 
 - First-class support for **Relax (RX)** and **Autopilot (AP)** as special game
   modes.
@@ -123,7 +123,7 @@ the standard osu! API v2 endpoints — no private route is required.
 
 :::
 
-## Ruleset hash validation <Badge type="tip" text="g0v0! Standard" />
+## Ruleset hash validation <Badge type="standard" text="g0v0! Standard" />
 
 - On startup, the client computes MD5 hashes of the assembly files of every
   ruleset beyond the official four, cached by short name.
@@ -134,8 +134,13 @@ the standard osu! API v2 endpoints — no private route is required.
 - Score submission (solo and room playlists) additionally carries a
   `ruleset_hash` query parameter on top of the existing version hash (only sent
   when the current ruleset is a custom one).
-- When the server reports a ruleset as outdated, players receive an in-game
-  notification with a direct download link.
+- When server-side integrity validation of these hashes fails (a ruleset is
+  missing, unsupported, or outdated), joining a multiplayer room is rejected,
+  listing the offending rulesets and the server-side versions.
+- **Settings > Rulesets > Online rulesets** compares the local installation
+  against the server registry and shows each ruleset's state (built-in / not
+  installed / unsupported / up to date / update available), with direct
+  downloads available. <Badge type="g0v0" text="v2026.1012.0-g0v0" />
 
 ::: details Developer reference
 
@@ -172,7 +177,7 @@ client has loaded. There are two reporting points.
 
 :::
 
-## Multiplayer win conditions <Badge type="tip" text="g0v0! Standard" />
+## Multiplayer win conditions <Badge type="standard" text="g0v0! Standard" />
 
 - Playlist / multiplayer room items gain a `win_condition` field (Score /
   Accuracy / Combo; the upstream protocol has no such field).
@@ -203,13 +208,18 @@ local ordering consistent with the server's decision.
 
 :::
 
-## g0v0! API <Badge type="tip" text="g0v0! Standard" />
+## g0v0! API <Badge type="standard" text="g0v0! Standard" />
 
 - The `PrivateAPIRequest` base class targets the server's `/private` route and
   serves as the client-side entry point of the g0v0! API, providing private
   capabilities beyond the osu! API v2.
 - Example osu! API extension: `PUT me/achievements/{id}` (medal unlocking, used
   together with the client's medal awarders).
+- Example osu! API extension:
+  `GET beatmaps/{beatmapId}/scores/users/{userId}/all` (all personal scores on
+  one beatmap in a single request, so a PP best can be picked independently of
+  score ordering on the results screen).
+  <Badge type="g0v0" text="v2026.1012.0-g0v0" />
 
 ::: details Developer reference
 
@@ -230,6 +240,56 @@ the osu! API itself follow the upstream style and just add endpoints.
 2. Implement osu! API extensions as regular API requests, e.g. medal unlocking
    via `PUT me/achievements/{id}` (g0v0!:
    `osu.Game/Online/API/Requests/UnlockMedalRequest.cs`).
+3. Implement public query extensions the same way, e.g.
+   `GET beatmaps/{beatmapId}/scores/users/{userId}/all?mode={shortName}` (g0v0!:
+   `osu.Game/Online/API/Requests/GetBeatmapUserScoresRequest.cs`).
+
+:::
+
+## Custom ruleset management <Badge type="standard" text="g0v0! Standard" /> <Badge type="g0v0" text="v2026.1012.0-g0v0" />
+
+- The server can register custom rulesets and their versions through the g0v0!
+  API; the client uses this to list, validate, and download updates.
+- Endpoints (on the `/private` route):
+  - `GET private/gamemodes`: the list of game modes the server provides (`id`,
+    `name`, `readable`, `is_official`, `is_custom_ruleset`), declaring whether
+    Relax / Autopilot are supported (`enable_rx` / `enable_ap`);
+  - `GET private/gamemodes/versions`: version info per custom ruleset
+    (`latest_version`, `versions`: a mapping of version to assembly MD5, and
+    `download_url`). Official modes ship with the client and never appear here.
+- In **Settings > Rulesets > Online rulesets**, the client compares the local
+  installation (sharing the MD5s of "Ruleset hash validation") with the server
+  and shows a state per ruleset: built-in, not installed, version unknown,
+  unsupported, up to date, update available. A local hash the server does not
+  know is a hard failure (the server rejects scores set on it).
+- Updates are downloaded from the server-provided `download_url` (after a
+  confirmation dialog) and take effect on the next launch.
+
+::: details Developer reference
+
+Key idea: private endpoints inherit `PrivateAPIRequest` (the `/private` route);
+match the server's version→MD5 mapping against local assembly hashes to resolve
+the local version.
+
+1. Two private endpoints for the list and versions (g0v0!:
+   `osu.Game/Online/API/Requests/Private/SupportedRulesetsRequest.cs`,
+   `SupportedRulesetVersionsRequest.cs`):
+
+   ```csharp
+   public class SupportedRulesetsRequest : PrivateAPIRequest<SupportedRulesetsResponse>
+   {
+       protected override string Target => @"gamemodes";
+   }
+   ```
+
+2. Resolve the local version by comparing the local ruleset assembly MD5 (see
+   "Ruleset hash validation") against the `versions` mapping entry by entry,
+   then compare with `latest_version` for the up-to-date / update-available
+   state (g0v0!: `resolveState()` in
+   `osu.Game/Overlays/Settings/Sections/RulesetGeneric/OnlineRulesetRow.cs`).
+3. Download straight from `download_url` (a plain file download, installed into
+   ruleset storage, taking effect on next launch; g0v0!:
+   `OnlineRulesetRow.startDownload()`).
 
 :::
 
@@ -249,8 +309,14 @@ the osu! API itself follow the upstream style and just add endpoints.
 
 ## Update source
 
-- Desktop update checks and mobile update notifications point to the
-  **GooGuTeam/osu** GitHub repository.
+- Update streams are **g0v0** (stable) and **robin** (unstable); selecting robin
+  checks pre-releases (the desktop client picks the stream automatically from
+  the installer version on first run).
+  <Badge type="robin" text="v2026.1012.1-robin" />
+- Both desktop (Velopack) and mobile update checks point to the
+  **GooGuTeam/g0v0** GitHub releases.
+- iOS builds are published directly on the release page, and the update
+  notification opens the corresponding release page (no more TestFlight link).
 - A new **Disable automatic updates** option is available in the update
   settings.
 
@@ -266,6 +332,57 @@ the osu! API itself follow the upstream style and just add endpoints.
   awarders: Courier Catapult, Cyclone, g0v0! First Anniversary, Hamster Wheel,
   and Hotshot.
 - Images for medals prefixed with `g0v0_` are loaded from `lazer-data.g0v0.top`.
+
+## WASAPI audio <Badge type="g0v0" text="v2026.1012.0-g0v0" />
+
+- The client force-enables WASAPI audio output (replacing the previous
+  "experimental WASAPI" flag).
+- The **Settings > Audio > Devices** block gains a WASAPI group (shown while
+  WASAPI is enabled):
+  - **Exclusive audio mode**: bypasses the system audio mixer for the lowest
+    possible latency; other applications cannot play audio simultaneously;
+  - **Buffer size (s)**: audio buffer length; set to `0` to use the lowest
+    supported buffer size — increase it if audio stutters or drops out;
+  - **Period (s)**: polling interval for audio updates; set to `0` to request
+    the minimum supported device period — increase it if playback is unstable;
+  - **Auto switch to shared audio in background**: automatically leaves
+    exclusive mode and switches to shared mode when the game loses focus;
+  - a **Restart audio engine** button applies the changes immediately.
+
+## Score V1 / Score V2 scoring <Badge type="g0v0" text="v2026.1012.0-g0v0" />
+
+- The osu! ruleset gains two new conversion mods, **Score V1 (SV1)** and **Score
+  V2 (SV2)** (mutually exclusive), usable in solo play and in multiplayer rooms
+  (as regular or free mods).
+- Score V1 scores the osu!stable way: sliders use classic behaviour and
+  judgement, spinners are scored by the stable rules, and autoplay replays match
+  stable slider and spinner scores.
+- Score V2 plays with the V2 scoring algorithm: scoring on top of classic slider
+  behaviour, with improved spinner accuracy and classic slider input tracking.
+- The osu! ruleset settings gain a "Show slider head judgements" toggle.
+
+## V2 results screen <Badge type="g0v0" text="v2026.1012.0-g0v0" />
+
+- The client ships a redesigned results screen (the **g0v0 V2** style, off by
+  default), switchable together with the Default and Torii (Legacy) styles under
+  **Settings > User Interface > Results screen style**.
+- The layout is reworked: an accuracy ring and rank emblem (with ring animation
+  and sound), PP change and combo / accuracy statistic changes relative to the
+  previous play, and a score flair animation.
+- FC / SS estimate: plays that are not a full combo show an "if FC" PP estimate,
+  and already-FC'd plays show an SS estimate; the estimate is clickable to
+  toggle between SS and SSH (when Hidden is enabled) and has tooltips.
+
+## Torii legacy interface <Badge type="g0v0" text="v2026.1012.0-g0v0" />
+
+- The client ships legacy interface components ported from
+  [Torii](https://github.com/ShikkesoraSIM/torii-osu) (MIT licensed, pinned to a
+  specific source revision): the legacy song select with its footer button bar,
+  and the legacy results screen (including the legacy ranking details panel).
+- The results screen style can be switched under **Settings > User Interface >
+  Results screen style** (Default / g0v0 V2 / Torii (Legacy)); the legacy song
+  select toggles live in the **Song Select Appearance** subsection of the user
+  interface settings (legacy song select, Inter font, etc.).
 
 ## Branding and UI
 

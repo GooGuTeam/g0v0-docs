@@ -207,3 +207,51 @@ body {
   border: none !important;
   box-shadow: none !important; /* optional if there is shadow */
 }
+
+/* ---------- Custom badge colours (g0v0! Standard / version tags) ---------- */
+
+/* g0v0! Standard marker — theme green */
+:root {
+  --vp-badge-standard-border: transparent;
+  --vp-badge-standard-text: var(--vp-c-green-1);
+  --vp-badge-standard-bg: var(--vp-c-green-soft);
+}
+
+/* g0v0! stable stream tag — client APIUpdateStream colour #5ca9e5 */
+:root {
+  --vp-badge-g0v0-border: transparent;
+  --vp-badge-g0v0-text: #1f6fae;
+  --vp-badge-g0v0-bg: rgba(92, 169, 229, 0.18);
+}
+
+/* robin unstable stream tag — client APIUpdateStream colour #b57eff */
+:root {
+  --vp-badge-robin-border: transparent;
+  --vp-badge-robin-text: #7c3fd0;
+  --vp-badge-robin-bg: rgba(181, 126, 255, 0.2);
+}
+
+.dark {
+  --vp-badge-g0v0-text: #7cc0ef;
+  --vp-badge-g0v0-bg: rgba(92, 169, 229, 0.22);
+  --vp-badge-robin-text: #cba3ff;
+  --vp-badge-robin-bg: rgba(181, 126, 255, 0.22);
+}
+
+.VPBadge.standard {
+  border-color: var(--vp-badge-standard-border);
+  color: var(--vp-badge-standard-text);
+  background-color: var(--vp-badge-standard-bg);
+}
+
+.VPBadge.g0v0 {
+  border-color: var(--vp-badge-g0v0-border);
+  color: var(--vp-badge-g0v0-text);
+  background-color: var(--vp-badge-g0v0-bg);
+}
+
+.VPBadge.robin {
+  border-color: var(--vp-badge-robin-border);
+  color: var(--vp-badge-robin-text);
+  background-color: var(--vp-badge-robin-bg);
+}
