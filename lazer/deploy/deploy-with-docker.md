@@ -5,22 +5,13 @@
 
 本节将使用 Docker 和 Docker Compose 快速搭建一个 g0v0 服务器。
 
-## 创建 .env 文件
+## 配置服务器
 
-```sh
-# 下载示例 .env
-curl https://raw.githubusercontent.com/GooGuTeam/g0v0-server/refs/heads/main/.env.example -o .env
-```
+v1 使用服务器目录的 `.env` 文件进行配置。Realtime 则需要使用 `v2-config/` 目录下的 JSON 配置文件配置。
 
-使用编辑器编辑 `.env`，编辑以下配置：
+建议使用[配置生成器](./config-generator)来生成这些配置文件
 
-- `JWT_SECRET_KEY` JWT 密钥。使用 `openssl rand -hex 32` 生成。
-- `SERVER_URL` 服务器对外开放地址。以 `http://` 或 `https://` 开头。
-- `SENTRY_DSN` 和 `SP_SENTRY_DSN` [Sentry](https://sentry.io)
-  DSN 地址。前者用于 API，后者用于 spectator-server。
-- [存储服务相关设置](../reference/configurations#存储服务设置)。
-
-修改配置后保存。
+你也可以参考[配置](../reference/configurations.md)页面和 [Realtime 的 README](https://github.com/GooGuTeam/g0v0.Server.Realtime#configure-the-realtime-server) 手动填写配置文件。
 
 ## 获取 NGINX 配置
 
@@ -90,20 +81,10 @@ services:
     networks:
       - osu-network
 
-  spectator:
-    image: ghcr.io/googuteam/osu-server-spectator:master
-    container_name: spectator-server
-    pull_policy: always
+  realtime:
+    image: ghcr.io/googuteam/g0v0.server.realtime:main
     environment:
-      - REPLAY_UPLOAD_THREADS=${REPLAY_UPLOAD_THREADS:-1}
-      - TRACK_BUILD_USER_COUNTS=${TRACK_BUILD_USER_COUNTS:-}
-      - SERVER_PORT=${SERVER_PORT:-80}
-      - REDIS_HOST=redis
-      - SENTRY_DSN=${SENTRY_DSN:-}
-      - SHARED_INTEROP_DOMAIN=http://app:8000
-      - SHARED_INTEROP_SECRET=${SHARED_INTEROP_SECRET:-}
-      - MYSQL_HOST=mysql
-      - MYSQL_PORT=3306
+      - ASPNETCORE_URLS=http://0.0.0.0:8080
     env_file:
       - .env
     depends_on:
@@ -112,7 +93,11 @@ services:
       - redis
     restart: unless-stopped
     volumes:
-      - ./rulesets:/data/rulesets
+      - ./v2-config:/app/config:ro
+      - ./rulesets:/app/rulesets:ro
+
+    # 如果你在 g0v0 中使用本地存储，启用这个。
+    #   - ./storage:/app/storage  
     networks:
       - osu-network
 

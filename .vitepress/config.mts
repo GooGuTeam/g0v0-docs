@@ -42,6 +42,10 @@ export default defineConfig({
                   text: 'Deploying the Frontend',
                   link: '/en/lazer/deploy/frontend',
                 },
+                {
+                  text: 'Migrating from spectator-server',
+                  link: '/en/lazer/deploy/migrate-from-spectator-server',
+                },
               ],
             },
             {
@@ -173,6 +177,10 @@ export default defineConfig({
                 {
                   text: '部署前端',
                   link: '/lazer/deploy/frontend',
+                },
+                {
+                  text: '从 spectator-server 迁移',
+                  link: '/lazer/deploy/migrate-from-spectator-server',
                 },
               ],
             },
