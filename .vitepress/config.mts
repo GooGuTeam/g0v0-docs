@@ -12,6 +12,7 @@ export default defineConfig({
         nav: [
           { text: 'g0v0-server', link: '/en/lazer/' },
           { text: 'g0v0!', link: '/en/g0v0/' },
+          { text: 'Config Generator', link: '/en/lazer/deploy/config-generator' },
           { text: 'Config Converter', link: '/en/lazer/deploy/config-converter' },
           {
             text: 'LazerAuthlibInjector',
@@ -143,6 +144,7 @@ export default defineConfig({
         nav: [
           { text: 'g0v0-server', link: '/lazer/' },
           { text: 'g0v0!', link: '/g0v0/' },
+          { text: '配置生成器', link: '/lazer/deploy/config-generator' },
           { text: '配置转换', link: '/lazer/deploy/config-converter' },
           {
             text: 'LazerAuthlibInjector',
