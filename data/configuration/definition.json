@@ -1,6 +1,6 @@
 {
-  "$commit": "34e2f8e36f9f815e2fb6945b65a8fb06e25fa203",
-  "$timestamp": "2026-10-11T15:00:50Z",
+  "$commit": "0fd185a46e46cbc3c1143c1e7db51a40d2b57db5",
+  "$timestamp": "2026-10-15T16:17:56Z",
   "database": {
     "MYSQL_HOST": {
       "$type": "string",
@@ -416,7 +416,7 @@
   "v2": {
     "ENABLE_V2_IPC": {
       "$type": "boolean",
-      "$default": false
+      "$default": true
     }
   }
 }
