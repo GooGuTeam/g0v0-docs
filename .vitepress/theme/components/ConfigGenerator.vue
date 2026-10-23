@@ -15,32 +15,25 @@ import { createZipBlob } from './config-converter/zip'
 import ConfigField from './config-generator/ConfigField.vue'
 import {
   applyEnvText,
-  buildV1Groups,
-  createV1State,
+  buildGroups,
+  buildV2Files,
+  buildV2Model,
+  createSectionsState,
+  createState,
+  createStorageOptions,
   highlightEnv,
   serializeEnv,
-  type V1Field,
-  type V1Value,
-} from './config-generator/v1-schema'
-import {
-  createStorageOptions,
-  createV2State,
-  buildV2Files,
-  STORAGE_OPTION_FIELDS,
-  STORAGE_TYPES,
-  STORAGE_TYPE_LABELS,
-  V2_SECTIONS,
-  type Bi,
-  type StorageType,
-  type V2Field,
-  type V2Section,
-  type V2Value,
-} from './config-generator/v2-schema'
+  type Field,
+  type Group,
+  type V2Model,
+} from './config-generator/config-model'
 
 const props = defineProps<{
   schema: {
     definition: Record<string, any>
     labels: Record<string, Record<string, string>>
+    v2Definition: Record<string, any>
+    v2Labels: Record<string, Record<string, string>>
   }
 }>()
 
@@ -120,14 +113,13 @@ const STRINGS = {
 type Strings = (typeof STRINGS)['en']
 
 const t = computed<Strings>(() => (zh.value ? STRINGS.zh : STRINGS.en))
-const bi = (label: Bi) => (zh.value ? label.zh : label.en)
 
 /* -------------------------------------------------------------------------- */
 /* v1 panel                                                                   */
 /* -------------------------------------------------------------------------- */
 
-const groups = computed(() => buildV1Groups(props.schema.definition, props.schema.labels))
-const v1 = reactive<Record<string, V1Value>>(createV1State(groups.value))
+const groups = computed(() => buildGroups(props.schema.definition, props.schema.labels))
+const v1 = reactive<Record<string, string | number | boolean>>(createState(groups.value))
 const openV1 = reactive<Record<string, boolean>>(
   Object.fromEntries(groups.value.map((group, index) => [group.key, index === 0]))
 )
@@ -135,15 +127,15 @@ const openV1 = reactive<Record<string, boolean>>(
 const envText = computed(() => serializeEnv(groups.value, v1))
 const envHtml = computed(() => highlightEnv(envText.value))
 
-function nonBool(fields: V1Field[]) {
+function nonBool(fields: Field[]) {
   return fields.filter(field => field.kind !== 'bool')
 }
 
-function boolFields(fields: V1Field[]) {
+function boolFields(fields: Field[]) {
   return fields.filter(field => field.kind === 'bool')
 }
 
-function isChanged(field: V1Field): boolean {
+function isChanged(field: Field): boolean {
   const value = v1[field.key]
   return typeof field.def === 'boolean' ? value !== field.def : String(value) !== String(field.def)
 }
@@ -153,7 +145,7 @@ function toggleAllV1(open: boolean) {
 }
 
 function resetV1() {
-  const defaults = createV1State(groups.value)
+  const defaults = createState(groups.value)
   for (const key of Object.keys(defaults)) v1[key] = defaults[key]
   importMessage.value = ''
 }
@@ -181,19 +173,24 @@ function closeImport() {
 /* -------------------------------------------------------------------------- */
 
 const mode = ref<'v1' | 'v2'>('v1')
-const v2 = reactive<Record<string, Record<string, V2Value>>>(createV2State())
-const storageType = ref<StorageType>('Local')
-const storageOptions = reactive(createStorageOptions())
+const v2Model = computed<V2Model>(() =>
+  buildV2Model(props.schema.v2Definition, props.schema.v2Labels)
+)
+const v2 = reactive<Record<string, Record<string, string | number | boolean>>>(
+  createSectionsState(v2Model.value.sections)
+)
+const storageType = ref(v2Model.value.storage.types[0] ?? 'Local')
+const storageOptions = reactive(createStorageOptions(v2Model.value.storage))
 const activeFile = ref(0)
 
-const files = computed(() => buildV2Files(v2, storageType.value, storageOptions))
+const files = computed(() => buildV2Files(v2Model.value, v2, storageType.value, storageOptions))
 const fileHtml = computed(() => files.value.map(file => highlightJson(toJsonText(file.json))))
 
-function nonBoolV2(fields: V2Field[]) {
+function nonBoolV2(fields: Field[]) {
   return fields.filter(field => field.kind !== 'bool')
 }
 
-function boolV2(fields: V2Field[]) {
+function boolV2(fields: Field[]) {
   return fields.filter(field => field.kind === 'bool')
 }
 
@@ -212,28 +209,28 @@ const MYSQL_FIELDS = [
  * the MySQL fields with `UseLegacyDatabase: true`, and the PostgreSQL
  * connection string otherwise. Both are still written to the generated file.
  */
-function visibleV2Fields(section: V2Section): V2Field[] {
-  if (section.file !== GENERAL_FILE) return section.fields
+function visibleV2Fields(section: Group): Field[] {
+  if (section.key !== GENERAL_FILE) return section.fields
   const legacy = v2[GENERAL_FILE]?.UseLegacyDatabase !== false
   return section.fields.filter(field => {
-    if (field.path === 'PostgresqlConnectionString') return !legacy
-    if (MYSQL_FIELDS.includes(field.path)) return legacy
+    if (field.key === 'PostgresqlConnectionString') return !legacy
+    if (MYSQL_FIELDS.includes(field.key)) return legacy
     return true
   })
 }
 
 function onStorageTypeChange(event: Event) {
-  storageType.value = (event.target as HTMLSelectElement).value as StorageType
+  storageType.value = (event.target as HTMLSelectElement).value
 }
 
 function resetV2() {
-  const defaults = createV2State()
+  const defaults = createSectionsState(v2Model.value.sections)
   for (const file of Object.keys(defaults)) {
     for (const key of Object.keys(defaults[file])) v2[file][key] = defaults[file][key]
   }
-  const storageDefaults = createStorageOptions()
-  storageType.value = 'Local'
-  for (const type of STORAGE_TYPES) {
+  const storageDefaults = createStorageOptions(v2Model.value.storage)
+  storageType.value = v2Model.value.storage.types[0] ?? 'Local'
+  for (const type of Object.keys(storageDefaults)) {
     for (const key of Object.keys(storageDefaults[type])) {
       storageOptions[type][key] = storageDefaults[type][key]
     }
@@ -434,30 +431,31 @@ function downloadZip() {
         </div>
         <p class="cg-hint">{{ t.v2Hint }}</p>
 
-        <section v-for="section in V2_SECTIONS" :key="section.file" class="cg-group">
+        <section v-for="section in v2Model.sections" :key="section.key" class="cg-group">
           <div class="cg-group-head cg-group-head-static">
-            <span class="cg-group-name">{{ section.file }}</span>
-            <span class="cg-group-desc">{{ bi(section.label) }}</span>
+            <span class="cg-group-name">{{ section.key }}</span>
+            <span class="cg-group-desc">{{ section.name }}</span>
           </div>
           <div class="cg-group-body">
             <div class="cg-checks">
               <ConfigField
                 v-for="field in boolV2(visibleV2Fields(section))"
-                :key="field.path"
-                v-model="v2[section.file][field.path]"
+                :key="field.key"
+                v-model="v2[section.key][field.key]"
                 :kind="field.kind"
-                :label="bi(field.label)"
-                :hint="field.path"
+                :label="field.label"
+                :hint="field.key"
               />
             </div>
             <div class="cg-grid">
               <ConfigField
                 v-for="field in nonBoolV2(visibleV2Fields(section))"
-                :key="field.path"
-                v-model="v2[section.file][field.path]"
+                :key="field.key"
+                v-model="v2[section.key][field.key]"
                 :kind="field.kind"
-                :label="bi(field.label)"
-                :hint="field.path"
+                :label="field.label"
+                :hint="field.key"
+                :enum-values="field.enumValues"
               />
             </div>
           </div>
@@ -476,18 +474,18 @@ function downloadZip() {
                   <code class="cg-key">Type</code>
                 </span>
                 <select class="cg-text" :value="storageType" @change="onStorageTypeChange">
-                  <option v-for="type in STORAGE_TYPES" :key="type" :value="type">
-                    {{ bi(STORAGE_TYPE_LABELS[type]) }}
+                  <option v-for="type in v2Model.storage.types" :key="type" :value="type">
+                    {{ v2Model.storage.typeLabels[type] ?? type }}
                   </option>
                 </select>
               </label>
               <ConfigField
-                v-for="field in STORAGE_OPTION_FIELDS[storageType]"
-                :key="field.path"
-                v-model="storageOptions[storageType][field.path]"
+                v-for="field in v2Model.storage.optionFields[storageType] ?? []"
+                :key="field.key"
+                v-model="storageOptions[storageType][field.key]"
                 :kind="field.kind"
-                :label="bi(field.label)"
-                :hint="field.path"
+                :label="field.label"
+                :hint="field.key"
               />
             </div>
           </div>

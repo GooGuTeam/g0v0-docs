@@ -7,11 +7,14 @@
 
 ## 配置服务器
 
-v1 使用服务器目录的 `.env` 文件进行配置。Realtime 则需要使用 `v2-config/` 目录下的 JSON 配置文件配置。
+v1 使用服务器目录的 `.env` 文件进行配置。Realtime 则需要使用 `v2-config/`
+目录下的 JSON 配置文件配置。
 
 建议使用[配置生成器](./config-generator)来生成这些配置文件
 
-你也可以参考[配置](../reference/configurations.md)页面和 [Realtime 的 README](https://github.com/GooGuTeam/g0v0.Server.Realtime#configure-the-realtime-server) 手动填写配置文件。
+你也可以参考[配置](../reference/configurations.md)页面和
+[Realtime 的 README](https://github.com/GooGuTeam/g0v0.Server.Realtime#configure-the-realtime-server)
+手动填写配置文件。
 
 ## 获取 NGINX 配置
 
@@ -97,7 +100,7 @@ services:
       - ./rulesets:/app/rulesets:ro
 
     # 如果你在 g0v0 中使用本地存储，启用这个。
-    #   - ./storage:/app/storage  
+    #   - ./storage:/app/storage
     networks:
       - osu-network
 

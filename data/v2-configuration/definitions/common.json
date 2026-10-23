@@ -1,0 +1,157 @@
+{
+  "general.json": {
+    "UseLegacyDatabase": {
+      "$type": "boolean",
+      "$default": true
+    },
+    "MySqlHost": {
+      "$type": "string",
+      "$default": "127.0.0.1"
+    },
+    "MySqlPort": {
+      "$type": "string",
+      "$default": "3306"
+    },
+    "MySqlDatabase": {
+      "$type": "string",
+      "$default": "osu_api"
+    },
+    "MySqlUsername": {
+      "$type": "string",
+      "$default": "osu_api"
+    },
+    "MySqlPassword": {
+      "$type": "string",
+      "$default": "password"
+    },
+    "PostgresqlConnectionString": {
+      "$type": "string",
+      "$default": "Host=localhost;Port=5432;Username=g0v0;Password=password;Database=g0v0"
+    },
+    "RedisHost": {
+      "$type": "string",
+      "$default": "localhost:6379"
+    },
+    "JwtSecretKey": {
+      "$type": "string",
+      "$default": "your_jwt_secret_here"
+    },
+    "JwtAlgorithm": {
+      "$type": "string",
+      "$default": "HS256"
+    },
+    "JwtAudience": {
+      "$type": "string",
+      "$default": "5"
+    },
+    "JwtIssuer": {
+      "$type": "string",
+      "$default": "",
+      "$nullable": true
+    },
+    "OsuClientId": {
+      "$type": "integer",
+      "$default": 5
+    },
+    "OsuClientSecret": {
+      "$type": "string",
+      "$default": "FGc9GAtyHzeQDshWP5Ah7dega8hJACAJpQtw6OXk"
+    },
+    "OsuWebClientId": {
+      "$type": "integer",
+      "$default": 6
+    },
+    "OsuWebClientSecret": {
+      "$type": "string",
+      "$default": "your_osu_web_client_secret_here"
+    },
+    "FetcherClientId": {
+      "$type": "integer",
+      "$default": 0
+    },
+    "FetcherClientSecret": {
+      "$type": "string",
+      "$default": ""
+    },
+    "FetcherBeatmapRawCacheExpireHours": {
+      "$type": "integer",
+      "$default": 24
+    },
+    "ServerUrl": {
+      "$type": "string",
+      "$default": "http://localhost:8000"
+    }
+  },
+  "game.json": {
+    "EnableRelax": {
+      "$type": "boolean",
+      "$default": false
+    },
+    "EnableAutopilot": {
+      "$type": "boolean",
+      "$default": false
+    },
+    "EnableAllBeatmapLeaderboard": {
+      "$type": "boolean",
+      "$default": false
+    }
+  },
+  "storage.json": {
+    "Type": {
+      "$type": "enum(Local, S3, R2)",
+      "$default": "Local"
+    },
+    "$storageOptions": {
+      "Local": {
+        "local_storage_path": {
+          "$type": "string",
+          "$default": "./storage"
+        }
+      },
+      "S3": {
+        "s3_access_key_id": {
+          "$type": "string",
+          "$default": ""
+        },
+        "s3_secret_access_key": {
+          "$type": "string",
+          "$default": ""
+        },
+        "s3_bucket_name": {
+          "$type": "string",
+          "$default": ""
+        },
+        "s3_region_name": {
+          "$type": "string",
+          "$default": "us-east-1"
+        },
+        "s3_public_url_base": {
+          "$type": "string",
+          "$default": ""
+        }
+      },
+      "R2": {
+        "r2_account_id": {
+          "$type": "string",
+          "$default": ""
+        },
+        "r2_access_key_id": {
+          "$type": "string",
+          "$default": ""
+        },
+        "r2_secret_access_key": {
+          "$type": "string",
+          "$default": ""
+        },
+        "r2_bucket_name": {
+          "$type": "string",
+          "$default": ""
+        },
+        "r2_public_url_base": {
+          "$type": "string",
+          "$default": ""
+        }
+      }
+    }
+  }
+}

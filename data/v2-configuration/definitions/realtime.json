@@ -1,0 +1,90 @@
+{
+  "realtime.json": {
+    "SaveReplays": {
+      "$type": "boolean",
+      "$default": true
+    },
+    "ReplayUploaderConcurrency": {
+      "$type": "integer",
+      "$default": 4
+    },
+    "MaxStartedScores": {
+      "$type": "integer",
+      "$default": 2
+    },
+    "HostPlaylistLimit": {
+      "$type": "integer",
+      "$default": 50
+    },
+    "GuestPlaylistLimit": {
+      "$type": "integer",
+      "$default": 3
+    },
+    "MultiplayerDisconnectGracePeriod": {
+      "$type": "string",
+      "$default": "00:00:30"
+    },
+    "TournamentRoomRetentionPeriod": {
+      "$type": "string",
+      "$default": "00:30:00"
+    },
+    "Sentry.Dsn": {
+      "$type": "string",
+      "$default": ""
+    },
+    "Sentry.Environment": {
+      "$type": "string",
+      "$default": ""
+    },
+    "Sentry.TracesSampleRate": {
+      "$type": "float",
+      "$default": 0.1
+    },
+    "Sentry.SendDefaultPii": {
+      "$type": "boolean",
+      "$default": false
+    }
+  },
+  "chat.json": {
+    "ChannelLimit": {
+      "$type": "integer",
+      "$default": 10000
+    },
+    "MessageLengthLimit": {
+      "$type": "integer",
+      "$default": 450
+    },
+    "AnnounceMessageLengthLimit": {
+      "$type": "integer",
+      "$default": 1024
+    },
+    "PublicBacklogLimitHours": {
+      "$type": "integer",
+      "$default": 24
+    },
+    "ActivityTimeoutSeconds": {
+      "$type": "integer",
+      "$default": 60
+    },
+    "RecentMessageLimit": {
+      "$type": "integer",
+      "$default": 50
+    },
+    "PublicMessageLimit": {
+      "$type": "integer",
+      "$default": 1
+    },
+    "PublicMessageWindowSeconds": {
+      "$type": "integer",
+      "$default": 1
+    },
+    "PrivateMessageLimit": {
+      "$type": "integer",
+      "$default": 1
+    },
+    "PrivateMessageWindowSeconds": {
+      "$type": "integer",
+      "$default": 1
+    }
+  }
+}

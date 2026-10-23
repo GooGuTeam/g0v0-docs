@@ -121,6 +121,10 @@ export default defineConfig({
               text: 'Reference',
               items: [
                 { text: 'Configurations', link: '/en/lazer/reference/configurations' },
+                {
+                  text: 'v2 Configurations',
+                  link: '/en/lazer/reference/v2-configurations',
+                },
                 { text: 'Built-in Events', link: '/en/lazer/reference/builtin-event' },
                 { text: 'Built-in Dependency Injection', link: '/en/lazer/reference/builtin-di' },
               ],
@@ -239,6 +243,7 @@ export default defineConfig({
               text: '参考',
               items: [
                 { text: '配置', link: '/lazer/reference/configurations' },
+                { text: 'v2 配置', link: '/lazer/reference/v2-configurations' },
                 { text: '内置事件', link: '/lazer/reference/builtin-event' },
                 { text: '内置依赖注入', link: '/lazer/reference/builtin-di' },
               ],
@@ -264,7 +269,14 @@ export default defineConfig({
 
     editLink: {
       pattern: ({ filePath }) => {
-        if (filePath.endsWith('configurations.md')) {
+        if (filePath.endsWith('v2-configurations.md')) {
+          let locale = 'zh-CN'
+          if (!filePath.startsWith('lazer/')) {
+            // other languages
+            locale = filePath.split('/')[0] // get the locale from the path
+          }
+          return `https://github.com/GooGuTeam/g0v0-docs/edit/main/data/v2-configuration/${locale}.js`
+        } else if (filePath.endsWith('configurations.md')) {
           let locale = 'zh-CN'
           if (!filePath.startsWith('lazer/')) {
             // other languages

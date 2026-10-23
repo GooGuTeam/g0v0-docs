@@ -1,0 +1,88 @@
+export default {
+  'general.json': {
+    $name: 'general configuration',
+    UseLegacyDatabase:
+      'Whether to use the v1 MySQL (legacy) database. When set to false, the PostgreSQL database from PostgresqlConnectionString is used.',
+    MySqlHost: 'MySQL Server Address',
+    MySqlPort: 'MySQL Server Port',
+    MySqlDatabase: 'MySQL Database Name',
+    MySqlUsername: 'MySQL Username',
+    MySqlPassword: 'MySQL Password',
+    PostgresqlConnectionString:
+      'PostgreSQL connection string (used when UseLegacyDatabase is false). Format: Host=...;Port=...;Username=...;Password=...;Database=...',
+    RedisHost: 'Redis Connection URL',
+    JwtSecretKey: 'JWT Signing Key',
+    JwtAlgorithm: 'JWT Algorithm',
+    JwtAudience: 'JWT Audience',
+    JwtIssuer: 'JWT Issuer',
+    OsuClientId: 'OAuth Client ID',
+    OsuClientSecret: 'OAuth Client Secret',
+    OsuWebClientId: 'Web OAuth Client ID',
+    OsuWebClientSecret: 'Web OAuth Client Secret',
+    FetcherClientId: 'Fetcher Client ID',
+    FetcherClientSecret: 'Fetcher Client Secret',
+    FetcherBeatmapRawCacheExpireHours: 'Beatmap Cache Expiration (Hours)',
+    ServerUrl: 'Server URL',
+  },
+  'game.json': {
+    $name: 'gameplay feature flags',
+    EnableRelax: 'Enable RX mod statistics',
+    EnableAutopilot: 'Enable AP mod statistics',
+    EnableAllBeatmapLeaderboard: 'Enable leaderboards for all beatmaps',
+  },
+  'realtime.json': {
+    $name: 'real-time game server configuration',
+    SaveReplays: 'Whether to save replays',
+    ReplayUploaderConcurrency: 'Replay uploader concurrency',
+    MaxStartedScores: 'Maximum concurrent started scores per session',
+    HostPlaylistLimit: 'Maximum playlist items a host can add',
+    GuestPlaylistLimit: 'Maximum playlist items a guest can add',
+    MultiplayerDisconnectGracePeriod:
+      'How long a disconnected player is kept in a multiplayer room (hh:mm:ss).',
+    TournamentRoomRetentionPeriod: 'How long a tournament room is kept after it ends (hh:mm:ss)',
+    'Sentry.Dsn': 'Sentry DSN; empty disables Sentry error monitoring',
+    'Sentry.Environment': 'Sentry environment tag (e.g. "production")',
+    'Sentry.TracesSampleRate': 'Sentry trace sample rate, 0–1',
+    'Sentry.SendDefaultPii':
+      'Whether to send default personal identifiable information (PII) to Sentry',
+  },
+  'chat.json': {
+    $name: 'chat configuration (optional)',
+    $description:
+      'Optional file: when it is not provided, chat configuration will fall back to the osu-web defaults.',
+    ChannelLimit: 'Maximum channels a client can join.',
+    MessageLengthLimit: 'Maximum length of a single message.',
+    AnnounceMessageLengthLimit: 'Maximum length of an announcement message.',
+    PublicBacklogLimitHours: 'How long public channel message history is kept (hours).',
+    ActivityTimeoutSeconds:
+      'Channel activity timeout (seconds); channels idle past this are closed.',
+    RecentMessageLimit: 'Recent messages attached to a channel when joining.',
+    PublicMessageLimit: 'Public messages allowed per rate window.',
+    PublicMessageWindowSeconds: 'Public rate window (seconds).',
+    PrivateMessageLimit: 'Private messages allowed per rate window.',
+    PrivateMessageWindowSeconds: 'Private rate window (seconds).',
+  },
+  'storage.json': {
+    $name: 'storage configuration',
+    $description: 'Stores static assets such as replays and avatars.',
+    $storageTypeLabels: {
+      Local: 'Local storage',
+      S3: 'Amazon S3',
+      R2: 'Cloudflare R2',
+    },
+    Type: 'Storage Service Type: local, r2, s3',
+    local_storage_path: 'Local storage directory path',
+    s3_access_key_id: 'AWS access key ID',
+    s3_secret_access_key: 'AWS secret access key',
+    s3_bucket_name: 'S3 bucket name',
+    s3_region_name: 'S3 region, e.g. us-east-1',
+    s3_public_url_base:
+      'S3 public URL base (optional), used to build directly accessible asset URLs',
+    r2_account_id: 'Cloudflare account ID',
+    r2_access_key_id: 'R2 access key ID',
+    r2_secret_access_key: 'R2 secret access key',
+    r2_bucket_name: 'R2 bucket name',
+    r2_public_url_base:
+      'R2 public URL base (optional), used to build directly accessible asset URLs',
+  },
+}

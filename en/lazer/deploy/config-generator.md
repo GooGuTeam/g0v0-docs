@@ -45,9 +45,8 @@ anywhere.
 - `chat.json` is optional: when the file is absent every chat limit falls back
   to the osu-web default.
 - See [Configurations](/en/lazer/reference/configurations) for a description of
-  every `.env` option, and the
-  [g0v0.Server.Realtime README](https://github.com/GooGuTeam/g0v0.Server.Realtime#configure-the-realtime-server)
-  for the v2 fields.
+  every `.env` option, and
+  [v2 Configurations](/en/lazer/reference/v2-configurations) for the v2 fields.
 
 ## Compared to the config converter
 

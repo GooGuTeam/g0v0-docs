@@ -36,8 +36,8 @@ import { data } from './config-generator.data.ts';
 - `chat.json`
   是可选文件：不放入该文件时，所有聊天限制将使用来自 osu-web 的默认值。
 - `.env`
-  中各项的详细说明请参考[配置](/lazer/reference/configurations)；v2各字段的说明请参考
-  [g0v0.Server.Realtime 的 README](https://github.com/GooGuTeam/g0v0.Server.Realtime#configure-the-realtime-server)。
+  中各项的详细说明请参考[配置](/lazer/reference/configurations)；v2 各字段的说明请参考
+  [v2 配置](/lazer/reference/v2-configurations)。
 
 ## 与配置转换器的区别
 
