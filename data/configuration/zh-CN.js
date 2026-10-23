@@ -113,6 +113,7 @@ export default {
     SCORING_MODE: '分数计算模式：standardised（标准化）或 classic（经典）',
     USE_OLD_SCORE_MULTIPLIER:
       '使用旧版（[Mod Multiplier Rework](https://osu.ppy.sh/home/news/2026-06-03-mod-multipliers-survey-results) 之前）模组乘数',
+    DISABLE_SUBMISSION_MODS: '禁用分数提交的模组',
   },
   calculator: {
     $name: '表现计算设置',

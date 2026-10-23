@@ -116,6 +116,7 @@ export default {
     SCORING_MODE: 'Scoring Mode: standardised or classic',
     USE_OLD_SCORE_MULTIPLIER:
       'Use old mod multipliers (before [Mod Multipliers Rework](https://osu.ppy.sh/home/news/2026-06-03-mod-multipliers-survey-results))',
+    DISABLE_SUBMISSION_MODS: 'Disable score submission mods',
   },
   calculator: {
     $name: 'Performance Calculation Settings',
