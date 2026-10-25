@@ -1,6 +1,6 @@
 {
-  "$commit": "0fd185a46e46cbc3c1143c1e7db51a40d2b57db5",
-  "$timestamp": "2026-10-15T16:17:56Z",
+  "$commit": "72220c94f5d786f72e855cda5e531b846c0eb3e4",
+  "$timestamp": "2026-10-25T06:24:02Z",
   "database": {
     "MYSQL_HOST": {
       "$type": "string",
@@ -401,6 +401,18 @@
       "$default": {
         "local_storage_path": "./storage"
       }
+    },
+    "ENABLE_SCREENSHOT_CLEANUP": {
+      "$type": "boolean",
+      "$default": false
+    },
+    "SCREENSHOT_RETENTION_DAYS": {
+      "$type": "integer",
+      "$default": 30
+    },
+    "SCREENSHOT_CLEANUP_BATCH_SIZE": {
+      "$type": "integer",
+      "$default": 200
     }
   },
   "plugins": {
