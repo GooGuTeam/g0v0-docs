@@ -1,6 +1,6 @@
 {
-  "$commit": "7ba0cb5ccbb8cf02335ebc358aa7ec77aefaf048",
-  "$timestamp": "2026-10-25T07:35:33Z",
+  "$commit": "1778aab34dae996378d0b509faf4057c8784a348",
+  "$timestamp": "2026-10-28T15:14:20Z",
   "database": {
     "MYSQL_HOST": {
       "$type": "string",
@@ -103,6 +103,25 @@
     "ENABLE_RATE_LIMIT": {
       "$type": "boolean",
       "$default": true
+    },
+    "TRUSTED_PROXIES": {
+      "$type": "array<string>",
+      "$default": [
+        "127.0.0.0/8",
+        "::1/128",
+        "10.0.0.0/8",
+        "172.16.0.0/12",
+        "192.168.0.0/16",
+        "fc00::/7"
+      ]
+    },
+    "TRUSTED_PROXY_SOURCES": {
+      "$type": "array<string>",
+      "$default": []
+    },
+    "TRUSTED_PROXY_REFRESH_MINUTES": {
+      "$type": "integer",
+      "$default": 60
     }
   },
   "fetcher": {
