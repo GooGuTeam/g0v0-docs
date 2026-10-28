@@ -1,6 +1,6 @@
 {
-  "$commit": "1778aab34dae996378d0b509faf4057c8784a348",
-  "$timestamp": "2026-10-28T15:14:20Z",
+  "$commit": "abf43ac0b5ac8bb2071aaf4773da637b8977a6d4",
+  "$timestamp": "2026-10-28T15:36:40Z",
   "database": {
     "MYSQL_HOST": {
       "$type": "string",
@@ -418,6 +418,64 @@
       "$default": 3600
     },
     "WIKI_REQUEST_TIMEOUT_SECONDS": {
+      "$type": "float",
+      "$default": 10.0
+    }
+  },
+  "content": {
+    "ENABLE_CHANGELOG": {
+      "$type": "boolean",
+      "$default": true
+    },
+    "ENABLE_NEWS": {
+      "$type": "boolean",
+      "$default": true
+    },
+    "CONTENT_REPOSITORY": {
+      "$type": "string",
+      "$default": "GooGuTeam/g0v0-news"
+    },
+    "CONTENT_BRANCH": {
+      "$type": "string",
+      "$default": "main"
+    },
+    "CHANGELOG_CONTENT_ROOT": {
+      "$type": "string",
+      "$default": "changelog"
+    },
+    "NEWS_CONTENT_ROOT": {
+      "$type": "string",
+      "$default": "news"
+    },
+    "CONTENT_RAW_BASE_URL": {
+      "$type": "string",
+      "$default": "https://raw.githubusercontent.com"
+    },
+    "CONTENT_LISTING_BASE_URL": {
+      "$type": "string",
+      "$default": "https://api.github.com"
+    },
+    "CONTENT_GITHUB_TOKEN": {
+      "$type": "string",
+      "$default": ""
+    },
+    "CONTENT_WEB_BASE_URL": {
+      "$type": "string",
+      "$default": "https://github.com"
+    },
+    "CONTENT_CACHE_EXPIRE_SECONDS": {
+      "$type": "integer",
+      "$default": 300
+    },
+    "CONTENT_LISTING_CACHE_EXPIRE_SECONDS": {
+      "$type": "integer",
+      "$default": 1800
+    },
+    "CONTENT_INDEX_EXPIRE_SECONDS": {
+      "$type": "integer",
+      "$default": 600
+    },
+    "CONTENT_REQUEST_TIMEOUT_SECONDS": {
       "$type": "float",
       "$default": 10.0
     }
