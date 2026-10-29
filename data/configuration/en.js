@@ -35,6 +35,13 @@ export default {
     FRONTEND_URL:
       'Frontend URL, will redirect to this URL when accessing URL opened from game. Empty means no redirect.',
     ENABLE_RATE_LIMIT: 'Whether to enable Rate Limiting',
+    TRUSTED_PROXIES:
+      'Proxy ranges (CIDR list) allowed to supply the client address through X-Forwarded-For / X-Real-IP / ' +
+      'CF-Connecting-IP. Only list proxies: a trusted peer can rewrite its own identity',
+    TRUSTED_PROXY_SOURCES:
+      'URLs publishing the edge ranges of a CDN (plain text, JSON or CSV; every CIDR-shaped token is used). ' +
+      'Fetched ranges are merged into TRUSTED_PROXIES',
+    TRUSTED_PROXY_REFRESH_MINUTES: 'Minutes between refreshes of the ranges above',
   },
   fetcher: {
     $name: 'Fetcher Settings',
@@ -169,6 +176,49 @@ export default {
     AVATAR_PROXY_PREFIX: 'Custom prefix for a.ppy.sh',
     BEATMAP_PROXY_PREFIX: 'Custom prefix for b.ppy.sh',
   },
+  wiki: {
+    $name: 'Wiki Service Settings',
+    $description:
+      'Configures the GitHub-hosted wiki service. The server reads Markdown articles straight from the ' +
+      '[osu-wiki](https://github.com/ppy/osu-wiki) repository and hands them to the client to render. Redirects ' +
+      'follow the `redirect.yaml` of that wiki repository.\n' +
+      'See [Wiki, Changelog, and News](../deploy/content-and-wiki) for deployment and content formats.',
+    ENABLE_WIKI: 'Whether to serve the wiki service',
+    WIKI_REPOSITORY: 'Repository holding the wiki articles, as owner/repo',
+    WIKI_BRANCH: 'Branch the articles are read from',
+    WIKI_CONTENT_ROOT: 'Directory of the repository holding the articles. wiki for ppy/osu-wiki',
+    WIKI_RAW_BASE_URL: 'Base URL the file contents are read from, which may point at a mirror of your own',
+    WIKI_LISTING_BASE_URL:
+      'GitHub API base URL used to list directories, only to report the languages a page is already translated into. Empty leaves only the languages actually served',
+    WIKI_GITHUB_TOKEN: 'GitHub token used to list directories. Empty leaves the listing under the unauthenticated rate limit',
+    WIKI_FALLBACK_LOCALE: 'Language to use when the page has no translation in the requested one',
+    WIKI_CACHE_EXPIRE_SECONDS: 'Seconds an article response is cached',
+    WIKI_RESOURCE_CACHE_EXPIRE_SECONDS: 'Seconds wiki image, directory listing and redirect map requests are cached',
+    WIKI_REQUEST_TIMEOUT_SECONDS: 'Timeout of a request to the wiki repository (seconds)',
+  },
+  content: {
+    $name: 'Content Service Settings (Changelog and News)',
+    $description:
+      'Configures the GitHub-hosted changelog and news services. A repository laid out like ' +
+      '[GooGuTeam/g0v0-news](https://github.com/GooGuTeam/g0v0-news) is recommended, but the two may also be ' +
+      'stored separately, by changing the settings below respectively.\n' +
+      'See [Wiki, Changelog, and News](../deploy/content-and-wiki) for deployment and content formats.',
+    ENABLE_CHANGELOG: 'Whether to serve the changelog service',
+    ENABLE_NEWS: 'Whether to serve the news service',
+    CONTENT_REPOSITORY: 'Repository holding the changelog and the news, as owner/repo',
+    CONTENT_BRANCH: 'Branch the content is read from',
+    CHANGELOG_CONTENT_ROOT: 'Changelog content directory',
+    NEWS_CONTENT_ROOT: 'News content directory',
+    CONTENT_RAW_BASE_URL: 'Base URL the file contents are read from, which may point at a mirror of your own',
+    CONTENT_LISTING_BASE_URL: 'GitHub API base URL used to list builds and posts. Empty makes the service unavailable',
+    CONTENT_GITHUB_TOKEN: 'GitHub token used to list directories. Empty leaves the listing under the unauthenticated rate limit',
+    CONTENT_WEB_BASE_URL: 'Web base URL of the source files, used to build the edit_url of a news post',
+    CONTENT_CACHE_EXPIRE_SECONDS: 'Seconds a file content response is cached',
+    CONTENT_LISTING_CACHE_EXPIRE_SECONDS:
+      'Seconds a directory listing is cached. Set it above CONTENT_INDEX_EXPIRE_SECONDS',
+    CONTENT_INDEX_EXPIRE_SECONDS: 'Seconds a parsed content snapshot is reused',
+    CONTENT_REQUEST_TIMEOUT_SECONDS: 'Timeout of a request to the content repository (seconds)',
+  },
   beatmap_sync: {
     $name: 'Beatmap Sync Settings',
     ENABLE_AUTO_BEATMAP_SYNC: 'Enable Auto Beatmap Sync',
@@ -217,6 +267,10 @@ export default {
       '```',
     STORAGE_SERVICE: 'Storage Service Type: local, r2, s3',
     STORAGE_SETTINGS: 'Storage Service Configuration (JSON)',
+    ENABLE_SCREENSHOT_CLEANUP:
+      'Whether to enable the screenshot cleanup task (runs hourly, removing screenshots that were never accessed)',
+    SCREENSHOT_RETENTION_DAYS: 'Days a screenshot is kept',
+    SCREENSHOT_CLEANUP_BATCH_SIZE: 'Screenshots handled per cleanup run',
   },
   plugins: {
     $name: 'Plugin Settings',
