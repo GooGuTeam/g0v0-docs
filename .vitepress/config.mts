@@ -34,6 +34,10 @@ export default defineConfig({
                   link: '/en/lazer/deploy/customize-server',
                 },
                 {
+                  text: 'Wiki, Changelog, and News',
+                  link: '/en/lazer/deploy/content-and-wiki',
+                },
+                {
                   text: 'Connect from the Client',
                   link: '/en/lazer/deploy/login-from-client',
                 },
@@ -172,6 +176,10 @@ export default defineConfig({
                 {
                   text: '自定义你的服务器',
                   link: '/lazer/deploy/customize-server',
+                },
+                {
+                  text: 'Wiki、更新日志与新闻',
+                  link: '/lazer/deploy/content-and-wiki',
                 },
                 {
                   text: '通过客户端连接到服务器',
