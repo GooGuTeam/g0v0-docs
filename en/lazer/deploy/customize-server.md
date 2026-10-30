@@ -322,3 +322,10 @@ SEASONAL_BACKGROUNDS=["url1","url2","url3"]
 g0v0 supports custom rulesets. If you want to enable custom ruleset support, go
 to [GitHub](https://github.com/GooGuTeam/custom-rulesets/releases/latest) to
 download custom rulesets and place them in the `rulesets/` directory.
+
+## Configure the Wiki, Changelog, and News
+
+The Wiki, Changelog and News overlays of the client are served from Git
+repositories, by default `ppy/osu-wiki` and `GooGuTeam/g0v0-news`. To point them
+at your own repositories, and to write builds and posts, see
+[Wiki, Changelog, and News](./content-and-wiki.md).
