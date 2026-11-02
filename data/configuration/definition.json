@@ -1,6 +1,6 @@
 {
-  "$commit": "abf43ac0b5ac8bb2071aaf4773da637b8977a6d4",
-  "$timestamp": "2026-10-28T15:36:40Z",
+  "$commit": "e0b1a083aa542b04d87d630c97acac582884bc6a",
+  "$timestamp": "2026-11-02T01:36:00Z",
   "database": {
     "MYSQL_HOST": {
       "$type": "string",
@@ -428,6 +428,10 @@
       "$default": true
     },
     "ENABLE_NEWS": {
+      "$type": "boolean",
+      "$default": true
+    },
+    "ENABLE_CONTENT_IMAGES": {
       "$type": "boolean",
       "$default": true
     },
