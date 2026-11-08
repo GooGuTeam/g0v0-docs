@@ -296,3 +296,12 @@ SEASONAL_BACKGROUNDS=["url1","url2","url3"]
 g0v0 支持自定义 ruleset。如果你想启用自定义 ruleset 支持，前往
 [GitHub](https://github.com/GooGuTeam/custom-rulesets/releases/latest)
 下载自定义 ruleset，并将它们放到 `rulesets/` 目录下。
+
+## 配置 Wiki、更新日志与新闻支持
+
+g0v0 支持从外部仓库读取 Wiki、更新日志与新闻内容。
+
+- Wiki 仓库默认使用 [`ppy/osu-wiki`](https://github.com/ppy/osu-wiki)
+- 更新日志与新闻仓库默认使用 [`GooGuTeam/g0v0-news`](https://github.com/GooGuTeam/g0v0-news)
+
+更改服务仓库、编写构建说明和新闻文章的方法，以及关于该服务的更多信息，见 [Wiki、更新日志与新闻](./content-and-wiki.md)。

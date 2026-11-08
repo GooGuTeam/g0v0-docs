@@ -34,6 +34,13 @@ export default {
     SERVER_URL: '服务器 URL',
     FRONTEND_URL: '前端 URL，当访问从游戏打开的 URL 时会重定向到这个 URL，为空表示不重定向',
     ENABLE_RATE_LIMIT: '是否启用速率限制',
+    TRUSTED_PROXIES:
+      '允许通过 X-Forwarded-For / X-Real-IP / CF-Connecting-IP 提供客户端 IP 的代理地址段（CIDR 列表）。' +
+      '只填代理地址：受信任的一方可以改写自己的身份',
+    TRUSTED_PROXY_SOURCES:
+      '发布 CDN 回源地址段的 URL 列表（纯文本、JSON 或 CSV，任何形如 CIDR 的片段都会被采用），' +
+      '拉取到的地址段会并入 TRUSTED_PROXIES',
+    TRUSTED_PROXY_REFRESH_MINUTES: '重新拉取上述地址段的间隔（分钟）',
   },
   fetcher: {
     $name: 'Fetcher 设置',
@@ -165,6 +172,46 @@ export default {
     AVATAR_PROXY_PREFIX: 'a.ppy.sh 的自定义前缀',
     BEATMAP_PROXY_PREFIX: 'b.ppy.sh 的自定义前缀',
   },
+  wiki: {
+    $name: 'Wiki 服务设置',
+    $description:
+      '配置基于 GitHub 托管的 Wiki 服务。服务器从 [osu-wiki](https://github.com/ppy/osu-wiki) 仓库' +
+      '直接读取 Markdown 文章内容，转交客户端渲染。支持基于 wiki 仓库 `redirect.yaml` 配置的重定向。\n' +
+      '部署与内容格式说明见 [Wiki、更新日志与新闻](../deploy/content-and-wiki)。',
+    ENABLE_WIKI: '启用 Wiki 服务',
+    WIKI_REPOSITORY: '提供 Wiki 文章的仓库，格式为 owner/repo',
+    WIKI_BRANCH: '读取文章的分支',
+    WIKI_CONTENT_ROOT: '仓库中存放文章的目录。ppy/osu-wiki 为 wiki',
+    WIKI_RAW_BASE_URL: '读取文件内容的基础地址，可指向自己搭建的镜像',
+    WIKI_LISTING_BASE_URL:
+      '列举目录用的 GitHub API 地址，只用于返回页面已有的翻译语言。留空则只能返回实际提供的语言',
+    WIKI_GITHUB_TOKEN: '列举目录时使用的 GitHub Token，留空会受到未认证调用速率限制',
+    WIKI_FALLBACK_LOCALE: '对应页面的翻译不存在时，应使用的语言',
+    WIKI_CACHE_EXPIRE_SECONDS: '文章请求响应的缓存时间（秒）',
+    WIKI_RESOURCE_CACHE_EXPIRE_SECONDS: 'Wiki 图片、目录列举与重定向表请求的缓存时间（秒）',
+    WIKI_REQUEST_TIMEOUT_SECONDS: '请求 Wiki 仓库的超时时间（秒）',
+  },
+  content: {
+    $name: '内容服务设置（更新日志与新闻）',
+    $description:
+      '配置基于 GitHub 托管的更新日志与新闻服务。建议使用 [GooGuTeam/g0v0-news](https://github.com/GooGuTeam/g0v0-news) ' +
+      '结构的仓库，但也可以分开存储，分别修改下面的配置即可。\n' +
+      '部署与内容格式说明见 [Wiki、更新日志与新闻](../deploy/content-and-wiki)。',
+    ENABLE_CHANGELOG: '启用更新日志服务',
+    ENABLE_NEWS: '启用新闻服务',
+    CONTENT_REPOSITORY: '存放更新日志与新闻的仓库，格式为 owner/repo',
+    CONTENT_BRANCH: '读取内容的分支',
+    CHANGELOG_CONTENT_ROOT: '更新日志内容目录',
+    NEWS_CONTENT_ROOT: '新闻内容目录',
+    CONTENT_RAW_BASE_URL: '读取文件内容的基础地址，可指向自己搭建的镜像',
+    CONTENT_LISTING_BASE_URL: '列举构建和文章用的 GitHub API 地址，留空会导致服务不可用',
+    CONTENT_GITHUB_TOKEN: '列举目录时使用的 GitHub Token，留空会受到未认证调用速率限制',
+    CONTENT_WEB_BASE_URL: '文章源文件的网页地址，用于生成新闻的 edit_url',
+    CONTENT_CACHE_EXPIRE_SECONDS: '文件内容响应的缓存时间（秒）',
+    CONTENT_LISTING_CACHE_EXPIRE_SECONDS: '目录列举的缓存时间（秒），建议设置为大于 CONTENT_INDEX_EXPIRE_SECONDS',
+    CONTENT_INDEX_EXPIRE_SECONDS: '解析后的内容快照复用时间（秒）',
+    CONTENT_REQUEST_TIMEOUT_SECONDS: '请求内容仓库的超时时间（秒）',
+  },
   beatmap_sync: {
     $name: '谱面同步设置',
     ENABLE_AUTO_BEATMAP_SYNC: '启用自动谱面同步',
@@ -213,6 +260,9 @@ export default {
       '```',
     STORAGE_SERVICE: '存储服务类型：local、r2、s3',
     STORAGE_SETTINGS: '存储服务配置 (JSON 格式)',
+    ENABLE_SCREENSHOT_CLEANUP: '是否启用截图清理任务（每小时执行一次，删除长期未被访问的截图）',
+    SCREENSHOT_RETENTION_DAYS: '截图保留天数',
+    SCREENSHOT_CLEANUP_BATCH_SIZE: '每次清理最多处理的截图数量',
   },
   plugins: {
     $name: '插件设置',
