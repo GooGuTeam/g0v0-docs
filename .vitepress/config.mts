@@ -7,7 +7,7 @@ export default defineConfig({
       label: 'English',
       lang: 'en',
       title: 'g0v0!',
-      description: 'Simple and Easy-to-Deploy osu!(lazer) Server Solution',
+      description: 'Free and Open Rhythm Experience!',
       themeConfig: {
         nav: [
           { text: 'g0v0-server', link: '/en/lazer/' },
@@ -133,7 +133,7 @@ export default defineConfig({
           '/en/g0v0/': [
             { text: 'Overview', link: '/en/g0v0/' },
             {
-              text: 'Differences from osu!(lazer)',
+              text: 'Differences from upstream',
               link: '/en/g0v0/difference',
             },
           ],
@@ -147,7 +147,7 @@ export default defineConfig({
       label: '简体中文',
       lang: 'zh-CN',
       title: '咕哦！',
-      description: '简单易部署的 osu!(lazer) 服务器方案',
+      description: '开放自由的节奏体验',
       themeConfig: {
         nav: [
           { text: 'g0v0-server', link: '/lazer/' },
@@ -251,7 +251,7 @@ export default defineConfig({
           ],
           '/g0v0/': [
             { text: '概览', link: '/g0v0/' },
-            { text: '与 osu!(lazer) 的差异', link: '/g0v0/difference' },
+            { text: '与上游的差异', link: '/g0v0/difference' },
           ],
         },
       },

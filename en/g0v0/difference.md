@@ -1,14 +1,11 @@
 ---
 ---
 
-# Differences from osu!(lazer)
+# Differences from upstream
 
-g0v0! is built on the open-source codebase of
-[ppy/osu](https://github.com/ppy/osu) (osu!lazer). Apart from the changes listed
-below, all gameplay, UI, and framework behaviour remains identical to upstream;
-every change exists to work with [g0v0-server](/en/lazer/). The following is
-based on
-[v2026.1012.1-robin](https://github.com/GooGuTeam/g0v0/releases/tag/v2026.1012.1-robin).
+g0v0! extends the [upstream client](https://github.com/ppy/osu) with server
+integration, ruleset, interface and gameplay changes. This page describes those
+differences; consult the current code for implementation details.
 
 ## The g0v0! Standard
 
@@ -19,16 +16,16 @@ with every g0v0!-based server.** g0v0! is the reference implementation of the
 g0v0! Standard.
 
 The g0v0! Standard only covers **the parts that talk to the server**. Compared
-with vanilla osu!(lazer) communication, g0v0! adds:
+with vanilla lazer communication, g0v0! adds:
 
-| Area                | Vanilla osu!(lazer)                         | g0v0!                                                                                                                                                                    |
-| :------------------ | :------------------------------------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| API / Web endpoints | Hard-coded to ppy servers, not configurable | Customisable in the settings; a single URL derives every endpoint                                                                                                        |
-| SignalR connections | Client version hash header                  | Additionally carries the `X-Osu-Ruleset-Hashes` header                                                                                                                   |
-| Score submission    | Client version hash                         | Additionally carries the `ruleset_hash` parameter                                                                                                                        |
-| Ruleset set         | Official 4 rulesets (OnlineID 0–3)          | Plus `osurx` / `osuap` / `taikorx` / `fruitsrx` (4–7) with separate statistics and rankings; custom rulesets can be registered, validated, and distributed by the server |
-| Multiplayer rooms   | No win condition on playlist items          | New `win_condition` field                                                                                                                                                |
-| Private API         | None                                        | `/private` route (g0v0! API) and extended endpoints                                                                                                                      |
+| Area                | Vanilla lazer                                    | g0v0!                                                                                                                                                                    |
+| :------------------ | :----------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| API / Web endpoints | Hard-coded to upstream servers, not configurable | Customisable in the settings; a single URL derives every endpoint                                                                                                        |
+| SignalR connections | Client version hash header                       | Additionally carries the `X-Osu-Ruleset-Hashes` header                                                                                                                   |
+| Score submission    | Client version hash                              | Additionally carries the `ruleset_hash` parameter                                                                                                                        |
+| Ruleset set         | Official 4 rulesets (OnlineID 0–3)               | Plus `osurx` / `osuap` / `taikorx` / `fruitsrx` (4–7) with separate statistics and rankings; custom rulesets can be registered, validated, and distributed by the server |
+| Multiplayer rooms   | No win condition on playlist items               | New `win_condition` field                                                                                                                                                |
+| Private API         | None                                             | `/private` route (g0v0! API) and extended endpoints                                                                                                                      |
 
 The "Developer reference" collapsible in each section below is written for
 client developers who want to implement the g0v0! Standard: it explains what
@@ -41,7 +38,7 @@ needs to change for server communication and how.
 - A single custom URL replaces both the API and Website endpoints and derives
   every realtime endpoint: `/signalr/spectator`, `/signalr/multiplayer`,
   `/signalr/metadata`, and `/beatmap-submission`, matching the g0v0-server
-  deployment layout one to one (upstream hard-codes these to ppy servers).
+  deployment layout one to one (upstream hard-codes these to upstream servers).
 - The settings UI validates the URL (invalid input gets a notice) and shows a
   restart-required notice; a missing protocol scheme gets `https://` prepended.
 - Online resources (skins, preview tracks, etc.) go through a trusted-domain
@@ -71,8 +68,8 @@ building the endpoint configuration; changes apply after a restart.
 
 2. The paths mirror a g0v0-server deployment: the API lives at the server root,
    SignalR under `/signalr/*`, and beatmap submission under
-   `/beatmap-submission`; authentication keeps using the standard osu! API v2
-   OAuth flow (client credentials come with the endpoint configuration).
+   `/beatmap-submission`; authentication keeps using the standard upstream API
+   v2 OAuth flow (client credentials come with the endpoint configuration).
 3. Trusted-domain filtering must be adjusted: allow non-`ppy.sh` hosts (i.e. the
    custom server's domain), otherwise online resources such as skins and preview
    tracks fail to load (g0v0!: `osu.Game/Online/TrustedDomainOnlineStore.cs` and
@@ -89,7 +86,7 @@ building the endpoint configuration; changes apply after a restart.
 - First-class support for **Relax (RX)** and **Autopilot (AP)** as special game
   modes.
 - Ruleset identifiers agreed with g0v0-server: `osurx` (4), `osuap` (5),
-  `taikorx` (6), and `fruitsrx` (7), matching official osu! / taiko / catch
+  `taikorx` (6), and `fruitsrx` (7), matching upstream standard / taiko / catch
   (0–2).
 - When playing a base ruleset with the Relax / Autopilot mods enabled, scores
   and statistics are handled under the identity of the corresponding special
@@ -104,7 +101,7 @@ building the endpoint configuration; changes apply after a restart.
 
 Key idea: a special ruleset is an online identity derived from an official
 ruleset by changing its short name and ID. All communication still goes through
-the standard osu! API v2 endpoints — no private route is required.
+the standard upstream API v2 endpoints — no private route is required.
 
 1. Reserve the agreed short names and OnlineIDs (g0v0!: the constants and
    `CreateSpecialRuleset()` in `osu.Game/Rulesets/RulesetInfo.cs`):
@@ -212,10 +209,10 @@ local ordering consistent with the server's decision.
 
 - The `PrivateAPIRequest` base class targets the server's `/private` route and
   serves as the client-side entry point of the g0v0! API, providing private
-  capabilities beyond the osu! API v2.
-- Example osu! API extension: `PUT me/achievements/{id}` (medal unlocking, used
-  together with the client's medal awarders).
-- Example osu! API extension:
+  capabilities beyond the upstream API v2.
+- Example upstream API extension: `PUT me/achievements/{id}` (medal unlocking,
+  used together with the client's medal awarders).
+- Example upstream API extension:
   `GET beatmaps/{beatmapId}/scores/users/{userId}/all` (all personal scores on
   one beatmap in a single request, so a PP best can be picked independently of
   score ordering on the results screen).
@@ -224,8 +221,8 @@ local ordering consistent with the server's decision.
 ::: details Developer reference
 
 Key idea: private operations go through the server's `/private` route, reusing
-the osu! API v2 authentication and serialisation infrastructure; extensions to
-the osu! API itself follow the upstream style and just add endpoints.
+the upstream API v2 authentication and serialisation infrastructure; extensions
+to the upstream API itself follow the upstream style and just add endpoints.
 
 1. Define a request base class with a fixed route (g0v0!:
    `osu.Game/Online/API/PrivateAPIRequest.cs`):
@@ -237,8 +234,8 @@ the osu! API itself follow the upstream style and just add endpoints.
    }
    ```
 
-2. Implement osu! API extensions as regular API requests, e.g. medal unlocking
-   via `PUT me/achievements/{id}` (g0v0!:
+2. Implement upstream API extensions as regular API requests, e.g. medal
+   unlocking via `PUT me/achievements/{id}` (g0v0!:
    `osu.Game/Online/API/Requests/UnlockMedalRequest.cs`).
 3. Implement public query extensions the same way, e.g.
    `GET beatmaps/{beatmapId}/scores/users/{userId}/all?mode={shortName}` (g0v0!:
@@ -351,15 +348,15 @@ the local version.
 
 ## Score V1 / Score V2 scoring <Badge type="g0v0" text="v2026.1012.0-g0v0" />
 
-- The osu! ruleset gains two new conversion mods, **Score V1 (SV1)** and **Score
-  V2 (SV2)** (mutually exclusive), usable in solo play and in multiplayer rooms
-  (as regular or free mods).
-- Score V1 scores the osu!stable way: sliders use classic behaviour and
-  judgement, spinners are scored by the stable rules, and autoplay replays match
-  stable slider and spinner scores.
+- The standard ruleset gains two new conversion mods, **Score V1 (SV1)** and
+  **Score V2 (SV2)** (mutually exclusive), usable in solo play and in
+  multiplayer rooms (as regular or free mods).
+- Score V1 scores the stable way: sliders use classic behaviour and judgement,
+  spinners are scored by the stable rules, and autoplay replays match stable
+  slider and spinner scores.
 - Score V2 plays with the V2 scoring algorithm: scoring on top of classic slider
   behaviour, with improved spinner accuracy and classic slider input tracking.
-- The osu! ruleset settings gain a "Show slider head judgements" toggle.
+- The standard ruleset settings gain a "Show slider head judgements" toggle.
 
 ## V2 results screen <Badge type="g0v0" text="v2026.1012.0-g0v0" />
 

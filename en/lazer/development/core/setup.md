@@ -62,9 +62,9 @@ Pay special attention to the following:
   `openssl rand -hex 32`.
 - `OSU_WEB_CLIENT_SECRET` must not keep the default value. You can generate one
   with `openssl rand -hex 40`.
-- If your local environment does not use HTTPS and osu!(lazer) needs to connect
+- If your local environment does not use HTTPS and lazer needs to connect
   directly, follow the
-  [osu!(lazer) full-stack testing guide](https://github.com/ppy/osu/wiki/Testing-web-server-full-stack-with-osu!#basics)
+  [lazer full-stack testing guide](https://github.com/ppy/osu/wiki/Testing-web-server-full-stack-with-osu!#basics)
   to handle client-side SSL restrictions.
 
 ## Installing Dependencies

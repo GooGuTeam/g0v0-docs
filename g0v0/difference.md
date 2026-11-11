@@ -1,13 +1,9 @@
 ---
 ---
 
-# 与 osu!(lazer) 的差异
+# 与上游的差异
 
-g0v0! 基于
-[ppy/osu](https://github.com/ppy/osu)（osu!lazer）的开源代码构建。除下文列出的改动外，其余玩法、UI 与框架行为均与上游保持一致；所有改动都旨在配合
-[g0v0-server](/lazer/) 工作。以下内容以
-[v2026.1012.1-robin](https://github.com/GooGuTeam/g0v0/releases/tag/v2026.1012.1-robin)
-为准。
+g0v0! 基于[上游客户端](https://github.com/ppy/osu)的开源代码构建，包含服务器接入、规则集、界面与玩法方面的扩展。以下内容介绍这些差异；相关实现以当前代码为准。
 
 ## g0v0! 标准
 
@@ -16,11 +12,11 @@ g0v0! 基于
 **任何客户端只要实现了 g0v0! 标准，就可以完美兼容所有基于 g0v0! 的服务器。**
 g0v0! 是 g0v0! 标准的参考实现。
 
-g0v0! 标准只针对**与服务器通信的部分**。与原版 osu!(lazer) 的通信相比，额外增加了：
+g0v0! 标准只针对**与服务器通信的部分**。与原版 lazer 的通信相比，额外增加了：
 
-| 通信环节       | 原版 osu!(lazer)              | g0v0!                                                                                             |
+| 通信环节       | 原版 lazer                    | g0v0!                                                                                             |
 | :------------- | :---------------------------- | :------------------------------------------------------------------------------------------------ |
-| API / Web 端点 | 固定指向 ppy 服务器，不可配置 | 可在设置中自定义，单一 URL 派生全部端点                                                           |
+| API / Web 端点 | 固定指向 上游服务器，不可配置 | 可在设置中自定义，单一 URL 派生全部端点                                                           |
 | SignalR 连接   | 携带客户端版本哈希头          | 额外携带 `X-Osu-Ruleset-Hashes` 头                                                                |
 | 成绩提交       | 附带客户端版本哈希            | 额外附带 `ruleset_hash` 参数                                                                      |
 | ruleset 集合   | 官方 4 种（OnlineID 0–3）     | 另有 `osurx` / `osuap` / `taikorx` / `fruitsrx`（4–7）；自定义 ruleset 可由服务器注册、校验与分发 |
@@ -35,7 +31,7 @@ g0v0! 标准只针对**与服务器通信的部分**。与原版 osu!(lazer) 的
   中指定「自定义 API 服务器链接」，从而连接第三方服务器。
 - 单一自定义 URL 会同时替换 API 与 Website 端点，并派生全部实时端点：
   `/signalr/spectator`、`/signalr/multiplayer`、`/signalr/metadata` 与
-  `/beatmap-submission`，与 g0v0-server 的部署路径一一对应（原版这些端点固定指向 ppy 服务器且不可配置）。
+  `/beatmap-submission`，与 g0v0-server 的部署路径一一对应（原版这些端点固定指向 上游服务器且不可配置）。
 - 设置界面提供 URL 校验（无效时给出提示）以及「需要重启」提示；省略协议时自动补全
   `https://`。
 - 在线资源（皮肤、预览音轨等）经信任域过滤：仅在已配置自定义服务器时放行，否则仅允许
@@ -60,7 +56,7 @@ g0v0! 标准只针对**与服务器通信的部分**。与原版 osu!(lazer) 的
    ```
 
 2. 路径约定与 g0v0-server 部署一一对应：API 即服务器根，SignalR 位于
-   `/signalr/*`，谱面提交位于 `/beatmap-submission`；鉴权沿用 osu! API
+   `/signalr/*`，谱面提交位于 `/beatmap-submission`；鉴权沿用 上游 API
    v2 的 OAuth 流程（客户端凭据随端点配置提供）。
 3. 信任域过滤必须调整：放行非 `.ppy.sh`
    的域名（即自定义服务器的域名），否则皮肤、预览音轨等在线资源无法加载（g0v0! 见
@@ -75,7 +71,7 @@ g0v0! 标准只针对**与服务器通信的部分**。与原版 osu!(lazer) 的
 ## 特殊 ruleset（Relax / Autopilot） <Badge type="standard" text="g0v0! 标准" />
 
 - 对 **Relax (RX)** 与 **Autopilot (AP)** 特殊游戏模式提供一等支持。
-- 与 g0v0-server 约定的特殊 ruleset 标识：`osurx`（4）、`osuap`（5）、`taikorx`（6）、`fruitsrx`（7），对应官方 osu!
+- 与 g0v0-server 约定的特殊 ruleset 标识：`osurx`（4）、`osuap`（5）、`taikorx`（6）、`fruitsrx`（7），对应上游 standard
   / taiko / catch（0–2）。
 - 以基础 ruleset 搭配 Relax / Autopilot
   mod 游玩时，成绩与统计按对应特殊 ruleset 的身份处理。
@@ -85,8 +81,8 @@ g0v0! 标准只针对**与服务器通信的部分**。与原版 osu!(lazer) 的
 
 ::: details 开发者参考
 
-实现要点：特殊 ruleset 是在官方 ruleset 基础上「改名换 ID」得到的在线身份，通信全部走标准 osu!
-API v2 端点，不需要额外的私有路由。
+实现要点：特殊 ruleset 是在官方 ruleset 基础上「改名换 ID」得到的在线身份，通信全部走标准 上游 API
+v2 端点，不需要额外的私有路由。
 
 1. 按约定保留 shortName 与 OnlineID（g0v0! 见 `osu.Game/Rulesets/RulesetInfo.cs`
    的常量与 `CreateSpecialRuleset()`）：
@@ -180,16 +176,15 @@ API v2 端点，不需要额外的私有路由。
 ## g0v0! API <Badge type="standard" text="g0v0! 标准" />
 
 - `PrivateAPIRequest` 请求基类指向服务器 `/private` 路由，作为 g0v0!
-  API 的客户端入口，在 osu! API v2 之外提供私有操作能力。
-- osu!
-  API 扩展示例：`PUT me/achievements/{id}`（勋章解锁，配合客户端的勋章授予器）。
-- osu! API 扩展示例：`GET beatmaps/{beatmapId}/scores/users/{userId}/all`
+  API 的客户端入口，在 上游 API v2 之外提供私有操作能力。
+- 上游 API 扩展示例：`PUT me/achievements/{id}`（勋章解锁，配合客户端的勋章授予器）。
+- 上游 API 扩展示例：`GET beatmaps/{beatmapId}/scores/users/{userId}/all`
   （一次取回某谱面的全部个人成绩，供结果界面独立于分数排序挑选 PP 最佳）。<Badge type="g0v0" text="v2026.1012.0-g0v0" />
 
 ::: details 开发者参考
 
-实现要点：私有操作走服务器 `/private` 路由，复用 osu! API
-v2 的鉴权与序列化基础设施；对 osu! API 的扩展则保持上游风格直接加端点。
+实现要点：私有操作走服务器 `/private` 路由，复用 上游 API
+v2 的鉴权与序列化基础设施；对 上游 API 的扩展则保持上游风格直接加端点。
 
 1. 定义 Route 固定为 `private` 的请求基类（g0v0! 见
    `osu.Game/Online/API/PrivateAPIRequest.cs`）：
@@ -201,7 +196,7 @@ v2 的鉴权与序列化基础设施；对 osu! API 的扩展则保持上游风�
    }
    ```
 
-2. osu! API 扩展按常规 APIRequest 实现，如勋章解锁
+2. 上游 API 扩展按常规 APIRequest 实现，如勋章解锁
    `PUT me/achievements/{id}`（g0v0! 见
    `osu.Game/Online/API/Requests/UnlockMedalRequest.cs`）。
 3. 公共查询扩展同样按常规 APIRequest 实现，如
@@ -296,13 +291,13 @@ v2 的鉴权与序列化基础设施；对 osu! API 的扩展则保持上游风�
 
 ## Score V1 / Score V2 计分 <Badge type="g0v0" text="v2026.1012.0-g0v0" />
 
-- osu! 规则集新增 **Score V1（SV1）** 与 **Score V2（SV2）**
+- standard 规则集新增 **Score V1（SV1）** 与 **Score V2（SV2）**
   两个转换 mod（互斥），单人游戏与多人房间（普通 mod 或自由 mod）均可使用。
 - Score
-  V1 按 osu!stable 方式计分：滑条采用 classic 行为与判定，转盘按 stable 规则计分；autoplay 生成的回放中滑条与转盘得分与 stable 一致。
+  V1 按 stable 方式计分：滑条采用 classic 行为与判定，转盘按 stable 规则计分；autoplay 生成的回放中滑条与转盘得分与 stable 一致。
 - Score
   V2 使用 V2 计分算法游玩：在 classic 滑条行为之上计分，包含转盘准确率与 classic 滑条输入追踪的改进。
-- osu! 规则集设置新增「显示滑条头判定」开关。
+- standard 规则集设置新增「显示滑条头判定」开关。
 
 ## V2 成绩界面 <Badge type="g0v0" text="v2026.1012.0-g0v0" />
 

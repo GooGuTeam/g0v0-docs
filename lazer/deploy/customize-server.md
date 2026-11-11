@@ -7,7 +7,7 @@
 
 ## 配置反向代理
 
-前端在加载头像、谱面封面、静态资源等图片时，资源实际来自以下三个 osu! 官方域名：
+前端在加载头像、谱面封面、静态资源等图片时，资源实际来自以下三个 上游 官方域名：
 
 | 上游域名        | 内容         |
 | --------------- | ------------ |
@@ -110,13 +110,12 @@ server {
 
 ## 设置 Fetcher
 
-新建的 g0v0 不存在任何谱面数据，其使用 Fetcher 从 osu!
-Bancho 获取谱面。下面介绍如何配置 Fetcher。
+新建的 g0v0 不存在任何谱面数据，其使用 Fetcher 从 上游 Bancho 获取谱面。下面介绍如何配置 Fetcher。
 
 ### 获取 osu 开放授权
 
-Fetcher 基于 osu! API v2 工作，因此你需要一个 osu! API v2 开放授权。前往
-[osu! 设置](https://osu.ppy.sh/home/account/edit#new-oauth-application)
+Fetcher 基于 上游 API v2 工作，因此你需要一个 上游 API v2 开放授权。前往
+[上游 设置](https://osu.ppy.sh/home/account/edit#new-oauth-application)
 创建一个新的 OAuth 应用，填写以下信息：
 
 - 应用名称：任意名称，例如 `g0v0 Fetcher`
@@ -134,8 +133,7 @@ FETCHER_CLIENT_ID="你的客户端 ID"
 FETCHER_CLIENT_SECRET="你的客户端密钥"
 ```
 
-保存后重启 g0v0 服务器。这样 Fetcher 就配置完成了。当服务器接收到不存在的谱面的请求时，Fetcher 会自动从 osu!
-Bancho 获取谱面数据。,,
+保存后重启 g0v0 服务器。这样 Fetcher 就配置完成了。当服务器接收到不存在的谱面的请求时，Fetcher 会自动从 上游 Bancho 获取谱面数据。,,
 
 ## 用户会话安全
 
@@ -204,7 +202,7 @@ ENABLE_RX=true
 ENABLE_AP=true
 ```
 
-此外，由于客户端的限制，你无法直接在游戏内查看 Relax/Autopilot 的成绩排行榜。g0v0 提供了一种替代方法：使用筛选当前 mod 组合来查看成绩排行榜。由于这个功能需要 osu! 支持者，因此建议启用所有新注册用户的支持者状态。
+此外，由于客户端的限制，你无法直接在游戏内查看 Relax/Autopilot 的成绩排行榜。g0v0 提供了一种替代方法：使用筛选当前 mod 组合来查看成绩排行榜。由于这个功能需要 支持者身份，因此建议启用所有新注册用户的支持者状态。
 
 编辑 `.env`，添加以下配置：
 

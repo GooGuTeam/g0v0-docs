@@ -57,7 +57,7 @@ You can install the official plugin
 [Auto Daily Challenge](https://github.com/GooGuTeam/g0v0-plugins/tree/main/auto_dailychallenge)
 plugin to automatically populate daily challenges. This plugin will select
 beatmaps from the database based on
-[osu! Bancho's difficulty rules](https://osu.ppy.sh/wiki/zh/Gameplay/Daily_challenge#beatmap-difficulty-range)
+[upstream Bancho's difficulty rules](https://osu.ppy.sh/wiki/zh/Gameplay/Daily_challenge#beatmap-difficulty-range)
 and update them daily.
 
 ## Application

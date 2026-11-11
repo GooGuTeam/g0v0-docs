@@ -28,7 +28,7 @@
 | `app/tasks/`         | 启动任务、关闭任务和 APScheduler 定时任务。                                        |
 | `app/dependencies/`  | FastAPI / FastDepends 依赖注入：数据库、Redis、鉴权、限流、fetcher、scheduler 等。 |
 | `app/helpers/`       | 通用辅助能力：后台任务、时间、字符串、GeoIP、资源代理等。                          |
-| `app/fetcher/`       | 从 osu! 官方或外部服务获取谱面、用户等数据。                                       |
+| `app/fetcher/`       | 从 上游 官方或外部服务获取谱面、用户等数据。                                       |
 | `app/calculating/`   | 难度、表现分、mods 与 ruleset 相关计算。                                           |
 | `app/plugins/`       | 插件加载、事件中心、插件 API 路由与插件迁移集成。                                  |
 | `app/storage/`       | 本地或对象存储相关逻辑。                                                           |
@@ -90,5 +90,5 @@
   IO 场景，生产网络应阻止公网直接访问。
 - `app.database` 导入时会对 `*Model` 和 `*Resp` 类型执行
   `model_rebuild()`，新增相关类型后必须正确导出。
-- 核心仓库同时兼容 osu! API
+- 核心仓库同时兼容 上游 API
   v1/v2、g0v0 私有 API、插件 API 与客户端特有流程；修改公共行为前必须确认影响范围。

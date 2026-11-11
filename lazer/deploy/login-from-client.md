@@ -1,13 +1,13 @@
-# 通过 osu!(lazer) 客户端连接到服务器
+# 通过 lazer 客户端连接到服务器
 
-osu!(lazer) 客户端本身不支持像 osu!(stable) 那样通过命令行 (`-devserver`) 连接到服务器。因此，若想连接到你的服务器，你需要使用经由我们修改的自定义的 osu!(lazer) 客户端——[g0v0!](https://github.com/GooGuTeam/g0v0)
+lazer 客户端本身不支持像 stable 那样通过命令行 (`-devserver`) 连接到服务器。因此，若想连接到你的服务器，你需要使用经由我们修改的自定义的 lazer 客户端——[g0v0!](https://github.com/GooGuTeam/g0v0)
 或者使用
 [LazerAuthlibInjection](https://github.com/MingxuanGame/LazerAuthlibInjection)
 来注入客户端的连接配置。
 
 ## 使用 g0v0
 
-此方法推荐给所有能在其平台上运行原版 osu!(lazer) 的用户。
+此方法推荐给所有能在其平台上运行原版 lazer 的用户。
 
 ### 步骤
 
@@ -29,18 +29,18 @@ osu!(lazer) 客户端本身不支持像 osu!(stable) 那样通过命令行 (`-de
 ## 使用 LazerAuthlibInjection
 
 [LazerAuthlibInjection](https://github.com/MingxuanGame/LazerAuthlibInjection)
-是一个为官方 osu!(lazer) 客户端添加自定义服务器支持的 ruleset。
+是一个为官方 lazer 客户端添加自定义服务器支持的 ruleset。
 
 :::danger 危险
 
-**此操作可能导致你的 osu! 账号被封禁！**
+**此操作可能导致你的 上游 账号被封禁！**
 
-osu! 官方团队已明确声明使用 LazerAuthlibInjection 等注入类 ruleset 连接到官方服务器会导致账号被封禁 ([详见此 Issue](https://github.com/Cai1Hsu/osu-plugins/issues/93))。
+上游 官方团队已明确声明使用 LazerAuthlibInjection 等注入类 ruleset 连接到官方服务器会导致账号被封禁 ([详见此 Issue](https://github.com/Cai1Hsu/osu-plugins/issues/93))。
 
 请务必**仅在私有开发服务器上使用此工具**，并确保在使用前已退出官方客户端或断开与官方服务器的连接。
 
-此项目与 osu! 官方团队无任何关联，也未获得其认可。**使用风险自负。**
-**请勿向 osu! 官方团队报告任何关于此 ruleset 的问题。**
+此项目与 上游 官方团队无任何关联，也未获得其认可。**使用风险自负。**
+**请勿向 上游 官方团队报告任何关于此 ruleset 的问题。**
 
 :::
 
@@ -52,9 +52,9 @@ osu! 官方团队已明确声明使用 LazerAuthlibInjection 等注入类 rulese
 
 ### 安装步骤
 
-1. **打开 osu! 数据目录**
+1. **打开 上游 数据目录**
 
-   在设置面板中，点击 `打开 osu! 文件夹` 来打开 osu! 数据目录。
+   在设置面板中打开 lazer 的数据目录。
 
    默认位置：
    - Windows: `%AppData%\osu!`
@@ -83,7 +83,7 @@ osu! 官方团队已明确声明使用 LazerAuthlibInjection 等注入类 rulese
 
 2. **重启客户端**
 
-   重启 osu!(lazer) 使配置生效。
+   重启 lazer 使配置生效。
 
 ### 命令行参数
 
@@ -99,7 +99,7 @@ osu! 官方团队已明确声明使用 LazerAuthlibInjection 等注入类 rulese
 | `--multiplayer-url`        | 多人游戏服务 URL                                                 |
 | `--metadata-url`           | 元数据服务 URL                                                   |
 | `--bss-url`                | 谱面提交服务 URL                                                 |
-| `--disable-sentry-logger`  | 禁用向 osu! 官方发送 Sentry 日志                                 |
+| `--disable-sentry-logger`  | 禁用向 上游 官方发送 Sentry 日志                                 |
 | `--non-g0v0-server`        | 禁用 g0v0-server 特定功能（Relax 功能、自定义 ruleset 成绩提交） |
 
 **示例：**

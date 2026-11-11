@@ -52,8 +52,8 @@ cp .env.example .env
 - 不要提交真实 `.env`、密钥、密码、token、数据库地址或对象存储凭据。
 - `SECRET_KEY` 不应保留默认值；可用 `openssl rand -hex 32` 生成。
 - `OSU_WEB_CLIENT_SECRET` 不应保留默认值；可用 `openssl rand -hex 40` 生成。
-- 本地无 HTTPS 且需要 osu!(lazer) 直接连接时，可按
-  [osu!(lazer) 测试服务器文档](https://github.com/ppy/osu/wiki/Testing-web-server-full-stack-with-osu!#basics)处理客户端 SSL 限制。
+- 本地无 HTTPS 且需要 lazer 直接连接时，可按
+  [lazer 测试服务器文档](https://github.com/ppy/osu/wiki/Testing-web-server-full-stack-with-osu!#basics)处理客户端 SSL 限制。
 
 ## 安装依赖
 

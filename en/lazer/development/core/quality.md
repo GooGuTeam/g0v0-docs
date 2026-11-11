@@ -10,8 +10,8 @@
 - Line length: Ruff is configured with a line length of 120.
 - Routers: all route handlers must be `async`.
 - Commit messages: use Angular style, `type(scope): subject`.
-- Public APIs: keep osu! v1/v2 compatibility. Custom APIs belong under private
-  or plugin routers.
+- Public APIs: keep upstream v1/v2 compatibility. Custom APIs belong under
+  private or plugin routers.
 - Test status: the core repository does not have a complete test suite, so
   static checks and manual review must be stricter before submission.
 
@@ -90,7 +90,7 @@ A PR description should at least explain:
 When changing endpoints, review:
 
 - Whether the endpoint is placed in the correct router directory.
-- Whether v1/v2/notification endpoints conform to the official osu! API.
+- Whether v1/v2/notification endpoints conform to the upstream API.
 - Whether private APIs use the `/api/private/` prefix.
 - Whether authentication dependencies and scopes are correct.
 - Whether OpenAPI documentation is accurate.

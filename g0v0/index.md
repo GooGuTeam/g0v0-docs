@@ -3,13 +3,23 @@
 
 # g0v0!
 
-**g0v0!** 是由 GooGuTeam 基于
-[ppy/osu](https://github.com/ppy/osu)（osu!lazer）开源代码构建并维护的节奏游戏客户端，开箱即用地对接
-[g0v0-server](/lazer/)。
+> [!IMPORTANT]
+>
+> **g0v0! 是基于 osu! 开源代码修改的非官方客户端。**
+>
+> - 我们（GooGuTeam）与 ppy Pty Ltd、peppy 或 team
+>   osu! 无关。此项目未获得其支持，也未获得其认可。
+> - **osu!** 和 **ppy** 是 **ppy Pty Ltd** 的注册商标。
+> - 请支持原项目：在[官方服务器](https://osu.ppy.sh)游玩，并考虑成为[支持者](https://osu.ppy.sh/home/support)，帮助支持上游开发。
+> - 上游问题和改进请向[上游客户端仓库](https://github.com/ppy/osu)提交 issue /
+>   PR，或前往[上游反馈论坛](https://osu.ppy.sh/community/forums/5)。请勿因 g0v0! 或 g0v0-server 的特有问题联系上游团队，此类问题应反馈到对应的 GooGuTeam 仓库。
+> - 如果尚未玩过原版，请先[下载并体验官方客户端](https://osu.ppy.sh/home/download)。这些社区项目并非原项目的替代品。
 
-g0v0! 完整保留了 osu!lazer 的玩法、UI 与框架行为，仅在与服务器交互的部分做了少量必要改动（例如自定义 API 服务器、Relax
-/ Autopilot 特殊 ruleset）。这些改动构成了
-**g0v0! 标准**——任何客户端只要实现了 g0v0! 标准，就可以完美兼容所有基于 g0v0! 的服务器，详见[与 osu!(lazer) 的差异](./difference)。
+**g0v0!** 是由 GooGuTeam 维护的自由开放节奏游戏客户端，面向
+[g0v0-server](/lazer/)。它基于上游开源代码，提供自定义服务器接入、Relax /
+Autopilot 特殊规则集，以及额外的界面与玩法功能。
+
+**g0v0! 标准**是一组服务器扩展约定，供客户端对接兼容的社区服务器。详见[与上游的差异](./difference)。
 
 ## 下载
 
@@ -37,9 +47,7 @@ Linux）内置自动更新，安装后会自动跟随新版本；也可以在设
 
 ## 许可
 
-- 代码采用 MIT 许可：上游 ppy 部分见
+- 代码采用 MIT 许可：上游部分见
   [LICENCE-OSU](https://github.com/GooGuTeam/g0v0/blob/v2/LICENCE-OSU)，GooGuTeam 新增部分见
   [LICENCE](https://github.com/GooGuTeam/g0v0/blob/v2/LICENCE)。
-- 游戏资源源自 ppy/osu-resources，采用 CC-BY-NC 4.0 许可，仅限非商业使用。
-- "osu!" 名称、商标与品牌资产归 ppy Pty Ltd 所有，本项目与 ppy Pty
-  Ltd 无从属或背书关系。
+- 游戏资源源自上游资源仓库，采用 CC-BY-NC 4.0 许可，仅限非商业使用。

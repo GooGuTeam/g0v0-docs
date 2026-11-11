@@ -1,16 +1,16 @@
-# Connect to the Server from the osu!(lazer) Client
+# Connect to the Server from the lazer Client
 
-The osu!(lazer) client does not natively support connecting to a server via
-command line (`-devserver`) like osu!(stable). Therefore, to connect to your
-server, you need to use a custom osu!(lazer) client modified by
+The lazer client does not natively support connecting to a server via command
+line (`-devserver`) like stable. Therefore, to connect to your server, you need
+to use a custom lazer client modified by
 us—[g0v0!](https://github.com/GooGuTeam/g0v0), or use
 [LazerAuthlibInjection](https://github.com/MingxuanGame/LazerAuthlibInjection)
 to inject the connection configuration into the client.
 
 ## Using g0v0
 
-This method is recommended for all users who can run the original osu!(lazer) on
-their platform.
+This method is recommended for all users who can run the original lazer on their
+platform.
 
 ### Steps
 
@@ -35,23 +35,22 @@ their platform.
 ## Using LazerAuthlibInjection
 
 [LazerAuthlibInjection](https://github.com/MingxuanGame/LazerAuthlibInjection)
-is a ruleset that adds custom server support to the official osu!(lazer) client.
+is a ruleset that adds custom server support to the official lazer client.
 
 :::danger Danger
 
-**This will result in your osu! account being banned!**
+**This will result in your upstream account being banned!**
 
-The official osu! team has explicitly stated that using LazerAuthlibInjection
-and similar injection rulesets to connect to official servers will result in
-account bans
-([see this issue](https://github.com/Cai1Hsu/osu-plugins/issues/93)).
+The upstream team has explicitly stated that using LazerAuthlibInjection and
+similar injection rulesets to connect to official servers will result in account
+bans ([see this issue](https://github.com/Cai1Hsu/osu-plugins/issues/93)).
 
 Only use this tool on **private development servers**, and ensure you have
 logged out of or disconnected from the official servers before using it.
 
-This project is not affiliated with or endorsed by the official osu! team. **Use
-at your own risk.** **Do not report any issues regarding this ruleset to the
-official osu! team.**
+This project is not affiliated with or endorsed by the upstream team. **Use at
+your own risk.** **Do not report any issues regarding this ruleset to the
+upstream team.**
 
 :::
 
@@ -63,10 +62,9 @@ official osu! team.**
 
 ### Installation Steps
 
-1. **Open the osu! Data Directory**
+1. **Open the upstream Data Directory**
 
-   In the settings panel, click `Open osu! folder` to open the osu! data
-   directory.
+   Open the lazer data directory from the settings panel.
 
    Default locations:
    - Windows: `%AppData%\osu!`
@@ -95,7 +93,7 @@ official osu! team.**
 
 2. **Restart the Client**
 
-   Restart osu!(lazer) for the configuration to take effect.
+   Restart lazer for the configuration to take effect.
 
 ### Command Line Arguments
 
@@ -111,7 +109,7 @@ You can also pass settings via command line arguments:
 | `--multiplayer-url`        | Multiplayer service URL                                              |
 | `--metadata-url`           | Metadata service URL                                                 |
 | `--bss-url`                | Beatmap submission service URL                                       |
-| `--disable-sentry-logger`  | Disable sending Sentry logs to the official osu! servers             |
+| `--disable-sentry-logger`  | Disable sending Sentry logs to the upstream servers                  |
 | `--non-g0v0-server`        | Disable g0v0-server specific features (Relax, custom ruleset scores) |
 
 **Example:**

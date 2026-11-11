@@ -10,11 +10,11 @@
 
 ## Core Services
 
-| Dependency Type  | Import Path                  | Description                                             |
-| ---------------- | ---------------------------- | ------------------------------------------------------- |
-| `Fetcher`        | `app.dependencies.fetcher`   | Fetcher instance, used to fetch data from osu! official |
-| `StorageService` | `app.dependencies.storage`   | Storage service, used for file storage operations       |
-| `EventHub`       | `app.dependencies.event_hub` | Event hub, used to send and subscribe to events         |
+| Dependency Type  | Import Path                  | Description                                                 |
+| ---------------- | ---------------------------- | ----------------------------------------------------------- |
+| `Fetcher`        | `app.dependencies.fetcher`   | Fetcher instance, used to fetch data from upstream official |
+| `StorageService` | `app.dependencies.storage`   | Storage service, used for file storage operations           |
+| `EventHub`       | `app.dependencies.event_hub` | Event hub, used to send and subscribe to events             |
 
 ## Cache Services
 

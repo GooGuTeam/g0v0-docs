@@ -9,9 +9,9 @@
 
 | 路径                                          | 允许内容                                                     |
 | --------------------------------------------- | ------------------------------------------------------------ |
-| `app/router/v1/`                              | osu! API v1 中已经存在的端点。                               |
-| `app/router/v2/`                              | osu! API v2 / OpenAPI 中已经存在的端点。                     |
-| `app/router/notification/`                    | osu! 聊天、通知和 BanchoBot 相关端点；同样必须匹配官方行为。 |
+| `app/router/v1/`                              | 上游 API v1 中已经存在的端点。                               |
+| `app/router/v2/`                              | 上游 API v2 / OpenAPI 中已经存在的端点。                     |
+| `app/router/notification/`                    | 上游 聊天、通知和 BanchoBot 相关端点；同样必须匹配官方行为。 |
 | `app/router/auth.py`                          | OAuth、token、登录授权等认证流程。                           |
 | `app/router/private/`                         | g0v0 自定义或实验性核心 API。                                |
 | `app/router/file.py`、`redirect.py`、`lio.py` | 文件、前端重定向、legacy IO 等专用入口。                     |
@@ -65,7 +65,7 @@ scope 列表应参考 `app.dependencies.user` 中 OAuth 定义，不要随意发
 
 ### 客户端/前端用户
 
-仅供 osu!(lazer) 客户端或 g0v0 前端使用的接口，可以使用 `ClientUser`：
+仅供 lazer 客户端或 g0v0 前端使用的接口，可以使用 `ClientUser`：
 
 ```python
 from app.dependencies.user import ClientUser
@@ -130,7 +130,7 @@ v1/v2 router 层会根据配置使用 `app.dependencies.rate_limit` 中的
 新增或修改端点前，请确认：
 
 1. 路径放在正确目录。
-2. 与官方 osu! API 对应的行为、参数、分页、错误码和响应字段兼容。
+2. 与上游 API 对应的行为、参数、分页、错误码和响应字段兼容。
 3. 处理器是异步函数。
 4. 使用仓库内已有的 DB、Redis、用户和限流依赖。
 5. 复杂逻辑放在 service。

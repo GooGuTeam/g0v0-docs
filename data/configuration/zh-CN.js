@@ -37,7 +37,7 @@ export default {
   },
   fetcher: {
     $name: 'Fetcher 设置',
-    $description: 'Fetcher 用于从 osu! 官方 API 获取数据，使用 osu! 官方 API 的 OAuth 2.0 认证。',
+    $description: 'Fetcher 用于从 上游 官方 API 获取数据，使用 上游 官方 API 的 OAuth 2.0 认证。',
     FETCHER_CLIENT_ID: 'Fetcher 客户端 ID',
     FETCHER_CLIENT_SECRET: 'Fetcher 客户端密钥',
   },
@@ -51,7 +51,7 @@ export default {
     TOTP_ISSUER: 'TOTP 认证器中的发行者名称',
     TOTP_SERVICE_NAME: 'TOTP 认证器中显示的服务名称',
     TOTP_USE_USERNAME_IN_LABEL: '在TOTP标签中使用用户名而不是邮箱',
-    ENABLE_TURNSTILE_VERIFICATION: '是否启用 Cloudflare Turnstile 验证（仅对非 osu! 客户端）',
+    ENABLE_TURNSTILE_VERIFICATION: '是否启用 Cloudflare Turnstile 验证（仅对非 上游 客户端）',
     TURNSTILE_SECRET_KEY: 'Cloudflare Turnstile Secret Key',
     TURNSTILE_DEV_MODE: 'Turnstile 开发模式（跳过验证，用于本地开发）',
     ENABLE_EMAIL_VERIFICATION: '是否启用邮件验证功能',

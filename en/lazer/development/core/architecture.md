@@ -32,7 +32,7 @@ main components are:
 | `app/tasks/`         | Startup tasks, shutdown tasks, and APScheduler jobs.                                                                       |
 | `app/dependencies/`  | FastAPI / FastDepends dependency injection for database, Redis, authentication, rate limits, fetcher, scheduler, and more. |
 | `app/helpers/`       | Common helpers for background tasks, time, strings, GeoIP, asset proxy, and related utilities.                             |
-| `app/fetcher/`       | Fetches beatmaps, users, and other data from official osu! or external services.                                           |
+| `app/fetcher/`       | Fetches beatmaps, users, and other data from upstream or external services.                                                |
 | `app/calculating/`   | Difficulty, performance, mods, and ruleset-related calculation code.                                                       |
 | `app/plugins/`       | Plugin loading, event hub, plugin API router, and plugin migration integration.                                            |
 | `app/storage/`       | Local storage or object storage related logic.                                                                             |
@@ -106,6 +106,6 @@ APIs under the core `private_router`.
   networks should block public access to them.
 - Importing `app.database` runs `model_rebuild()` for `*Model` and `*Resp`
   types. New related types must be exported correctly.
-- The core repository is compatible with osu! API v1/v2, g0v0 private APIs,
+- The core repository is compatible with upstream API v1/v2, g0v0 private APIs,
   plugin APIs, and client-specific flows. Confirm the impact scope before
   modifying public behavior.

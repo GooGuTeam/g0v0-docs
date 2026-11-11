@@ -3,16 +3,34 @@
 
 # g0v0!
 
-**g0v0!** is a rhythm game client built and maintained by GooGuTeam on top of
-the open-source [ppy/osu](https://github.com/ppy/osu) (osu!lazer) codebase,
-ready to work with [g0v0-server](/en/lazer/) out of the box.
+> [!IMPORTANT]
+>
+> **g0v0! is an unofficial client modified from the osu! open-source codebase.**
+>
+> - We (GooGuTeam) are not affiliated with ppy Pty Ltd, peppy, or team osu!.
+>   These projects are neither supported nor endorsed by them.
+> - **osu!** and **ppy** are registered trademarks of **ppy Pty Ltd**.
+> - Please support the original project: play on the
+>   [official servers](https://osu.ppy.sh) and consider becoming a
+>   [supporter](https://osu.ppy.sh/home/support) to help fund upstream
+>   development.
+> - For upstream issues and improvements, file issues / PRs on the
+>   [upstream client repository](https://github.com/ppy/osu) or use the
+>   [upstream feedback forum](https://osu.ppy.sh/community/forums/5), rather
+>   than contacting the upstream team about g0v0!-specific or
+>   g0v0-server-specific problems. Report those to the relevant GooGuTeam
+>   repository instead.
+> - If you have not played the original game, please
+>   [download and play the official client](https://osu.ppy.sh/home/download)
+>   first. These community projects are not replacements for the original.
 
-g0v0! keeps all gameplay, UI, and framework behaviour of osu!lazer intact and
-only changes the parts that talk to the server (for example a custom API server
-and Relax / Autopilot special rulesets). Together these changes form the **g0v0!
-Standard** — any client that implements the g0v0! Standard is fully compatible
-with every g0v0-based server. See [Differences from osu!(lazer)](./difference)
-for details.
+**g0v0!** is a free and open rhythm game client maintained by GooGuTeam,
+designed to connect to [g0v0-server](/en/lazer/). It extends the upstream
+codebase with custom server integration, Relax / Autopilot special rulesets, and
+additional interface and gameplay features.
+
+The **g0v0! Standard** defines server extension conventions for compatible
+community servers. See [Differences from upstream](./difference) for details.
 
 ## Download
 
@@ -42,11 +60,9 @@ To connect the client to your own server, see
 
 ## Licence
 
-- The code is licensed under the MIT Licence: the upstream ppy parts under
+- The code is licensed under the MIT Licence: the upstream portions under
   [LICENCE-OSU](https://github.com/GooGuTeam/g0v0/blob/v2/LICENCE-OSU), and
   GooGuTeam's additions under
   [LICENCE](https://github.com/GooGuTeam/g0v0/blob/v2/LICENCE).
-- Game resources are derived from ppy/osu-resources and are licensed under
-  CC-BY-NC 4.0 for non-commercial use only.
-- The "osu!" name, trademarks, and brand assets remain the property of ppy Pty
-  Ltd; this project is not affiliated with or endorsed by ppy Pty Ltd.
+- Game resources are derived from the upstream resource repository and are
+  licensed under CC-BY-NC 4.0 for non-commercial use only.

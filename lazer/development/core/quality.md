@@ -9,7 +9,7 @@
 - 行宽：Ruff 配置为 120。
 - 路由：所有路由处理器必须是 `async`。
 - 提交信息：使用 Angular 风格 `type(scope): subject`。
-- 公共 API：保持 osu! v1/v2 兼容；自定义 API 放入 private 或 plugin 路由。
+- 公共 API：保持 上游 v1/v2 兼容；自定义 API 放入 private 或 plugin 路由。
 - 测试现状：核心仓库没有完整测试套件，提交前静态检查和人工审查必须更严格。
 
 ## 提交前检查
@@ -85,7 +85,7 @@ PR 描述至少说明：
 修改端点时审查：
 
 - 是否放在正确 router 目录。
-- v1/v2/notification 是否符合官方 osu! API。
+- v1/v2/notification 是否符合上游 API。
 - private API 是否使用 `/api/private/` 前缀。
 - 鉴权依赖和 scope 是否正确。
 - OpenAPI 文档是否准确。

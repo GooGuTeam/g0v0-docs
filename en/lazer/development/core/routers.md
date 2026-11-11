@@ -7,14 +7,14 @@
 
 The location of public APIs is a hard rule:
 
-| Path                                          | Allowed content                                                                            |
-| --------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| `app/router/v1/`                              | Endpoints that already exist in osu! API v1.                                               |
-| `app/router/v2/`                              | Endpoints that already exist in osu! API v2 / OpenAPI.                                     |
-| `app/router/notification/`                    | osu! chat, notification, and BanchoBot endpoints. These must also match official behavior. |
-| `app/router/auth.py`                          | OAuth, token, login authorization, and related authentication flows.                       |
-| `app/router/private/`                         | g0v0 custom or experimental core APIs.                                                     |
-| `app/router/file.py`, `redirect.py`, `lio.py` | Dedicated entrypoints for files, frontend redirects, legacy IO, and related features.      |
+| Path                                          | Allowed content                                                                                |
+| --------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `app/router/v1/`                              | Endpoints that already exist in upstream API v1.                                               |
+| `app/router/v2/`                              | Endpoints that already exist in upstream API v2 / OpenAPI.                                     |
+| `app/router/notification/`                    | upstream chat, notification, and BanchoBot endpoints. These must also match official behavior. |
+| `app/router/auth.py`                          | OAuth, token, login authorization, and related authentication flows.                           |
+| `app/router/private/`                         | g0v0 custom or experimental core APIs.                                                         |
+| `app/router/file.py`, `redirect.py`, `lio.py` | Dedicated entrypoints for files, frontend redirects, legacy IO, and related features.          |
 
 Before adding an endpoint, check the official specifications:
 
@@ -70,8 +70,7 @@ invent new scopes casually.
 
 ### Client / Frontend Users
 
-APIs used only by the osu!(lazer) client or the g0v0 frontend can use
-`ClientUser`:
+APIs used only by the lazer client or the g0v0 frontend can use `ClientUser`:
 
 ```python
 from app.dependencies.user import ClientUser
@@ -139,7 +138,7 @@ Before adding or changing an endpoint, confirm that:
 
 1. The path is in the correct directory.
 2. The behavior, parameters, pagination, error codes, and response fields are
-   compatible with the corresponding official osu! API.
+   compatible with the corresponding upstream API.
 3. The handler is asynchronous.
 4. It uses existing DB, Redis, user, and rate-limit dependencies from the
    repository.

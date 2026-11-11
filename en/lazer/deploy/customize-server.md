@@ -10,7 +10,7 @@ This section will introduce how to customize your g0v0.
 ## Configure Reverse Proxy
 
 When the frontend loads avatars, beatmap covers, and other static images, the
-resources come from three official osu! domains:
+resources come from three upstream domains:
 
 | Upstream Domain | Content        |
 | --------------- | -------------- |
@@ -122,12 +122,13 @@ outdated files.
 ## Set up Fetcher
 
 A newly created g0v0 does not contain any beatmap data. It uses Fetcher to fetch
-beatmaps from osu! Bancho. Below is how to configure Fetcher.
+beatmaps from upstream Bancho. Below is how to configure Fetcher.
 
-### Get osu! OAuth Grant
+### Get upstream OAuth Grant
 
-Fetcher works based on osu! API v2, so you need an osu! API v2 OAuth grant. Go
-to [osu! Settings](https://osu.ppy.sh/home/account/edit#new-oauth-application)
+Fetcher works based on upstream API v2, so you need an upstream API v2 OAuth
+grant. Go to
+[upstream Settings](https://osu.ppy.sh/home/account/edit#new-oauth-application)
 to create a new OAuth application and fill in the following information:
 
 - Application Name: Any name, e.g., `g0v0 Fetcher`
@@ -148,7 +149,7 @@ FETCHER_CLIENT_SECRET="Your Client Secret"
 
 Save and restart the g0v0 server. Now Fetcher is configured. When the server
 receives a request for a non-existent beatmap request, Fetcher will
-automatically fetch beatmap data from osu! Bancho.
+automatically fetch beatmap data from upstream Bancho.
 
 ## User Session Security
 
@@ -222,7 +223,7 @@ ENABLE_AP=true
 Additionally, due to client limitations, you cannot directly view
 Relax/Autopilot score leaderboards in-game. g0v0 provides an alternative: view
 score leaderboards by filtering the current mod combination. Since this feature
-requires osu! supporter, it is recommended to enable supporter status for all
+requires supporter status, it is recommended to enable supporter status for all
 newly registered users.
 
 Edit `.env` and add the following configuration:

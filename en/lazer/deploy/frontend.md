@@ -175,7 +175,7 @@ If the page opens correctly and login works, the frontend address, backend API
 address, and OAuth configuration are basically correct.
 
 Then follow
-[Connect to the Server from the osu!(lazer) Client](./login-from-client.md):
+[Connect to the Server from the lazer Client](./login-from-client.md):
 
 - set `Website Url` to the frontend address
 - set `API Url` to the backend API address

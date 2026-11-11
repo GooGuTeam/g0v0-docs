@@ -39,7 +39,7 @@ export default {
   fetcher: {
     $name: 'Fetcher Settings',
     $description:
-      'Fetcher is used to fetch data from osu! official API, using osu! official API OAuth 2.0 authentication',
+      'Fetcher is used to fetch data from upstream official API, using upstream official API OAuth 2.0 authentication',
     FETCHER_CLIENT_ID: 'Fetcher Client ID',
     FETCHER_CLIENT_SECRET: 'Fetcher Client Secret',
   },

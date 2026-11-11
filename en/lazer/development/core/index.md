@@ -19,8 +19,8 @@ section for core code and use
   dependencies, configuration, and common commands.
 - [Project Structure and Lifecycle](./architecture): understand core
   directories, startup order, and shutdown order.
-- [Routers, APIs, and Authentication](./routers): keep osu! API compatibility
-  and use dependency injection correctly.
+- [Routers, APIs, and Authentication](./routers): keep upstream API
+  compatibility and use dependency injection correctly.
 - [Database, Models, and Migrations](./database): write SQLModel models,
   on-demand response models, Redis code, and migrations.
 - [Services, Tasks, Logging, and Error Handling](./services-tasks): organize
@@ -32,7 +32,7 @@ section for core code and use
 
 1. **Keep public APIs compatible.** `app/router/v1/`, `app/router/v2/`, and
    `app/router/notification/` may only implement endpoints that exist in the
-   official osu! API. Custom or experimental endpoints must go under
+   upstream API. Custom or experimental endpoints must go under
    `app/router/private/`.
 2. **Keep routers thin.** Route handlers should handle parameters,
    authentication, and response composition. Complex business logic belongs in

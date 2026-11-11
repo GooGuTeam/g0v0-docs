@@ -12,7 +12,7 @@
 
 | 依赖类型         | 导入路径                     | 描述                                   |
 | ---------------- | ---------------------------- | -------------------------------------- |
-| `Fetcher`        | `app.dependencies.fetcher`   | Fetcher 实例，用于从 osu! 官方获取数据 |
+| `Fetcher`        | `app.dependencies.fetcher`   | Fetcher 实例，用于从 上游 官方获取数据 |
 | `StorageService` | `app.dependencies.storage`   | 存储服务，用于文件存储操作             |
 | `EventHub`       | `app.dependencies.event_hub` | 事件中心，用于发送和订阅事件           |
 
