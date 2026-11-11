@@ -1,6 +1,6 @@
 {
-  "$commit": "0fd185a46e46cbc3c1143c1e7db51a40d2b57db5",
-  "$timestamp": "2026-10-15T16:17:56Z",
+  "$commit": "e0b1a083aa542b04d87d630c97acac582884bc6a",
+  "$timestamp": "2026-11-02T01:36:00Z",
   "database": {
     "MYSQL_HOST": {
       "$type": "string",
@@ -103,6 +103,25 @@
     "ENABLE_RATE_LIMIT": {
       "$type": "boolean",
       "$default": true
+    },
+    "TRUSTED_PROXIES": {
+      "$type": "array<string>",
+      "$default": [
+        "127.0.0.0/8",
+        "::1/128",
+        "10.0.0.0/8",
+        "172.16.0.0/12",
+        "192.168.0.0/16",
+        "fc00::/7"
+      ]
+    },
+    "TRUSTED_PROXY_SOURCES": {
+      "$type": "array<string>",
+      "$default": []
+    },
+    "TRUSTED_PROXY_REFRESH_MINUTES": {
+      "$type": "integer",
+      "$default": 60
     }
   },
   "fetcher": {
@@ -357,6 +376,114 @@
       "$default": "b-ppy"
     }
   },
+  "wiki": {
+    "ENABLE_WIKI": {
+      "$type": "boolean",
+      "$default": true
+    },
+    "WIKI_REPOSITORY": {
+      "$type": "string",
+      "$default": "ppy/osu-wiki"
+    },
+    "WIKI_BRANCH": {
+      "$type": "string",
+      "$default": "master"
+    },
+    "WIKI_CONTENT_ROOT": {
+      "$type": "string",
+      "$default": "wiki"
+    },
+    "WIKI_RAW_BASE_URL": {
+      "$type": "string",
+      "$default": "https://raw.githubusercontent.com"
+    },
+    "WIKI_LISTING_BASE_URL": {
+      "$type": "string",
+      "$default": "https://api.github.com"
+    },
+    "WIKI_GITHUB_TOKEN": {
+      "$type": "string",
+      "$default": ""
+    },
+    "WIKI_FALLBACK_LOCALE": {
+      "$type": "string",
+      "$default": "en"
+    },
+    "WIKI_CACHE_EXPIRE_SECONDS": {
+      "$type": "integer",
+      "$default": 300
+    },
+    "WIKI_RESOURCE_CACHE_EXPIRE_SECONDS": {
+      "$type": "integer",
+      "$default": 3600
+    },
+    "WIKI_REQUEST_TIMEOUT_SECONDS": {
+      "$type": "float",
+      "$default": 10.0
+    }
+  },
+  "content": {
+    "ENABLE_CHANGELOG": {
+      "$type": "boolean",
+      "$default": true
+    },
+    "ENABLE_NEWS": {
+      "$type": "boolean",
+      "$default": true
+    },
+    "ENABLE_CONTENT_IMAGES": {
+      "$type": "boolean",
+      "$default": true
+    },
+    "CONTENT_REPOSITORY": {
+      "$type": "string",
+      "$default": "GooGuTeam/g0v0-news"
+    },
+    "CONTENT_BRANCH": {
+      "$type": "string",
+      "$default": "main"
+    },
+    "CHANGELOG_CONTENT_ROOT": {
+      "$type": "string",
+      "$default": "changelog"
+    },
+    "NEWS_CONTENT_ROOT": {
+      "$type": "string",
+      "$default": "news"
+    },
+    "CONTENT_RAW_BASE_URL": {
+      "$type": "string",
+      "$default": "https://raw.githubusercontent.com"
+    },
+    "CONTENT_LISTING_BASE_URL": {
+      "$type": "string",
+      "$default": "https://api.github.com"
+    },
+    "CONTENT_GITHUB_TOKEN": {
+      "$type": "string",
+      "$default": ""
+    },
+    "CONTENT_WEB_BASE_URL": {
+      "$type": "string",
+      "$default": "https://github.com"
+    },
+    "CONTENT_CACHE_EXPIRE_SECONDS": {
+      "$type": "integer",
+      "$default": 300
+    },
+    "CONTENT_LISTING_CACHE_EXPIRE_SECONDS": {
+      "$type": "integer",
+      "$default": 1800
+    },
+    "CONTENT_INDEX_EXPIRE_SECONDS": {
+      "$type": "integer",
+      "$default": 600
+    },
+    "CONTENT_REQUEST_TIMEOUT_SECONDS": {
+      "$type": "float",
+      "$default": 10.0
+    }
+  },
   "beatmap_sync": {
     "ENABLE_AUTO_BEATMAP_SYNC": {
       "$type": "boolean",
@@ -401,6 +528,18 @@
       "$default": {
         "local_storage_path": "./storage"
       }
+    },
+    "ENABLE_SCREENSHOT_CLEANUP": {
+      "$type": "boolean",
+      "$default": false
+    },
+    "SCREENSHOT_RETENTION_DAYS": {
+      "$type": "integer",
+      "$default": 30
+    },
+    "SCREENSHOT_CLEANUP_BATCH_SIZE": {
+      "$type": "integer",
+      "$default": 200
     }
   },
   "plugins": {
