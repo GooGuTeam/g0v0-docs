@@ -73,9 +73,8 @@ The V2 series uses a brand-new configuration format. All configuration is stored
 as JSON, split across several files. The v1 `.env` has to be migrated into the
 corresponding JSON files under the `v2-config` directory.
 
-We provide an [online converter](config-converter.md) that helps you convert
-the v1 `.env` file into the v2 JSON configuration files. You can also refer to
-the
+We provide an [online converter](config-converter.md) that helps you convert the
+v1 `.env` file into the v2 JSON configuration files. You can also refer to the
 [configuration documentation](https://github.com/GooGuTeam/g0v0.Server.Realtime#configure-the-realtime-server)
 to migrate manually.
 

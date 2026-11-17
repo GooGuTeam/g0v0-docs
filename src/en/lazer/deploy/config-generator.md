@@ -44,9 +44,9 @@ anywhere.
   any time).
 - `chat.json` is optional: when the file is absent every chat limit falls back
   to the osu-web default.
-- See [Configurations](../reference/configurations) for a description of
-  every `.env` option, and
-  [v2 Configurations](../reference/v2-configurations) for the v2 fields.
+- See [Configurations](../reference/configurations) for a description of every
+  `.env` option, and [v2 Configurations](../reference/v2-configurations) for the
+  v2 fields.
 
 ## Compared to the config converter
 

@@ -208,7 +208,8 @@ export default {
     CONTENT_GITHUB_TOKEN: '列举目录时使用的 GitHub Token，留空会受到未认证调用速率限制',
     CONTENT_WEB_BASE_URL: '文章源文件的网页地址，用于生成新闻的 edit_url',
     CONTENT_CACHE_EXPIRE_SECONDS: '文件内容响应的缓存时间（秒）',
-    CONTENT_LISTING_CACHE_EXPIRE_SECONDS: '目录列举的缓存时间（秒），建议设置为大于 CONTENT_INDEX_EXPIRE_SECONDS',
+    CONTENT_LISTING_CACHE_EXPIRE_SECONDS:
+      '目录列举的缓存时间（秒），建议设置为大于 CONTENT_INDEX_EXPIRE_SECONDS',
     CONTENT_INDEX_EXPIRE_SECONDS: '解析后的内容快照复用时间（秒）',
     CONTENT_REQUEST_TIMEOUT_SECONDS: '请求内容仓库的超时时间（秒）',
   },

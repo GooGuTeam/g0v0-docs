@@ -70,7 +70,8 @@ lazer 客户端本身不支持像 stable 那样通过命令行 (`-devserver`) �
 
 ::: tip 提示
 
-从旧版本迁移如果你之前使用的是 `osu.Game.Rulesets.AuthlibInjection.dll`，请先删除该文件。
+从旧版本迁移如果你之前使用的是
+`osu.Game.Rulesets.AuthlibInjection.dll`，请先删除该文件。
 
 :::
 

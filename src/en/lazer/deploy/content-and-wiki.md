@@ -3,12 +3,16 @@
 
 # Wiki, Changelog, and News
 
-g0v0 implements the three groups of osu! endpoints — wiki, changelog and news — so that the **Wiki**, **Changelog** and **News** overlays of the client show custom content.
+g0v0 implements the three groups of osu! endpoints — wiki, changelog and news —
+so that the **Wiki**, **Changelog** and **News** overlays of the client show
+custom content.
 
-Given that these three kinds of content are large in volume and should be maintained separately, g0v0 reads them from specified external repositories and returns them following the osu! API spec, while providing simple caching.
+Given that these three kinds of content are large in volume and should be
+maintained separately, g0v0 reads them from specified external repositories and
+returns them following the osu! API spec, while providing simple caching.
 
 | Feature       | Endpoint                                                                    | Where the client shows it | Content source                                   |
-|---------------|-----------------------------------------------------------------------------|---------------------------|--------------------------------------------------|
+| ------------- | --------------------------------------------------------------------------- | ------------------------- | ------------------------------------------------ |
 | Wiki          | `GET /api/v2/wiki/{locale}/{path}`                                          | Wiki overlay              | `WIKI_REPOSITORY` (default `ppy/osu-wiki`)       |
 | Wiki images   | `GET /wiki/images/{path}`                                                   | Wiki / news banners       | `WIKI_CONTENT_ROOT` of the same repository       |
 | Changelog     | `GET /api/v2/changelog`, `/api/v2/changelog/{stream}/{build}`, `/{version}` | Changelog overlay         | `CHANGELOG_CONTENT_ROOT` of `CONTENT_REPOSITORY` |
@@ -19,10 +23,16 @@ Given that these three kinds of content are large in volume and should be mainta
 
 The three content serving paths share the same reading and caching mechanism:
 
-- **A single format only.** g0v0 always returns Markdown; the HTML format fields of a response are left empty, and the client should handle them as needed.
-- **GitHub compatible.** Text is read from `*_RAW_BASE_URL/{owner}/{repo}/{branch}/{path}` and directories are listed through `*_LISTING_BASE_URL/repos/{owner}/{repo}/contents/{path}`.
-- **Background warm-up.** Caches are warmed in the background at startup; repository access problems affect neither the other core features nor the existing content cache.
-- **Strict handling.** An invalid content file is skipped outright; no fallback value is provided.
+- **A single format only.** g0v0 always returns Markdown; the HTML format fields
+  of a response are left empty, and the client should handle them as needed.
+- **GitHub compatible.** Text is read from
+  `*_RAW_BASE_URL/{owner}/{repo}/{branch}/{path}` and directories are listed
+  through `*_LISTING_BASE_URL/repos/{owner}/{repo}/contents/{path}`.
+- **Background warm-up.** Caches are warmed in the background at startup;
+  repository access problems affect neither the other core features nor the
+  existing content cache.
+- **Strict handling.** An invalid content file is skipped outright; no fallback
+  value is provided.
 
 ## Wiki
 
@@ -34,28 +44,33 @@ The wiki uses the layout of osu-wiki — one file per language, per page:
 {WIKI_CONTENT_ROOT}/{path}/{locale}.md
 ```
 
-With the defaults `WIKI_REPOSITORY=ppy/osu-wiki`, `WIKI_BRANCH=master` and `WIKI_CONTENT_ROOT=wiki`.
+With the defaults `WIKI_REPOSITORY=ppy/osu-wiki`, `WIKI_BRANCH=master` and
+`WIKI_CONTENT_ROOT=wiki`.
 
 ### Paths and redirects
 
-`{path}` accepts whatever the client can produce — `Gameplay/Accuracy`, `/wiki/Gameplay/Accuracy`, `Accuracy.md`.
+`{path}` accepts whatever the client can produce — `Gameplay/Accuracy`,
+`/wiki/Gameplay/Accuracy`, `Accuracy.md`.
 
-When a page does not exist, g0v0 also consults the `redirect.yaml` of the repository and serves the page after redirection (at the server level).
+When a page does not exist, g0v0 also consults the `redirect.yaml` of the
+repository and serves the page after redirection (at the server level).
 
 ### Page metadata
 
-| Field               | Source                                                                                                   |
-|---------------------|----------------------------------------------------------------------------------------------------------|
-| `title`             | The `title` of the front matter → the first level-1 heading (link text) → derived from the path          |
-| `layout`            | The `layout` of the front matter; (`main_page` uses the main page layout)                                |
-| `tags`              | The `tags` of the front matter (inline list or single string)                                            |
-| `subtitle`          | Title of the parent page; empty when the parent is not an article                                        |
-| `markdown`          | Passed through as written                                                                               |
-| `available_locales` | The languages found by listing the directory                                                             |
+| Field               | Source                                                                                          |
+| ------------------- | ----------------------------------------------------------------------------------------------- |
+| `title`             | The `title` of the front matter → the first level-1 heading (link text) → derived from the path |
+| `layout`            | The `layout` of the front matter; (`main_page` uses the main page layout)                       |
+| `tags`              | The `tags` of the front matter (inline list or single string)                                   |
+| `subtitle`          | Title of the parent page; empty when the parent is not an article                               |
+| `markdown`          | Passed through as written                                                                       |
+| `available_locales` | The languages found by listing the directory                                                    |
 
 ### Images and `/media-url`
 
-osu-wiki writes its images as `/wiki/shared/...` (absolute) or `img/...` (relative to the article). The client resolves both and rewrites the `/wiki/` segment into `/wiki/images/`, so the server offers:
+osu-wiki writes its images as `/wiki/shared/...` (absolute) or `img/...`
+(relative to the article). The client resolves both and rewrites the `/wiki/`
+segment into `/wiki/images/`, so the server offers:
 
 - `GET /wiki/images/{path}` — returns wiki images.
 
@@ -73,7 +88,8 @@ WIKI_GITHUB_TOKEN=ghp_xxxxxxxx
 WIKI_FALLBACK_LOCALE=en
 ```
 
-`WIKI_RAW_BASE_URL` may also point at a repository of your own, as long as it follows the `osu-wiki` structure.
+`WIKI_RAW_BASE_URL` may also point at a repository of your own, as long as it
+follows the `osu-wiki` structure.
 
 ## Changelog
 
@@ -89,7 +105,8 @@ WIKI_FALLBACK_LOCALE=en
     2026.1015.0-robin.json
 ```
 
-The directory is the stream name (`changelog/g0v0/` is served at `/api/v2/changelog/g0v0/...`) and the file name is the version of the build.
+The directory is the stream name (`changelog/g0v0/` is served at
+`/api/v2/changelog/g0v0/...`) and the file name is the version of the build.
 
 A build file:
 
@@ -110,7 +127,7 @@ A build file:
 ```
 
 | Key               | Required | Notes                                                                                                                  |
-|-------------------|----------|------------------------------------------------------------------------------------------------------------------------|
+| ----------------- | -------- | ---------------------------------------------------------------------------------------------------------------------- |
 | `version`         | yes      | Both `2026.1009.0` and `2026.1009.0-g0v0` are accepted. A `-suffix` names the stream, so it has to match the directory |
 | `entries`         | yes      | At least one.                                                                                                          |
 | `id`              | no       | Derived from the digits of `version`. Declare it when two builds spell the same digits                                 |
@@ -119,11 +136,15 @@ A build file:
 | `users`           | no       | Users on this build, `0` by default.                                                                                   |
 | `youtube_id`      | no       | Video shown above the changelog, as the bare identifier                                                                |
 
-An entry requires `type`, which is one of `add`, `fix` or `misc`, and at least one of `title` and `message`. `category` defaults to `Miscellaneous`; `url`, `repository`, `github_url`, `github_pull_request_id`, `major`, `created_at` and `github_user` are also accepted.
+An entry requires `type`, which is one of `add`, `fix` or `misc`, and at least
+one of `title` and `message`. `category` defaults to `Miscellaneous`; `url`,
+`repository`, `github_url`, `github_pull_request_id`, `major`, `created_at` and
+`github_user` are also accepted.
 
 ### Streams
 
-`streams.json` describes only the streams to be displayed; the list may be top level or under a `streams` key:
+`streams.json` describes only the streams to be displayed; the list may be top
+level or under a `streams` key:
 
 ```json
 {
@@ -134,35 +155,49 @@ An entry requires `type`, which is one of `add`, `fix` or `misc`, and at least o
 }
 ```
 
-- `name` has to be the directory name, and is limited to lowercase letters, digits and dashes. `id` defaults to the position in the list, `display_name` to `name`.
+- `name` has to be the directory name, and is limited to lowercase letters,
+  digits and dashes. `id` defaults to the position in the list, `display_name`
+  to `name`.
 - Featured streams are listed first.
-- **`user_count` is not allowed here.** (g0v0 computes the active users of each stream in real time.)
+- **`user_count` is not allowed here.** (g0v0 computes the active users of each
+  stream in real time.)
 - A directory nobody describes still shows up, under the directory name.
 - A stream with no builds **does not appear**.
 
 ### Three ways to address a build
 
 | Request                                  | Meaning                                                                     |
-|------------------------------------------|-----------------------------------------------------------------------------|
+| ---------------------------------------- | --------------------------------------------------------------------------- |
 | `GET /api/v2/changelog/{stream}/{build}` | A version of a given stream                                                 |
 | `GET /api/v2/changelog/{version}`        | By version; a stream name is also accepted and resolves to its newest build |
 | `GET /api/v2/changelog/{version}?key=id` | By build identifier                                                         |
 
-Both `{build}` and `{version}` accept the version with or without its suffix: when the exact match fails, the lookup is retried against `display_version` (the version without the `-suffix` and non-numeric characters), so a `2026.1009.0` link copied out of the client does not 404.
+Both `{build}` and `{version}` accept the version with or without its suffix:
+when the exact match fails, the lookup is retried against `display_version` (the
+version without the `-suffix` and non-numeric characters), so a `2026.1009.0`
+link copied out of the client does not 404.
 
 ### What a response says
 
-- A listing is newest first and always **21 builds per page** (`search.limit` reports that figure), filtered by `stream`, `from`, `to` and `max_id`.
-- Markdown bodies are returned unless `message_formats[]` is sent without `markdown`, in which case `message` is `null`. `message_html` is always `null`.
-- The single-build endpoints carry `versions.next` and `versions.previous` (within the same stream); builds listed inside a page do not.
-- `streams[]` of a listing carries `user_count` and `latest_build`; the `update_stream` nested in a build carries the four identifying fields only.
-- `users` and `user_count` are **what the files declare**: the server does not track which build a client actually runs.
+- A listing is newest first and always **21 builds per page** (`search.limit`
+  reports that figure), filtered by `stream`, `from`, `to` and `max_id`.
+- Markdown bodies are returned unless `message_formats[]` is sent without
+  `markdown`, in which case `message` is `null`. `message_html` is always
+  `null`.
+- The single-build endpoints carry `versions.next` and `versions.previous`
+  (within the same stream); builds listed inside a page do not.
+- `streams[]` of a listing carries `user_count` and `latest_build`; the
+  `update_stream` nested in a build carries the four identifying fields only.
+- `users` and `user_count` are **what the files declare**: the server does not
+  track which build a client actually runs.
 
 ## News
 
 ### Post format
 
-A post is written the way osu-wiki writes its `news/` articles — one Markdown file per post, whose file name without `.md` is its slug, that is the `{news}` of `/api/v2/news/{news}`. Posts may sit in a directory per year, or flat.
+A post is written the way osu-wiki writes its `news/` articles — one Markdown
+file per post, whose file name without `.md` is its slug, that is the `{news}`
+of `/api/v2/news/{news}`. Posts may sit in a directory per year, or flat.
 
 ```markdown
 ---
@@ -178,7 +213,7 @@ The opening paragraph becomes the preview in the listing.
 ```
 
 | Key       | Required | Notes                                                                         |
-|-----------|----------|-------------------------------------------------------------------------------|
+| --------- | -------- | ----------------------------------------------------------------------------- |
 | `title`   | yes      | Shown in the listing and the notification                                     |
 | `author`  | yes      | Credited as written                                                           |
 | `date`    | yes      | Publication time. Orders the listing, and the post goes public at this moment |
@@ -188,14 +223,15 @@ The opening paragraph becomes the preview in the listing.
 
 The **first image** of the body becomes the listing banner:
 
-- `/wiki/...` or `/wiki/images/...` → served by the wiki image endpoint of this server
+- `/wiki/...` or `/wiki/images/...` → served by the wiki image endpoint of this
+  server
 - an absolute `http(s)://` URL → used as written
 - any other relative path → resolved against the content repository
 
 ## Caching
 
 | What                               | Lifetime                                                                             |
-|------------------------------------|--------------------------------------------------------------------------------------|
+| ---------------------------------- | ------------------------------------------------------------------------------------ |
 | Wiki article text (404 included)   | `WIKI_CACHE_EXPIRE_SECONDS` (300s)                                                   |
 | Wiki image bytes                   | `WIKI_RESOURCE_CACHE_EXPIRE_SECONDS` (3600s); a missing image is remembered for 300s |
 | Wiki directory listing / redirects | `WIKI_RESOURCE_CACHE_EXPIRE_SECONDS` (3600s)                                         |
@@ -207,7 +243,7 @@ The **first image** of the body becomes the listing banner:
 ## Troubleshooting
 
 | Symptom                                           | Cause and fix                                                                                                                                  |
-|---------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
+| ------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
 | `/api/v2/changelog` or `/api/v2/news` answers 503 | `CONTENT_LISTING_BASE_URL` is empty (nothing can be listed), or listing the repository failed (rate limit, private repository without a token) |
 | The log says "No build ... could be read"         | The directory holds files, but all of them failed validation. The log names the file and the field — fix the file, not the server              |
 | A new post or build does not show up              | Wait for `CONTENT_INDEX_EXPIRE_SECONDS` and `CONTENT_LISTING_CACHE_EXPIRE_SECONDS`, or clear the matching Redis keys to publish it now         |

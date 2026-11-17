@@ -30,9 +30,9 @@ In a production environment, be sure to change the default keys and passwords!
 :::tip Documentation Contributor Tip
 
 This file is auto-generated, and any changes will be overwritten. If you want to
-modify the translation, please edit `src/data/configuration/en.js`. Click the "Edit
-this page on GitHub" link at the bottom left to jump directly to the editing
-page of that file.
+modify the translation, please edit `src/data/configuration/en.js`. Click the
+"Edit this page on GitHub" link at the bottom left to jump directly to the
+editing page of that file.
 
 Last generated on <code>{{ data.definition.$timestamp }}</code> (commit:
 <code><a :href="commitUrl">{{ data.definition.$commit }}</a></code>).

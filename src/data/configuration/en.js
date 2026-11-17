@@ -187,13 +187,16 @@ export default {
     WIKI_REPOSITORY: 'Repository holding the wiki articles, as owner/repo',
     WIKI_BRANCH: 'Branch the articles are read from',
     WIKI_CONTENT_ROOT: 'Directory of the repository holding the articles. wiki for ppy/osu-wiki',
-    WIKI_RAW_BASE_URL: 'Base URL the file contents are read from, which may point at a mirror of your own',
+    WIKI_RAW_BASE_URL:
+      'Base URL the file contents are read from, which may point at a mirror of your own',
     WIKI_LISTING_BASE_URL:
       'GitHub API base URL used to list directories, only to report the languages a page is already translated into. Empty leaves only the languages actually served',
-    WIKI_GITHUB_TOKEN: 'GitHub token used to list directories. Empty leaves the listing under the unauthenticated rate limit',
+    WIKI_GITHUB_TOKEN:
+      'GitHub token used to list directories. Empty leaves the listing under the unauthenticated rate limit',
     WIKI_FALLBACK_LOCALE: 'Language to use when the page has no translation in the requested one',
     WIKI_CACHE_EXPIRE_SECONDS: 'Seconds an article response is cached',
-    WIKI_RESOURCE_CACHE_EXPIRE_SECONDS: 'Seconds wiki image, directory listing and redirect map requests are cached',
+    WIKI_RESOURCE_CACHE_EXPIRE_SECONDS:
+      'Seconds wiki image, directory listing and redirect map requests are cached',
     WIKI_REQUEST_TIMEOUT_SECONDS: 'Timeout of a request to the wiki repository (seconds)',
   },
   content: {
@@ -209,10 +212,14 @@ export default {
     CONTENT_BRANCH: 'Branch the content is read from',
     CHANGELOG_CONTENT_ROOT: 'Changelog content directory',
     NEWS_CONTENT_ROOT: 'News content directory',
-    CONTENT_RAW_BASE_URL: 'Base URL the file contents are read from, which may point at a mirror of your own',
-    CONTENT_LISTING_BASE_URL: 'GitHub API base URL used to list builds and posts. Empty makes the service unavailable',
-    CONTENT_GITHUB_TOKEN: 'GitHub token used to list directories. Empty leaves the listing under the unauthenticated rate limit',
-    CONTENT_WEB_BASE_URL: 'Web base URL of the source files, used to build the edit_url of a news post',
+    CONTENT_RAW_BASE_URL:
+      'Base URL the file contents are read from, which may point at a mirror of your own',
+    CONTENT_LISTING_BASE_URL:
+      'GitHub API base URL used to list builds and posts. Empty makes the service unavailable',
+    CONTENT_GITHUB_TOKEN:
+      'GitHub token used to list directories. Empty leaves the listing under the unauthenticated rate limit',
+    CONTENT_WEB_BASE_URL:
+      'Web base URL of the source files, used to build the edit_url of a news post',
     CONTENT_CACHE_EXPIRE_SECONDS: 'Seconds a file content response is cached',
     CONTENT_LISTING_CACHE_EXPIRE_SECONDS:
       'Seconds a directory listing is cached. Set it above CONTENT_INDEX_EXPIRE_SECONDS',

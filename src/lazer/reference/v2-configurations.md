@@ -21,8 +21,7 @@ const sections = computed(() => buildV2Reference(data.definition, data.trans));
 
 此页面是自动生成的，任何更改都将被覆盖。如果你想要更改翻译，请在
 `src/data/v2-configuration/zh-CN.js`
-中修改。配置项的定义（路径、类型、默认值）位于同目录的
-`src/data`
+中修改。配置项的定义（路径、类型、默认值）位于同目录的 `src/data`
 文件夹内，请勿在此页面中重复维护。点击左下角的 "在 GitHub 上编辑此页" 链接可以直接跳转到翻译文件的编辑页面。
 
 :::

@@ -22,10 +22,9 @@ In a production environment, be sure to change the default keys and passwords!
 
 This page is auto-generated, and any changes will be overwritten. If you want to
 modify the translation, please edit `src/data/v2-configuration/en.js`. The field
-definitions (paths, types, defaults) live in the sibling
-`src/data` directory — do not maintain them on this
-page. Click the "Edit this page on GitHub" link at the bottom left to jump
-directly to the editing page of the translation file.
+definitions (paths, types, defaults) live in the sibling `src/data` directory —
+do not maintain them on this page. Click the "Edit this page on GitHub" link at
+the bottom left to jump directly to the editing page of the translation file.
 
 :::
 

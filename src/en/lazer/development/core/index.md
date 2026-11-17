@@ -10,8 +10,7 @@ and PR conventions.
 
 This documentation follows the latest `main` branch of GooGuTeam/g0v0-server. If
 this section conflicts with the plugin development documentation, use this
-section for core code and use
-[Plugin Development](../plugin/) for plugin code.
+section for core code and use [Plugin Development](../plugin/) for plugin code.
 
 ## Quick Links
 

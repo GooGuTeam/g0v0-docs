@@ -17,8 +17,8 @@ main components are:
 - Logging: `loguru`, wrapped by `app/log.py`.
 - Migrations: the `g0v0-migrate` CLI provided by `packages/g0v0-migrations`.
 - Plugin extension: `app/plugins/`. Core development documentation only
-  describes the core boundary. See
-  [Plugin Development](../plugin/) for plugin details.
+  describes the core boundary. See [Plugin Development](../plugin/) for plugin
+  details.
 
 ## Core Directories
 

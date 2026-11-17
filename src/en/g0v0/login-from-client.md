@@ -79,8 +79,8 @@ upstream team.**
 
 ::: tip Tip
 
-Migrating from the old version If you previously used `osu.Game.Rulesets.AuthlibInjection.dll`,
-please delete that file first.
+Migrating from the old version If you previously used
+`osu.Game.Rulesets.AuthlibInjection.dll`, please delete that file first.
 
 :::
 
