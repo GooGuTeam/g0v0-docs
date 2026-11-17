@@ -25,7 +25,7 @@
 >   first. These community projects are not replacements for the original.
 
 **g0v0!** is a free and open rhythm game client maintained by GooGuTeam,
-designed to connect to [g0v0-server](/en/lazer/). It extends the upstream
+designed to connect to [g0v0-server](../lazer/). It extends the upstream
 codebase with custom server integration, Relax / Autopilot special rulesets, and
 additional interface and gameplay features.
 

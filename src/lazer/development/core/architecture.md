@@ -14,7 +14,7 @@
 - 配置：`pydantic-settings`，入口为 `app/config.py` 中的 `settings`。
 - 日志：`loguru` 封装在 `app/log.py`。
 - 迁移：`packages/g0v0-migrations` 提供的 `g0v0-migrate` CLI。
-- 插件扩展：`app/plugins/`，核心开发文档只说明核心边界，插件细节见[插件开发](/lazer/development/plugin/)。
+- 插件扩展：`app/plugins/`，核心开发文档只说明核心边界，插件细节见[插件开发](../plugin/)。
 
 ## 核心目录
 

@@ -9,7 +9,7 @@ const sections = computed(() => buildV2Reference(data.definition, data.trans));
 # v2 配置
 
 本页面列出了所有在 v2 服务的 `config/*.json`
-配置文件中可用的配置选项及其说明。v1（`.env`）的配置项请参考[配置](/lazer/reference/configurations)。
+配置文件中可用的配置选项及其说明。v1（`.env`）的配置项请参考[配置](../reference/configurations)。
 
 ::: warning 警告
 

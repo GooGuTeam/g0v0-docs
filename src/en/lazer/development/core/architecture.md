@@ -18,7 +18,7 @@ main components are:
 - Migrations: the `g0v0-migrate` CLI provided by `packages/g0v0-migrations`.
 - Plugin extension: `app/plugins/`. Core development documentation only
   describes the core boundary. See
-  [Plugin Development](/en/lazer/development/plugin/) for plugin details.
+  [Plugin Development](../plugin/) for plugin details.
 
 ## Core Directories
 

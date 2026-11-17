@@ -10,7 +10,7 @@ const sections = computed(() => buildV2Reference(data.definition, data.trans));
 
 This page lists all configuration options available in the v2 services'
 `config/*.json` configuration files and their descriptions. For the v1 (`.env`)
-options, see [Configurations](/en/lazer/reference/configurations).
+options, see [Configurations](../reference/configurations).
 
 ::: warning Warning
 

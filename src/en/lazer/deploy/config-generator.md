@@ -44,13 +44,13 @@ anywhere.
   any time).
 - `chat.json` is optional: when the file is absent every chat limit falls back
   to the osu-web default.
-- See [Configurations](/en/lazer/reference/configurations) for a description of
+- See [Configurations](../reference/configurations) for a description of
   every `.env` option, and
-  [v2 Configurations](/en/lazer/reference/v2-configurations) for the v2 fields.
+  [v2 Configurations](../reference/v2-configurations) for the v2 fields.
 
 ## Compared to the config converter
 
 This page is for filling in and generating a configuration **manually**, which
 suits fresh deployments or small tweaks. If you already have a complete v1
 `.env` and want all the v2 files converted automatically, use the
-[Config Converter](/en/lazer/deploy/config-converter) instead.
+[Config Converter](config-converter) instead.

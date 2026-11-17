@@ -36,10 +36,10 @@ import { data } from './config-generator.data.ts';
 - `chat.json`
   是可选文件：不放入该文件时，所有聊天限制将使用来自 osu-web 的默认值。
 - `.env`
-  中各项的详细说明请参考[配置](/lazer/reference/configurations)；v2 各字段的说明请参考
-  [v2 配置](/lazer/reference/v2-configurations)。
+  中各项的详细说明请参考[配置](../reference/configurations)；v2 各字段的说明请参考
+  [v2 配置](../reference/v2-configurations)。
 
 ## 与配置转换器的区别
 
 本页面用于**手动**填写并生成配置，适合从零开始部署或只想修改少数选项的场景。如果你已经有一份完整的v1
-`.env`，希望自动转换出 v2 所需的全部配置文件，请使用[配置转换器](/lazer/deploy/config-converter)。
+`.env`，希望自动转换出 v2 所需的全部配置文件，请使用[配置转换器](config-converter)。
