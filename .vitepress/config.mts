@@ -42,10 +42,6 @@ export default defineConfig({
                   text: 'Wiki, Changelog, and News',
                   link: '/en/lazer/deploy/content-and-wiki',
                 },
-                {
-                  text: 'Connect from the Client',
-                  link: '/en/lazer/deploy/login-from-client',
-                },
                 { text: 'Manage Plugins', link: '/en/lazer/deploy/manage-plugins' },
                 {
                   text: 'Deploying the Frontend',
@@ -145,6 +141,10 @@ export default defineConfig({
               text: 'Differences from upstream',
               link: '/en/g0v0/difference',
             },
+            {
+              text: 'Connect from the Client',
+              link: '/en/g0v0/login-from-client',
+            },
           ],
         },
         editLink: {
@@ -185,10 +185,6 @@ export default defineConfig({
                 {
                   text: 'Wiki、更新日志与新闻',
                   link: '/lazer/deploy/content-and-wiki',
-                },
-                {
-                  text: '通过客户端连接到服务器',
-                  link: '/lazer/deploy/login-from-client',
                 },
                 { text: '管理插件', link: '/lazer/deploy/manage-plugins' },
                 {
@@ -265,6 +261,10 @@ export default defineConfig({
           '/g0v0/': [
             { text: '概览', link: '/g0v0/' },
             { text: '与上游的差异', link: '/g0v0/difference' },
+            {
+              text: '通过客户端连接到服务器',
+              link: '/g0v0/login-from-client',
+            },
           ],
         },
       },

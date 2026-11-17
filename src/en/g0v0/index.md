@@ -56,7 +56,7 @@ follow new releases after installation; automatic updates can also be disabled
 in the update settings.
 
 To connect the client to your own server, see
-[Connect from the Client](/en/lazer/deploy/login-from-client).
+[Connect from the Client](login-from-client.md).
 
 ## Licence
 

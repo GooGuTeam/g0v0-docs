@@ -20,7 +20,7 @@ lazer 客户端本身不支持像 stable 那样通过命令行 (`-devserver`) �
 
    在设置中找到“在线”部分，找到“自定义 API 服务器链接”设置项，并在其输入框中输入你的服务器地址（例如：`lazer-api.g0v0.top`）。
 
-   ![g0v0-connect-to-server](../../images/g0v0-connect-to-server.jpg)
+   ![g0v0-connect-to-server](../images/g0v0-connect-to-server.jpg)
 
 3. **重启客户端**
 
@@ -82,7 +82,7 @@ lazer 客户端本身不支持像 stable 那样通过命令行 (`-devserver`) �
 
    然后点击 `Save Changes` 保存设置。
 
-   ![authlib-injection-settings](../../images/lazer-authlib-injection-connect-to-server.jpg)
+   ![authlib-injection-settings](../images/lazer-authlib-injection-connect-to-server.jpg)
 
 2. **重启客户端**
 

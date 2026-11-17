@@ -43,7 +43,7 @@ ARM64）、Android 与 iOS。
 桌面端（Windows / macOS /
 Linux）内置自动更新，安装后会自动跟随新版本；也可以在设置的更新选项中禁用自动更新。
 
-如何让客户端连接到自建服务器，请参阅[通过客户端连接到服务器](/lazer/deploy/login-from-client)。
+如何让客户端连接到自建服务器，请参阅[通过客户端连接到服务器](login-from-client.md)。
 
 ## 许可
 

@@ -25,7 +25,7 @@ platform.
    URL" setting, and enter your server address in the input field (e.g.,
    `lazer-api.g0v0.top`).
 
-   ![g0v0-connect-to-server](../../../images/g0v0-connect-to-server-en.jpg)
+   ![g0v0-connect-to-server](../../images/g0v0-connect-to-server-en.jpg)
 
 3. **Restart the Client**
 
@@ -93,7 +93,7 @@ please delete that file first.
 
    Then click `Save Changes` to save the settings.
 
-   ![authlib-injection-settings](../../../images/lazer-authlib-injection-connect-to-server-en.jpg)
+   ![authlib-injection-settings](../../images/lazer-authlib-injection-connect-to-server-en.jpg)
 
 2. **Restart the Client**
 

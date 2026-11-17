@@ -158,7 +158,7 @@ https://your-frontend-domain.com/login
 
 如果页面可以正常打开，并且能够完成登录，说明前端地址、后端 API 地址、OAuth 配置基本正确。
 
-随后再参考[通过客户端连接到服务器](login-from-client.md)：
+随后再参考[通过客户端连接到服务器](../../g0v0/login-from-client.md)：
 
 - `Website Url` 填写前端地址
 - `API Url` 填写后端 API 地址
