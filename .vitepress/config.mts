@@ -2,6 +2,11 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  srcDir: 'src',
+  // relative to `srcDir`, let's point it back to public
+  vite: {
+    publicDir: '../public',
+  },
   locales: {
     en: {
       label: 'English',
@@ -283,16 +288,16 @@ export default defineConfig({
             // other languages
             locale = filePath.split('/')[0] // get the locale from the path
           }
-          return `https://github.com/GooGuTeam/g0v0-docs/edit/main/data/v2-configuration/${locale}.js`
+          return `https://github.com/GooGuTeam/g0v0-docs/edit/main/src/data/v2-configuration/${locale}.js`
         } else if (filePath.endsWith('configurations.md')) {
           let locale = 'zh-CN'
           if (!filePath.startsWith('lazer/')) {
             // other languages
             locale = filePath.split('/')[0] // get the locale from the path
           }
-          return `https://github.com/GooGuTeam/g0v0-docs/edit/main/data/configuration/${locale}.js`
+          return `https://github.com/GooGuTeam/g0v0-docs/edit/main/src/data/configuration/${locale}.js`
         } else {
-          return `https://github.com/GooGuTeam/g0v0-docs/edit/main/${filePath}`
+          return `https://github.com/GooGuTeam/g0v0-docs/edit/main/src/${filePath}`
         }
       },
       text: '在 GitHub 上编辑此页',
