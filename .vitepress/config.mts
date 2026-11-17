@@ -1,10 +1,16 @@
 import { defineConfig } from 'vitepress'
+import checker from 'vite-plugin-checker'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   srcDir: 'src',
   // relative to `srcDir`, let's point it back to public
   vite: {
+    plugins: [
+      checker({
+        vueTsc: true,
+      }),
+    ],
     publicDir: '../public',
   },
   locales: {
