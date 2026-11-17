@@ -49,6 +49,20 @@ interface DefinitionField {
 export type Definition = Record<string, Record<string, DefinitionField | unknown>>
 export type Labels = Record<string, Record<string, string>>
 
+/**
+ * `Labels` is flat (`key -> text`), but a few nested entries such as
+ * `$storageTypeLabels` are objects of their own. Narrow them at runtime rather
+ * than trusting a cast.
+ */
+function asStringRecord(value: unknown): Record<string, string> {
+  if (typeof value !== 'object' || value === null) return {}
+  const out: Record<string, string> = {}
+  for (const [key, text] of Object.entries(value)) {
+    if (typeof text === 'string') out[key] = text
+  }
+  return out
+}
+
 export function parseKind(type: string): { kind: FieldKind; enumValues?: string[] } {
   if (type === 'string') return { kind: 'string' }
   if (type === 'integer') return { kind: 'int' }
@@ -159,6 +173,9 @@ export function buildV2Model(definition: Definition, labels: Labels): V2Model {
       buildGroups({ [type]: options[type] }, { [type]: storageLabels })[0]?.fields ?? []
   }
   const storageGroup = groups.find(group => group.key === 'storage.json')
+  // `$storageTypeLabels` is a nested `{Local: "本地存储", ...}` object, which the
+  // flat `Labels` type does not describe; check it at runtime instead of casting.
+  const typeLabels = asStringRecord(storageLabels.$storageTypeLabels)
   const typeField = storageGroup?.fields.find(field => field.key === 'Type') ?? {
     key: 'Type',
     kind: 'string',
@@ -172,7 +189,7 @@ export function buildV2Model(definition: Definition, labels: Labels): V2Model {
     sections,
     storage: {
       types,
-      typeLabels: (storageLabels.$storageTypeLabels as Record<string, string> | undefined) ?? {},
+      typeLabels,
       optionFields,
       typeField,
     },
@@ -207,7 +224,10 @@ function coerce(field: Field, value: string | number | boolean | null | undefine
 }
 
 /** Turn a flat `path -> value` map into the nested JSON object of one config file. */
-export function buildSectionJson(section: Group, values: Record<string, unknown>): unknown {
+export function buildSectionJson(
+  section: Group,
+  values: Record<string, string | number | boolean | null | undefined>
+): unknown {
   const json: Record<string, unknown> = {}
   for (const field of section.fields) {
     const parts = field.key.split('.')
