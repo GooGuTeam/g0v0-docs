@@ -110,7 +110,12 @@ const STRINGS = {
   },
 } as const
 
-type Strings = (typeof STRINGS)['en']
+/**
+ * `STRINGS` is `as const`, so each locale has its own literal string type and
+ * `en` is not interchangeable with `zh`. Keep the key set of `en` (so a missing
+ * translation is a compile error) but widen the values to `string`.
+ */
+type Strings = { [K in keyof (typeof STRINGS)['en']]: string }
 
 const t = computed<Strings>(() => (zh.value ? STRINGS.zh : STRINGS.en))
 

@@ -1,7 +1,18 @@
 import { defineConfig } from 'vitepress'
+import checker from 'vite-plugin-checker'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  srcDir: 'src',
+  // relative to `srcDir`, let's point it back to public
+  vite: {
+    plugins: [
+      checker({
+        vueTsc: true,
+      }),
+    ],
+    publicDir: '../public',
+  },
   locales: {
     en: {
       label: 'English',
@@ -36,10 +47,6 @@ export default defineConfig({
                 {
                   text: 'Wiki, Changelog, and News',
                   link: '/en/lazer/deploy/content-and-wiki',
-                },
-                {
-                  text: 'Connect from the Client',
-                  link: '/en/lazer/deploy/login-from-client',
                 },
                 { text: 'Manage Plugins', link: '/en/lazer/deploy/manage-plugins' },
                 {
@@ -140,6 +147,10 @@ export default defineConfig({
               text: 'Differences from upstream',
               link: '/en/g0v0/difference',
             },
+            {
+              text: 'Connect from the Client',
+              link: '/en/g0v0/login-from-client',
+            },
           ],
         },
         editLink: {
@@ -180,10 +191,6 @@ export default defineConfig({
                 {
                   text: 'Wiki、更新日志与新闻',
                   link: '/lazer/deploy/content-and-wiki',
-                },
-                {
-                  text: '通过客户端连接到服务器',
-                  link: '/lazer/deploy/login-from-client',
                 },
                 { text: '管理插件', link: '/lazer/deploy/manage-plugins' },
                 {
@@ -260,6 +267,10 @@ export default defineConfig({
           '/g0v0/': [
             { text: '概览', link: '/g0v0/' },
             { text: '与上游的差异', link: '/g0v0/difference' },
+            {
+              text: '通过客户端连接到服务器',
+              link: '/g0v0/login-from-client',
+            },
           ],
         },
       },
@@ -283,16 +294,16 @@ export default defineConfig({
             // other languages
             locale = filePath.split('/')[0] // get the locale from the path
           }
-          return `https://github.com/GooGuTeam/g0v0-docs/edit/main/data/v2-configuration/${locale}.js`
+          return `https://github.com/GooGuTeam/g0v0-docs/edit/main/src/data/v2-configuration/${locale}.js`
         } else if (filePath.endsWith('configurations.md')) {
           let locale = 'zh-CN'
           if (!filePath.startsWith('lazer/')) {
             // other languages
             locale = filePath.split('/')[0] // get the locale from the path
           }
-          return `https://github.com/GooGuTeam/g0v0-docs/edit/main/data/configuration/${locale}.js`
+          return `https://github.com/GooGuTeam/g0v0-docs/edit/main/src/data/configuration/${locale}.js`
         } else {
-          return `https://github.com/GooGuTeam/g0v0-docs/edit/main/${filePath}`
+          return `https://github.com/GooGuTeam/g0v0-docs/edit/main/src/${filePath}`
         }
       },
       text: '在 GitHub 上编辑此页',

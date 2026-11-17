@@ -13,6 +13,6 @@
     "noEmit": true,
     "types": ["node", "vitepress/client"]
   },
-  "include": [".vitepress/**/*.ts", ".vitepress/**/*.vue"],
+  "include": [".vitepress/**/*.ts", ".vitepress/**/*.vue", "src/**/*.ts", "src/**/*.vue"],
   "exclude": ["node_modules", "dist"]
 }

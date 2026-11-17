@@ -105,5 +105,9 @@ export function createZipBlob(entries: ZipEntry[]): Blob {
   ev.setUint32(16, offset, true) // central directory offset
   ev.setUint16(20, 0, true) // comment length
 
-  return new Blob([...localParts, ...centralParts, eocd], { type: 'application/zip' })
+  // Since TS 5.7 `Uint8Array` is generic over its backing buffer, and `Blob`
+  // only accepts views over a plain `ArrayBuffer`. Every part here is created
+  // with `new Uint8Array(...)` (or comes from `TextEncoder`), so this is safe.
+  const parts = [...localParts, ...centralParts, eocd] as BlobPart[]
+  return new Blob(parts, { type: 'application/zip' })
 }

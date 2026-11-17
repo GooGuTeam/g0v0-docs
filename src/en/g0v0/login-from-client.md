@@ -1,0 +1,123 @@
+# Connect to the Server from the lazer Client
+
+The lazer client does not natively support connecting to a server via command
+line (`-devserver`) like stable. Therefore, to connect to your server, you need
+to use a custom lazer client modified by
+us—[g0v0!](https://github.com/GooGuTeam/g0v0), or use
+[LazerAuthlibInjection](https://github.com/MingxuanGame/LazerAuthlibInjection)
+to inject the connection configuration into the client.
+
+## Using g0v0
+
+This method is recommended for all users who can run the original lazer on their
+platform.
+
+### Steps
+
+1. **Download g0v0!**
+
+   Download the latest version of the g0v0! client from
+   [GitHub Releases](https://github.com/GooGuTeam/g0v0/releases/latest).
+
+2. **Configure the Server URL**
+
+   In the settings, find the "Online" section, locate the "Custom API Server
+   URL" setting, and enter your server address in the input field (e.g.,
+   `lazer-api.g0v0.top`).
+
+   ![g0v0-connect-to-server](../../images/g0v0-connect-to-server-en.jpg)
+
+3. **Restart the Client**
+
+   After entering the URL, exit and restart the client for the changes to take
+   effect.
+
+## Using LazerAuthlibInjection
+
+[LazerAuthlibInjection](https://github.com/MingxuanGame/LazerAuthlibInjection)
+is a ruleset that adds custom server support to the official lazer client.
+
+:::danger Danger
+
+**This will result in your upstream account being banned!**
+
+The upstream team has explicitly stated that using LazerAuthlibInjection and
+similar injection rulesets to connect to official servers will result in account
+bans ([see this issue](https://github.com/Cai1Hsu/osu-plugins/issues/93)).
+
+Only use this tool on **private development servers**, and ensure you have
+logged out of or disconnected from the official servers before using it.
+
+This project is not affiliated with or endorsed by the upstream team. **Use at
+your own risk.** **Do not report any issues regarding this ruleset to the
+upstream team.**
+
+:::
+
+### Supported Platforms
+
+- Linux (amd64, arm64)
+- Windows (amd64, arm64)
+- macOS (Intel, Apple Silicon)
+
+### Installation Steps
+
+1. **Open the upstream Data Directory**
+
+   Open the lazer data directory from the settings panel.
+
+   Default locations:
+   - Windows: `%AppData%\osu!`
+   - Linux: `~/.local/share/osu`
+   - macOS: `~/Library/Application Support/osu`
+
+2. **Install EnhancedAuth**
+
+   Download the latest version from the
+   [Releases page](https://github.com/MingxuanGame/LazerAuthlibInjection/releases/latest),
+   and copy `osu.Game.Rulesets.EnhancedAuth.dll` to the `rulesets` directory.
+
+::: tip Tip
+
+Migrating from the old version If you previously used
+`osu.Game.Rulesets.AuthlibInjection.dll`, please delete that file first.
+
+:::
+
+1. **Configure LazerAuthlibInjection**
+
+   In the settings panel, click `Rulesets`, then configure:
+   - `API Url`: Your custom server API URL (e.g., `https://lazer-api.g0v0.top`)
+   - `Website Url`: Your custom server website URL (e.g.,
+     `https://osu.g0v0.top`)
+
+   Then click `Save Changes` to save the settings.
+
+   ![authlib-injection-settings](../../images/lazer-authlib-injection-connect-to-server-en.jpg)
+
+2. **Restart the Client**
+
+   Restart lazer for the configuration to take effect.
+
+### Command Line Arguments
+
+You can also pass settings via command line arguments:
+
+| Argument                   | Description                                                          |
+| -------------------------- | -------------------------------------------------------------------- |
+| `--api-url` / `-devserver` | API URL                                                              |
+| `--website-url`            | Website URL                                                          |
+| `--client-id`              | Client ID                                                            |
+| `--client-secret`          | Client Secret                                                        |
+| `--spectator-url`          | Spectator service URL                                                |
+| `--multiplayer-url`        | Multiplayer service URL                                              |
+| `--metadata-url`           | Metadata service URL                                                 |
+| `--bss-url`                | Beatmap submission service URL                                       |
+| `--disable-sentry-logger`  | Disable sending Sentry logs to the upstream servers                  |
+| `--non-g0v0-server`        | Disable g0v0-server specific features (Relax, custom ruleset scores) |
+
+**Example:**
+
+```bash
+osu!.exe --api-url=lazer-api.g0v0.top --website-url=osu.g0v0.top --disable-sentry-logger
+```
