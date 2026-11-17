@@ -46,7 +46,7 @@ needs to change for server communication and how.
   `.ppy.sh` / `.g0v0.top` hosts are allowed and other external requests are
   blocked.
 - The client's default production endpoints are the official g0v0 instance
-  (`osu.g0v0.top` / `lazer-api.g0v0.top`).
+  (`osu.g0v0.top`).
 
 ::: details Developer reference
 
