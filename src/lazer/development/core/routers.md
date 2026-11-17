@@ -18,7 +18,7 @@
 
 新增端点前必须先查官方规范：
 
-- v1：<https://github.com/ppy/osu-api/wiki>
+- v1: <https://github.com/ppy/osu-api/wiki>
 - v2: <https://osu.ppy.sh/docs/index.html>
 
 如果端点不在官方 v1/v2 规范中，不得放入 `v1/`、`v2/` 或 `notification/`。
